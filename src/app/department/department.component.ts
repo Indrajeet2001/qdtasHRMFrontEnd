@@ -153,7 +153,7 @@ export class DepartmentComponent implements OnInit {
       data: deptId,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => { 
       if (result === 'success') {
         this.successMessage = 'Department updated Successfully';
         setTimeout(() => {

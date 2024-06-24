@@ -44,6 +44,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DepartmentComponent } from './department/department.component';
 import { EditDepartmentComponent } from './edit-department/edit-department.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     ProjectsComponent,
     DepartmentComponent,
     EditDepartmentComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    ShowEmpDetailsComponent
   ],
   imports: [
     BrowserModule,

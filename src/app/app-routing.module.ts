@@ -14,6 +14,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { ProjectsComponent } from './projects/projects.component';
 import { DepartmentComponent } from './department/department.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
 
 
 const routes: Routes = [
@@ -79,6 +80,11 @@ const routes: Routes = [
   {
     component : EmployeeDetailsComponent,
     path : 'employee-details',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : ShowEmpDetailsComponent,
+    path : 'show-emp-details',
     canActivate : [AuthGuard]
   }
 

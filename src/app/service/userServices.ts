@@ -120,25 +120,50 @@ export class UserService {
     );
   }
 
-  getUserByUsername(username: string): Observable<User> {
-    return this.http.get<any>(BASE_API_URL + `/user/byUsername/${username}`, { headers: this.getHeaders() }).pipe(
-      map(res => {
-        // Map response data to User class
-        return new User(
-          res.userId,res.userName,res.email,res.password,res.firstName,res.middleName,res.lastName,res.gender,res.dept,res.role,res.phoneNumber,
-          res.address,res.designation,res.emailVerified,res.birthDate,res.joinDate,res.projects
-        );
-      }),
-      catchError(error => {
-        console.error('Error occurred:', error);
-        return throwError('Something went wrong while fetching user data.');
-      })
-    );
-  }
+  
 
-  getUserInfo(userId: number): Observable<User> {
-    return this.http.get<any>(BASE_API_URL+ `/user/getUserInfo/ ` + userId, { headers: this.getHeaders() });
+  // getUserByUsername(username: string): Observable<User> {
+  //   return this.http.get<any>(BASE_API_URL + `/user/byUsername/${username}`, { headers: this.getHeaders() }).pipe(
+  //     map(res => {
+  //       // Map response data to User class
+  //       return new User(
+  //         res.userId,res.userName,res.email,res.password,res.firstName,res.middleName,res.lastName,res.gender,res.dept,res.role,res.phoneNumber,
+  //         res.address,res.designation,res.emailVerified,res.birthDate,res.joinDate,res.projects
+  //       );
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error occurred:', error);
+  //       return throwError('Something went wrong while fetching user data.');
+  //     })
+  //   );
+  // }
+
+  // getUsersByUsername(username: string): Observable<User[]> {
+  //   return this.http.get<any[]>(BASE_API_URL + `/user/userInfo?usn=` +username, { headers: this.getHeaders() }).pipe(
+  //     map(res => {
+  //       // Map response data to an array of User instances
+  //       return res.map(user => new User(
+  //         user.userId, user.userName, user.email, user.password, user.firstName, user.middleName, user.lastName, user.gender, user.dept, user.role, user.phoneNumber,
+  //         user.address, user.designation, user.emailVerified, user.birthDate, user.joinDate, user.projects
+  //       ));
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error occurred:', error);
+  //       return throwError('Something went wrong while fetching user data.');
+  //     })
+  //   );
+  // }
+
+  getUsersByUsername(username: string): Observable<User[]> {
+    console.log(BASE_API_URL + `/user/userInfo/`+username);
+    
+    return this.http.get<User[]>(BASE_API_URL + `/user/userInfo/`+username, { headers: this.getHeaders() });
   }
+  
+
+  // getUserInfo(userId: number): Observable<User> {
+  //   return this.http.get<any>(BASE_API_URL+ `/user/getUserInfo/ ` + userId, { headers: this.getHeaders() });
+  // }
 
 
   deleteUser(userId: number) {
@@ -200,9 +225,15 @@ export class UserService {
     return this.http.post<any>(BASE_API_URL + `/project/add` , projectData,  {headers:this.getHeaders() });
   }
 
-  getAllProjects(currentPage: Number, resultSize: Number,) {
-      let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<any>(BASE_API_URL + `/project/getAllProjects`  +  `?pgn=` + currentPage + `&sz=` + resultSize , resultSize , { headers: this.getHeaders() });
+  getAllProjects(currentPage: Number, resultSize: Number): Observable<any> {
+    const headers = this.getHeaders();
+
+    // Using HttpParams for query parameters
+    const params = new HttpParams()
+      .set('pgn', currentPage.toString())
+      .set('sz', resultSize.toString());
+
+    return this.http.get<any>(`${BASE_API_URL}/project/getAllProjects`, { headers, params });
   }
 
 
