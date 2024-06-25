@@ -236,6 +236,20 @@ export class UserService {
     return this.http.get<any>(`${BASE_API_URL}/project/getAllProjects`, { headers, params });
   }
 
+  getUserPerformance(userId: number, startDate: string, endDate: string): Observable<number> {
+    const params = new HttpParams()
+      .set('userId', userId.toString())
+      .set('startDate', startDate)
+      .set('endDate', endDate);
+
+    return this.http.get<number>(BASE_API_URL + `/employee-details/calculate-performance`, { headers: this.getHeaders(), params }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error occurred while fetching performance:', error);
+        return throwError('Something went wrong while fetching performance data.');
+      })
+    );
+  }
+
 
 }
 
