@@ -101,17 +101,45 @@ export class EmployeeDetailsComponent implements OnInit {
   //   );
   // }
 
+  // loadUsers(username: string): void {
+  //   this.subscriptions.push(
+  //     this.userService.getUsersByUsername(username).subscribe(
+  //       (users: User[]) => {
+  //         // Add the retrieved users to the existing users array
+  //         this.users = this.users.concat(users);
+  //         this.dataSource.data = this.users;
+  //       },
+  //       (error: any) => {
+  //         console.error('Error occurred while loading users:', error);
+  //         this.errorMessage = 'Failed to load user data';
+  //       }
+  //     )
+  //   );
+  // }
+
   loadUsers(username: string): void {
     this.subscriptions.push(
       this.userService.getUsersByUsername(username).subscribe(
         (users: User[]) => {
-          // Add the retrieved users to the existing users array
-          this.users = this.users.concat(users);
-          this.dataSource.data = this.users;
+          if (users.length === 0) {
+            // No users found for the given username
+            this.errorMessage = 'Employee name not valid';
+          } else {
+            // Add the retrieved users to the existing users array
+            this.users = this.users.concat(users);
+            this.dataSource.data = this.users;
+          }
         },
         (error: any) => {
+          // Differentiate between various types of errors
+          if (error.status === 404) {
+            this.errorMessage = 'Employee name not found';
+          } else if (error.status === 500) {
+            this.errorMessage = 'Server error occurred while loading users';
+          } else {
+            this.errorMessage = `Employee name not found`;
+          }
           console.error('Error occurred while loading users:', error);
-          this.errorMessage = 'Failed to load user data';
         }
       )
     );
@@ -125,7 +153,7 @@ export class EmployeeDetailsComponent implements OnInit {
       height: '100%', // Adjust height as per your preference
       data: userId,
       maxHeight: '90vh', // Ensure the dialog does not exceed 90% of the viewport height
-    
+
     });
     dialogRef.afterClosed().subscribe(result => {})
   }
@@ -135,7 +163,7 @@ export class EmployeeDetailsComponent implements OnInit {
   //     this.userFields = [];
   //     const formValue = employeeDetails.value;
   //     // Example: Assuming user is an object with properties matching form fields
-  //     this.user = { 
+  //     this.user = {
   //       firstName: formValue.UserName.split(' ')[0],
   //       middleName : formValue.UserName.split(' ')[1],
   //       lastName: formValue.UserName.split(' ')[2],
@@ -148,7 +176,7 @@ export class EmployeeDetailsComponent implements OnInit {
   //     }
   //   }
   // }
-  
+
   // getUserDetails(userId: number): void {
   //   // const userId = 1; // Example user ID, replace with your logic to get the user ID
   //   this.userService.getUserInfo(userId).subscribe(

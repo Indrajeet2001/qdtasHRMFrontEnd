@@ -120,7 +120,7 @@ export class UserService {
     );
   }
 
-  
+
 
   // getUserByUsername(username: string): Observable<User> {
   //   return this.http.get<any>(BASE_API_URL + `/user/byUsername/${username}`, { headers: this.getHeaders() }).pipe(
@@ -156,10 +156,10 @@ export class UserService {
 
   getUsersByUsername(username: string): Observable<User[]> {
     console.log(BASE_API_URL + `/user/userInfo/`+username);
-    
+
     return this.http.get<User[]>(BASE_API_URL + `/user/userInfo/`+username, { headers: this.getHeaders() });
   }
-  
+
 
   // getUserInfo(userId: number): Observable<User> {
   //   return this.http.get<any>(BASE_API_URL+ `/user/getUserInfo/ ` + userId, { headers: this.getHeaders() });
@@ -235,6 +235,8 @@ export class UserService {
 
     return this.http.get<any>(`${BASE_API_URL}/project/getAllProjects`, { headers, params });
   }
+
+
 
   getUserPerformance(userId: number, startDate: string, endDate: string): Observable<number> {
     const params = new HttpParams()

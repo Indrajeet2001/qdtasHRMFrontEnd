@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid g-0">
 
 
@@ -16,12 +14,12 @@
     {{ successMessage }}
     <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
   </div>
-  
+
   <div *ngIf="errorMessage" class="error-message-notification">
     {{ errorMessage }}
     <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
   </div>
-  
+
 
 
   <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
@@ -37,13 +35,11 @@
               <h2 class="title mb-3">Add Department</h2>
               <div class="inp-field">
                 <div class="inp">
-                  <label class="form-label">DepartmentName</label>
-                  <input type="text" class="form-control" id="deptName" placeholder="deptName" ngModel required
+                  <label class="form-label">Department Name</label>
                     name="deptName" #deptName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': deptName.invalid && (deptName.dirty || deptName.touched), 'valid': deptName.valid && (deptName.dirty ||
                               deptName.touched)}">
 
                   <div *ngIf="deptName.invalid && (deptName.dirty || deptName.touched)" class="error-message">
-                    <span *ngIf="deptName.errors?.['required']">Please enter deptName</span>
                     <span *ngIf="deptName.errors?.['pattern']">Please enter only alphabets</span>
                   </div>
                 </div>
@@ -67,9 +63,7 @@
                   <button class="btn btn-maroon" id="sub" type="submit" [disabled]="!addDeptData.valid">Submit</button>
                 </div>
 
-                <div class="error-message mandatory" *ngIf="isFormEmpty(addDeptData)">
                   <h5>Please fill the above field.</h5>
-                </div>
               </div>
             </div>
           </form>
@@ -82,7 +76,7 @@
           <div class="container p-2">
             <form>
               <input type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
-              
+
 
               <div class="table-container">
                 <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -90,12 +84,12 @@
                     <th mat-sort-header mat-header-cell *matHeaderCellDef class="center">Department ID</th>
                     <td mat-cell *matCellDef="let department" class="center">{{department.deptId}}</td>
                   </ng-container>
-              
+
                   <ng-container matColumnDef="deptName">
                     <th mat-sort-header mat-header-cell *matHeaderCellDef class="center">Department Name</th>
                     <td mat-cell *matCellDef="let department" class="center">{{department.deptName}}</td>
                   </ng-container>
-              
+
                   <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef class="center">Action</th>
                     <td mat-cell *matCellDef="let department">
@@ -106,12 +100,12 @@
                       </div>
                     </td>
                   </ng-container>
-              
+
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
               </div>
-              
+
 
               <div *ngIf="isLoading" class="loading-bar">
                 <div class="spinner-container">

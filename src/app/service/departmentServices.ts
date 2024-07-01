@@ -92,11 +92,18 @@ export class DepartmentService {
         return this.http.post<any>(BASE_API_URL + `/dept/update/` + deptId, dept, { headers: this.getHeaders() });
     }
 
-    getAllDepartments(currentPage: number, resultSize: number) {
-        return this.http.post<Department[]>(BASE_API_URL + `/dept/getAllDepartments`,resultSize ,{ headers: this.getHeaders() });
-    }
+    // getAllDepartments(currentPage: number, resultSize: number) {
+    //     return this.http.post<Department[]>(BASE_API_URL + `/dept/getAllDepartments?pgn=` + currentPage + `&sz=` + resultSize, { headers: this.getHeaders() });
+    // }
 
 
+      getAllDepartments(currentPage: number, resultSize: number) {
+        return this.http.get<Department[]>(BASE_API_URL + `/dept/getAllDepartments?pgn=` + currentPage + `&sz=` + resultSize, { headers: this.getHeaders() });
+      }
+
+    // getAllDepartments(currentPage: number, resultSize: number) {
+    //     return this.http.post<Department[]>(BASE_API_URL + `/dept/getAllDepartments`,resultSize ,{ headers: this.getHeaders() });
+    // }
 
 }
 

@@ -22,12 +22,14 @@
           <h2 class="title mb-3">Employee Details</h2>
           <div class="inp-field">
             <div class="inp">
-              <label class="form-label">Employee Name</label>
+              <label class="form-label">Employee UserName</label>
               <input type="text" class="form-control" id="UserName" placeholder="Enter Username" ngModel required
                 name="UserName" #UserName="ngModel" pattern="^[A-Za-z ]+$"
                 [ngClass]="{'invalid': UserName.invalid && (UserName.dirty || UserName.touched), 'valid': UserName.valid && (UserName.dirty || UserName.touched)}">
               <div *ngIf="UserName.invalid && (UserName.dirty || UserName.touched)" class="error-message">
                 <span *ngIf="UserName.errors?.['required']">Please enter UserName</span>
+                <span *ngIf="UserName.errors?.['pattern']">Please enter only alphabets</span>
+
               </div>
             </div>
           </div>
@@ -87,6 +89,6 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 

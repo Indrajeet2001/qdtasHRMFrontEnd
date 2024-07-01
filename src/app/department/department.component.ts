@@ -1,17 +1,12 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DepartmentService } from '../service/departmentServices';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Department } from '../model/department';
-import { Subscription, Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogModule } from '@angular/material/dialog';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 import { EditDepartmentComponent } from '../edit-department/edit-department.component';
-import { FormsModule, NgForm } from '@angular/forms';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
@@ -31,8 +26,7 @@ export class DepartmentComponent implements OnInit {
   errorMessage: string | null = null;
   searchTerm: string = '';
   isLoggedIn!: Department;
-  // role: number | null = this.departmentService.getAuthDeptId();
-  isLoading: boolean = false; 
+  isLoading: boolean = false;
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Department>;
   @ViewChild(MatSort) sort!: MatSort;
@@ -46,18 +40,15 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.isLoggedIn = this.departmentService.getAuthDeptFromCache();
     this.displayColumns();
     this.loadDepartments(this.resultPage);
-    // this.loadMoreDepartments();
   }
-  
+
   isSidebarExpanded: boolean = true;
 
-
   onToggleSidebar(expanded: boolean) {
-  this.isSidebarExpanded = expanded;
-}
+    this.isSidebarExpanded = expanded;
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort!;
@@ -153,7 +144,7 @@ export class DepartmentComponent implements OnInit {
       data: deptId,
     });
 
-    dialogRef.afterClosed().subscribe(result => { 
+    dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
         this.successMessage = 'Department updated Successfully';
         setTimeout(() => {
@@ -185,7 +176,4 @@ export class DepartmentComponent implements OnInit {
       this.displayedColumns = ['deptId', 'deptName', 'actions'];
     }
   }
-
-  
-
 }
