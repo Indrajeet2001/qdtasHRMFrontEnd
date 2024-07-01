@@ -37,7 +37,7 @@
                 <div class="inp">
                   <label class="form-label">DepartmentName</label>
                   <input type="text" class="form-control" id="deptName" placeholder="deptName" ngModel required
-                         name="deptName" #deptName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': deptName.invalid && (deptName.dirty || deptName.touched), 'valid': deptName.valid && (deptName.dirty ||
+                    name="deptName" #deptName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': deptName.invalid && (deptName.dirty || deptName.touched), 'valid': deptName.valid && (deptName.dirty ||
                               deptName.touched)}">
 
                   <div *ngIf="deptName.invalid && (deptName.dirty || deptName.touched)" class="error-message">
