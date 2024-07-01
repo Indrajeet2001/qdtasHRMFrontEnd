@@ -37,6 +37,10 @@
             <div class="col text-end suv-btn">
               <button class="btn btn-maroon" id="sub" type="submit" [disabled]="!employeeDetails.valid">Submit</button>
             </div>
+
+            <div class="error-message mandatory" *ngIf="isFormEmpty(employeeDetails)">
+              <h5>Please fill all the above fields.</h5>
+            </div>
           </div>
         </div>
       </form>
