@@ -84,10 +84,13 @@
   color: maroon;
 }
 
+
 .error-message {
+  margin-top: 4px;
   color: red;
-  font-size: 12px;
+  font-size: 14px;
 }
+
 
 .invalid {
   border: 2px solid red;
@@ -101,7 +104,12 @@
   padding: 0.375rem 0.75rem;
   margin-top: 20px;
   margin-bottom: -10px;
-  margin-right: 20px;
+  margin-right: 15px;
+}
+
+button[type="submit"] {
+  margin-right: 0; /* Adjust the value as needed to shift the button to the right */
+  align-self: flex-start;
 }
 
 .btn-maroon:hover {
@@ -150,7 +158,7 @@
 .error-message-notification {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left:0;
   right: 0;
   margin: auto;
   width: 90% !important;
@@ -250,7 +258,7 @@
     overflow-y: auto;
   }
 
-  
+
   .expanded {
     margin-left: 50px;
     margin-right: 50px;
@@ -298,7 +306,7 @@ input[type="search"] {
 input[type="search"]::placeholder {
   color: #bbb;
 }
-/* 
+/*
 table,
 th,
 td {
@@ -378,7 +386,7 @@ th {
 
 .inp {
   width: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .suv-btn {
@@ -403,7 +411,7 @@ th {
 
 
 tr:hover {
-background-color: rgb(255, 235, 235);
+  background-color: rgb(255, 235, 235);
 }
 
 .center {
@@ -412,6 +420,61 @@ background-color: rgb(255, 235, 235);
 
 .inp-date {
   width: 100%;
-  margin-top: 8px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
+
+.project-container {
+  margin-top: 10px; /* Adjust the value as needed */
+}
+
+/* Common container styling */
+.project-container,
+.inp-field {
+  margin-top: 20px; /* Adjust the value as needed for vertical spacing */
+}
+
+.date-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+  height: 38px; /* Adjust the height to match other input fields */
+}
+
+
+.mat-form-field-wrapper {
+  padding-bottom: 0; /* Remove padding if any */
+}
+
+.mat-form-field-flex {
+  height: 100%;
+}
+/* Specific styling for the project selection */
+.project-container .form-label{
+  height: 38px; /* Match the height of the input fields */
+}
+
+/* Specific styling for the date picker */
+.date-field {
+  width: 100%; /* Ensure full width */
+}
+
+/* Label styling for consistency */
+.inp-date {
+  display: block;
+  margin-top: 3px;
+  /* Space between label and input */
+}
+
+textarea.form-control {
+  width: 95%; /* Adjust the percentage as needed */
+}
+
+.error-snackbar {
+  background-color: #f44336; /* Red background for error messages */
+  color: #ffffff; /* White text */
+}
+
+::ng-deep .mat-snack-bar-container.custom-snackbar {
+  background-color: red !important;
+  color: white !important;
+}
+
