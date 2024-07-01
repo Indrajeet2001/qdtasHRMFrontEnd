@@ -41,7 +41,7 @@
                               deptName.touched)}">
 
                   <div *ngIf="deptName.invalid && (deptName.dirty || deptName.touched)" class="error-message">
-                    <span *ngIf="deptName.errors?.['required']">Please enter deptName</span>
+                    <span *ngIf="deptName.errors?.['required']">Please enter DepartmentName</span>
                     <span *ngIf="deptName.errors?.['pattern']">Please enter only alphabets</span>
                   </div>
                 </div>
