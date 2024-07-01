@@ -65,7 +65,9 @@
                   <button class="btn btn-maroon" id="sub" type="submit" [disabled]="!addDeptData.valid">Submit</button>
                 </div>
 
-                  <h5>Please fill the above field.</h5>
+                <div class="error-message mandatory" *ngIf="isFormEmpty(addDeptData)">
+                  <h5>Please fill all the above fields.</h5>
+                </div>
               </div>
             </div>
           </form>
