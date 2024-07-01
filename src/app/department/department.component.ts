@@ -8,6 +8,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 import { EditDepartmentComponent } from '../edit-department/edit-department.component';
 import { MatSort } from '@angular/material/sort';
+import {MatTableDataSource} from "@angular/material/table";
+import {Subscription} from "rxjs";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-department',
@@ -76,19 +79,35 @@ export class DepartmentComponent implements OnInit {
     this.openConfirmationDialog(deptId);
   }
 
+  // loadDepartments(currentPage: number): void {
+  //   this.subscriptions.push(
+  //     this.departmentService.getAllDepartments(currentPage, this.resultSize).subscribe(
+  //       (departments: Department[]) => {
+  //         this.departments.push(...departments);
+  //         this.dataSource.data = this.departments;
+  //         if (this.departments.length <= 0 && this.resultPage === 1) {
+  //           this.hasMoreResult = false;
+  //         }
+  //         this.fetchingResult = false;
+  //         this.resultPage++;
+  //       },
+  //       (error: { error: { message: any; }; }) => {
+  //         console.log(error.error.message);
+  //       }
+  //     )
+  //   );
+  // }
+
   loadDepartments(currentPage: number): void {
     this.subscriptions.push(
       this.departmentService.getAllDepartments(currentPage, this.resultSize).subscribe(
-        (departments: Department[]) => {
-          this.departments.push(...departments);
+        (department: Department[]) => {
+          this.departments.push(...department);
           this.dataSource.data = this.departments;
-          if (this.departments.length <= 0 && this.resultPage === 1) {
-            this.hasMoreResult = false;
-          }
+          if (this.departments.length <= 0) this.hasMoreResult = false;
           this.fetchingResult = false;
           this.resultPage++;
-        },
-        (error: { error: { message: any; }; }) => {
+        }, (error) => {
           console.log(error.error.message);
         }
       )
