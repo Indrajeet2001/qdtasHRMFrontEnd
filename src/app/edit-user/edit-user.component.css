@@ -26,8 +26,12 @@
 }
 
 .error-message {
-    color: red;
-    font-size: 12px;
+  color: red;
+  font-size: 12px;
+  font: bold 14px Arial, sans-serif;
+  font-weight: lighter;
+  /* Makes the text lighter (less bold) */
+  margin-top: 3px;
 }
 
 .invalid {
@@ -57,30 +61,38 @@
 
 
 .success-message {
-position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 20%;
-    background-color: green;
-    color: white;
-    padding: 10px;
-    text-align: center;
- 
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+
 }
 
 .error-message-notification {
-position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 20%;
-    background-color: red;
-    color: white;
-    padding: 10px;
-    text-align: center;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .close-icon {

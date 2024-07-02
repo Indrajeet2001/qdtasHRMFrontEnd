@@ -146,8 +146,12 @@ body {
 }
 
 .error-message {
-    color: red;
-    font-size: 12px;
+  color: red;
+  font-size: 12px;
+  font: bold 14px Arial, sans-serif;
+  font-weight: lighter;
+  /* Makes the text lighter (less bold) */
+  margin-top: 3px;
 }
 
 
