@@ -78,7 +78,7 @@
                   </select>
                   <div *ngIf="projectId.invalid && (projectId.dirty || projectId.touched)"
                        class="error-message">
-                    <span *ngIf="projectId.errors?.['required']">Please select projectId</span>
+                    <span *ngIf="projectId.errors?.['required']">Please select the project</span>
                   </div>
                 </div>
               </div>
@@ -96,15 +96,18 @@
                 </div>
               </div>
 
+
               <div>
                 <div class="col text-end suv-btn">
                   <button class="btn btn-maroon" type="reset">Reset</button>
                   <button class="btn btn-maroon" type="submit"   [disabled]="!timeSheetForm.valid">Submit</button>
                 </div>
+
+                <div class="error-message mandatory font-arial" *ngIf="isFormEmpty(timeSheetForm.value)">
+                  <h5 class="not-bold">Please fill all the above fields.</h5>
+                </div>
+
               </div>
-
-
-
             </div>
           </form>
         </div>

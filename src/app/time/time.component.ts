@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Time } from '../model/time';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-time',
@@ -74,15 +74,33 @@ export class TimeComponent implements OnInit {
   }
 
   updateTimeConstraints() {
-    // If end time is earlier than start time, show a popup message and reset end time to start time
-    if (this.endTime < this.startTime) {
+    // Parse the startTime and endTime as Date objects for comparison
+    const [startHour, startMinute] = this.startTime.split(':').map(Number);
+    const [endHour, endMinute] = this.endTime.split(':').map(Number);
+
+    const startTimeDate = new Date();
+    startTimeDate.setHours(startHour, startMinute);
+
+    const endTimeDate = new Date();
+    endTimeDate.setHours(endHour, endMinute);
+
+    // If end time is earlier than start time, show a popup message and reset end time to "--:--"
+    if (endTimeDate < startTimeDate) {
       this.snackBar.open('End Time cannot be earlier than Start Time', 'Close', {
         duration: 3000,
         panelClass: ['error-snackbar']
       });
-      this.endTime = this.startTime;
+      this.endTime = '--:--';
+    } else if (endTimeDate.getTime() === startTimeDate.getTime()) {
+      // If start time and end time are the same, show a popup message
+      this.snackBar.open('Start Time and End Time cannot be the same', 'Close', {
+        duration: 3000,
+        panelClass: ['error-snackbar']
+      });
+      this.endTime = '--:--';
     }
   }
+
 
   setTime() {
     this.endTime = this.startTime
@@ -179,6 +197,11 @@ export class TimeComponent implements OnInit {
     }, 1000);
   }
 
+  isFormEmpty(formData: any): boolean {
+    // Check if any form field is empty
+    return !formData.startTime || !formData.endTime || !formData.date || !formData.projectId || !formData.note;
+  }
+
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
@@ -192,11 +215,11 @@ export class TimeComponent implements OnInit {
     this.errorMessage = null;
   }
 
-  showValidationError(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 5000,
-      panelClass: ['custom-snackbar']
-    });
+  openErrorSnackBar(message: string) {
+    let config = new MatSnackBarConfig();
+    config.panelClass = ['custom-snackbar']; // Add your custom class here
+    config.duration = 3000; // Set duration as needed
+    this.snackBar.open(message, 'Close', config);
   }
 
 }

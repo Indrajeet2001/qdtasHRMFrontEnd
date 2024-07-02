@@ -34,7 +34,7 @@ fullName: any[] = [];
 successMessage: string | null = null;
 errorMessage: string | null = null;
 projects: Project[] = [];
-isLoading: boolean = false; 
+isLoading: boolean = false;
 isLoggedIn! : User ;
 displayedColumns: string[] = ['projectName', 'client', 'teams', 'managers','status'];
 dataSource: MatTableDataSource<Project>;
@@ -51,7 +51,7 @@ constructor(private UserService:UserService,){
   }
 
   ngOnInit() {
-    const currentPage = 1; 
+    const currentPage = 1;
     this.loadUsers(currentPage);
 
 
@@ -59,16 +59,16 @@ constructor(private UserService:UserService,){
   this.eId = this.UserService.getAuthUserId();
   console.log(this.eId);
   this.loadProjects(this.resultPage, this.resultSize );
- 
+
   this.UserService.profile();
-  
+
 
   }
 
     dropdownSettings = {
     singleSelection: false,
-    idField: 'id',  
-    textField: 'firstName' ,  
+    idField: 'id',
+    textField: 'firstName' ,
     selectAllText: 'Select All',
     unSelectAllText: 'Unselect All',
     itemsShowLimit: 3,
@@ -78,8 +78,8 @@ constructor(private UserService:UserService,){
 
   dropdownSettingsForManagers = {
     singleSelection: false,
-    idField: 'id',  
-    textField: 'firstName', 
+    idField: 'id',
+    textField: 'firstName',
     selectAllText: 'Select All',
     unSelectAllText: 'Unselect All',
     itemsShowLimit: 3,
@@ -96,8 +96,8 @@ constructor(private UserService:UserService,){
         (users: User[]) => {
           this.users = users;
           this.fullName = this.users
-          .map(user => user.firstName + ' ' + user.lastName) 
-          .filter(name => !!name); 
+          .map(user => user.firstName + ' ' + user.lastName)
+          .filter(name => !!name);
         },
         (error) => {
           console.log(error.error.message);
@@ -110,23 +110,23 @@ constructor(private UserService:UserService,){
 addProjectData(projectData: any) {
     this.UserService.addProject(projectData).subscribe(
       (response: any) => {
-        this.successMessage = 'Project added Successfully'; 
+        this.successMessage = 'Project added Successfully';
 	 setTimeout(() => {
         this.successMessage = null;
         window.location.reload();
       }, 3000);
-        
+
       },
       (error: any) => {
         if (error.status == 400) {
-          this.errorMessage = 'An error occurred while adding the project'; 
+          this.errorMessage = 'An error occurred while adding the project';
 	 setTimeout(() => {
         this.successMessage = null;
       }, 3000);
 
         } else {
           console.log('added');
-          this.errorMessage = 'An error occurred while adding the project'; 
+          this.errorMessage = 'An error occurred while adding the project';
 	 setTimeout(() => {
         this.successMessage = null;
       }, 3000);
@@ -153,7 +153,7 @@ dismissErrorMessage() {
       this.UserService.getAllProjects(currentPage ,resultSize ).subscribe(
         (p: Project[]) => {
           this.projects.push(...p);
-          this.dataSource.data =this.projects;         
+          this.dataSource.data =this.projects;
           this.isLoading = false;
           if (this.projects.length <= 0 && this.resultPage === 1) {
             this.hasMoreResult = false;
@@ -175,7 +175,6 @@ dismissErrorMessage() {
        this.isLoading = false;
     }, 1000);
   }
-
 
 }
 
