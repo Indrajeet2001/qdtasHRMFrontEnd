@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Time } from '../model/time';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-time',
@@ -20,7 +21,7 @@ export class TimeComponent implements OnInit {
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
   timeSheets: Time[] = [];
-  noResultMessage: string = '';
+  //noResultMessage: string = '';
   eId: Number = 0;
   isLoading: boolean = false;
   searchTerm: string = '';
@@ -42,6 +43,7 @@ export class TimeComponent implements OnInit {
   endDate: string = '';
   startTime: string = "";
   endTime: string = "";
+  private location: any;
 
   constructor(
     private UserService: UserService,
@@ -74,7 +76,6 @@ export class TimeComponent implements OnInit {
   }
 
   updateTimeConstraints() {
-    // Parse the startTime and endTime as Date objects for comparison
     const [startHour, startMinute] = this.startTime.split(':').map(Number);
     const [endHour, endMinute] = this.endTime.split(':').map(Number);
 
@@ -84,15 +85,13 @@ export class TimeComponent implements OnInit {
     const endTimeDate = new Date();
     endTimeDate.setHours(endHour, endMinute);
 
-    // If end time is earlier than start time, show a popup message and reset end time to "--:--"
     if (endTimeDate < startTimeDate) {
-      this.snackBar.open('End Time cannot be earlier than Start Time', 'Close', {
+      this.snackBar.open('Please enter the correct end time', 'Close', {
         duration: 3000,
         panelClass: ['error-snackbar']
       });
       this.endTime = '--:--';
     } else if (endTimeDate.getTime() === startTimeDate.getTime()) {
-      // If start time and end time are the same, show a popup message
       this.snackBar.open('Start Time and End Time cannot be the same', 'Close', {
         duration: 3000,
         panelClass: ['error-snackbar']
@@ -175,19 +174,18 @@ export class TimeComponent implements OnInit {
         (t: Time[]) => {
           this.timeSheets.push(...t);
           this.dataSourceForUser.data = this.timeSheets;
+          this.hasMoreResult = t.length === resultSize;
           this.isLoading = false;
-          if (this.timeSheets.length <= 0 && this.resultPage === 1) {
-            this.hasMoreResult = false;
-            this.noResultMessage = "No result found."
-          }
-          this.fetchingResult = false;
           this.resultPage++;
-        }, (error) => {
+        },
+        (error) => {
           console.log(error);
+          this.isLoading = false;
         }
       )
     );
   }
+
 
   loadMoreTimeSheet(): void {
     this.isLoading = true;
@@ -197,15 +195,47 @@ export class TimeComponent implements OnInit {
     }, 1000);
   }
 
+  goBack() {
+    this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
   isFormEmpty(formData: any): boolean {
     // Check if any form field is empty
     return !formData.startTime || !formData.endTime || !formData.date || !formData.projectId || !formData.note;
   }
 
   FilterChange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
+    const value = (data.target as HTMLInputElement).value.trim().toLowerCase();
     this.dataSource.filter = value;
+
+    // Custom filtering logic to match initial pattern
+    if (value) {
+      this.dataSource.filterPredicate = (data: User, filter: string) => {
+        const fieldsToCheck = [
+          data.userId?.toString(),    // Convert userId to string
+          data.firstName?.toLowerCase(),
+          data.lastName?.toLowerCase(),
+          data.designation?.toLowerCase(),
+          data.dept?.deptName?.toLowerCase() // Assuming 'dept' has a property 'deptName'
+        ];
+
+        // Check if any field starts with the filter value
+        return fieldsToCheck.some(field => {
+          const fieldValue = field?.toLowerCase();
+          return fieldValue && fieldValue.startsWith(filter);
+        });
+      };
+    } else {
+      // Reset filter if search input is empty
+      this.dataSource.filterPredicate = (data: User, filter: string) => true; // Default predicate that always returns true
+    }
   }
+
+
 
   dismissSuccessMessage() {
     this.successMessage = null;
@@ -221,5 +251,13 @@ export class TimeComponent implements OnInit {
     config.duration = 3000; // Set duration as needed
     this.snackBar.open(message, 'Close', config);
   }
+
+  navigateBack(time: Time) {
+    // Implement your navigation logic here, for example:
+    // Assuming you have a route set up for viewing details of a time entry
+    this.router.navigate(['/time']); // Replace '/time' with your actual route
+  }
+
+
 
 }
