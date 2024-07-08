@@ -55,26 +55,27 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   }
 
   saveUser(userData: any) {
-
     const token = localStorage.getItem('token');
     console.log('Token:', token);  // Check token value
 
     this.userService.addUser(userData).subscribe(
       (response: any) => {
-        this.successMessage = 'User added Successfully';
+        this.successMessage = 'User added successfully';
         setTimeout(() => {
           this.successMessage = null;
           window.location.reload();
         }, 3000);
       },
       (error: any) => {
-        this.errorMessage = 'An error occurred while adding the user';
+        console.error('Error adding user:', error);
+        this.errorMessage = error.error?.message || 'An error occurred while adding the user';
         setTimeout(() => {
           this.errorMessage = null;
         }, 3000);
       }
     );
   }
+
 
   // saveUser(userData: any) {
   //   const token = localStorage.getItem('token');
