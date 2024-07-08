@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from '../service/userServices';
 import { User } from '../model/user';
+import {Router} from "@angular/router";
+import {PerformanceReportComponent} from "../performance-report/performance-report.component";
 
 @Component({
   selector: 'app-show-emp-details',
@@ -15,25 +17,30 @@ export class ShowEmpDetailsComponent {
   successMessage: string | null = null;
   errorMessage: string | null = null;
   isLoading: boolean = true;
-  
+  performanceValue: string | null = null;
+
 
   user: User | undefined;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public userId: number,
-    private userService: UserService,public dialog: MatDialog, private http: HttpClient
+    private userService: UserService,public dialog: MatDialog, private http: HttpClient,
+    private dialogRef: MatDialogRef<ShowEmpDetailsComponent>, // Add this parameter,
+    private router: Router
   ) {}
 
-  // ngOnInit(): void {
-  //   this.userService.getUserById(this.userId).subscribe(
-  //     (user: User) => {
-  //       this.user = user;
-  //     },
-  //     (error) => {
-  //       console.error('Failed to load user data', error);
-  //     }
-  //   );
-  // }
+  ngOnInit() {
+
+    this.userService.getUserById(this.userId).subscribe(
+      (user: User) => {
+        this.user = user;
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('Failed to load user data', error);
+      }
+    );
+  }
 
 
   isFormSubmitted: boolean = false;
@@ -61,48 +68,70 @@ export class ShowEmpDetailsComponent {
     }
   }
 
+  // calculatePerformance() {
+  //   if (this.fromDate && this.toDate) {
+  //     // Process the dates and perform the calculation
+  //     console.log('From Date:', this.fromDate);
+  //     console.log('To Date:', this.toDate);
+  //     // Add your calculation logic here
+  //   } else {
+  //     this.errorMessage = 'Please select both From and To dates.';
+  //   }
+  // }
+
+
   calculatePerformance() {
     if (this.fromDate && this.toDate) {
-      // Process the dates and perform the calculation
-      console.log('From Date:', this.fromDate);
-      console.log('To Date:', this.toDate);
-      // Add your calculation logic here
+      const startDate = this.fromDate.toISOString().split('T')[0];
+      const endDate = this.toDate.toISOString().split('T')[0];
+
+      this.userService.getUserPerformance(this.userId, startDate, endDate).subscribe(
+        (performance: number) => {
+          console.log('Performance:', performance);
+          this.successMessage = `Performance calculated successfully: ${performance}`;
+        },
+        (error) => {
+          console.error('Error occurred while calculating performance:', error);
+          this.errorMessage = 'Something went wrong while calculating performance.';
+        }
+      );
     } else {
       this.errorMessage = 'Please select both From and To dates.';
     }
   }
 
-
-
   saveEmployee() {
     this.isFormSubmitted = true;
   }
 
-  ngOnInit() {
-    
-    // this.UserService.profile();
-    // this.UserService.getUserById(this.UserService.getAuthUserId()).subscribe(user => {
-    //   this.u = user;
-    //   this.isLoading = false;
+  openPerformance_Report(): void {
+    this.dialogRef.close(); // Close the current dialog
+
+    const dialogRef = this.dialog.open(PerformanceReportComponent, {
+      width: '700px',
+      data: { userId: this.userId } // Pass userId as data
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result === 'success') {
+    //     this.successMessage = 'Department updated Successfully';
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 1500);
+    //   } else if (result === 'failure') {
+    //     this.errorMessage = 'Could not update department';
+    //   }
     // });
-    this.userService.getUserById(this.userId).subscribe(
-      (user: User) => {
-        this.user = user;
-        this.isLoading = false;
-      },
-      (error) => {
-        console.error('Failed to load user data', error);
-      }
-    );
   }
 
-  // isSidebarExpanded: boolean = true;
 
 
-  // onToggleSidebar(expanded: boolean) {
-  //   this.isSidebarExpanded = expanded;
-  // }
-
+  exit() {
+    this.router.navigate(['/employee-details']).then(
+      () => console.log('Navigation succeeded'),
+      err => console.error('Navigation failed:', err)
+    );
+  }
 
 
   dismissSuccessMessage() {

@@ -121,39 +121,6 @@ export class UserService {
   }
 
 
-
-  // getUserByUsername(username: string): Observable<User> {
-  //   return this.http.get<any>(BASE_API_URL + `/user/byUsername/${username}`, { headers: this.getHeaders() }).pipe(
-  //     map(res => {
-  //       // Map response data to User class
-  //       return new User(
-  //         res.userId,res.userName,res.email,res.password,res.firstName,res.middleName,res.lastName,res.gender,res.dept,res.role,res.phoneNumber,
-  //         res.address,res.designation,res.emailVerified,res.birthDate,res.joinDate,res.projects
-  //       );
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error occurred:', error);
-  //       return throwError('Something went wrong while fetching user data.');
-  //     })
-  //   );
-  // }
-
-  // getUsersByUsername(username: string): Observable<User[]> {
-  //   return this.http.get<any[]>(BASE_API_URL + `/user/userInfo?usn=` +username, { headers: this.getHeaders() }).pipe(
-  //     map(res => {
-  //       // Map response data to an array of User instances
-  //       return res.map(user => new User(
-  //         user.userId, user.userName, user.email, user.password, user.firstName, user.middleName, user.lastName, user.gender, user.dept, user.role, user.phoneNumber,
-  //         user.address, user.designation, user.emailVerified, user.birthDate, user.joinDate, user.projects
-  //       ));
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error occurred:', error);
-  //       return throwError('Something went wrong while fetching user data.');
-  //     })
-  //   );
-  // }
-
   getUsersByUsername(username: string): Observable<User[]> {
     console.log(BASE_API_URL + `/user/userInfo/`+username);
 
@@ -244,7 +211,7 @@ export class UserService {
       .set('startDate', startDate)
       .set('endDate', endDate);
 
-    return this.http.get<number>(BASE_API_URL + `/employee-details/calculate-performance`, { headers: this.getHeaders(), params }).pipe(
+    return this.http.get<number>(BASE_API_URL + `/user/calculate-performance`, { headers: this.getHeaders(), params }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Error occurred while fetching performance:', error);
         return throwError('Something went wrong while fetching performance data.');
@@ -252,6 +219,9 @@ export class UserService {
     );
   }
 
+  // getUserPerformance(userId : number, startDate: string, endDate: string) : Observable<number>{
+  //   return this.http.get<number>(BASE_API_URL + ``)
+  //}//
 
 }
 

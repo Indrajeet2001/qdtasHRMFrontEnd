@@ -45,6 +45,8 @@ import { DepartmentComponent } from './department/department.component';
 import { EditDepartmentComponent } from './edit-department/edit-department.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
+import { PerformanceReportComponent } from './performance-report/performance-report.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -68,40 +70,41 @@ import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.com
     DepartmentComponent,
     EditDepartmentComponent,
     EmployeeDetailsComponent,
-    ShowEmpDetailsComponent
+    ShowEmpDetailsComponent,
+    PerformanceReportComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-  MatProgressBarModule,
-    BrowserAnimationsModule,
-      MatSidenavModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatListModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatSortModule,
-    NgxMaterialTimepickerModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
-  
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        MatProgressBarModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatListModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatProgressSpinnerModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatSortModule,
+        NgxMaterialTimepickerModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        MatCardModule
 
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent],
- 
+
 })
 export class AppModule { }

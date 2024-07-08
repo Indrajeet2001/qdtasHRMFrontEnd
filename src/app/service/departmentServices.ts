@@ -26,11 +26,6 @@ export class DepartmentService {
         return headers;
     }
 
-    // <----  Authentication Services
-
-    // login(data: any) {
-    //     return this.http.post(BASE_API_URL + `/department/login`, data, { headers: this.getHeadersWithoutToken() });
-    // }
 
     clearc() {
         localStorage.clear();
@@ -45,37 +40,19 @@ export class DepartmentService {
         }
     }
 
-    getDeptById(deptId: number): Observable<any> {
-        return this.http.get<any>(BASE_API_URL + `/dept/` + deptId, { headers: this.getHeaders() }).pipe(
-          map(res => {
-            // Map response data to object with deptId and deptName
-            return { deptId: res.deptId, deptName: res.deptName };
-          }),
-          catchError(error => {
-            console.error('Error occurred:', error);
-            return throwError('Something went wrong while fetching department data.');
-          })
-        );
-      }
 
-
-    // storeAuthDeptInCache(authDept: Department): void {
-    //     if (authDept != null) {
-    //       localStorage.setItem("authDept", JSON.stringify(authDept));
-    //     }
-    //     this.loginSubject.next(authDept);
-    //   }
-
-    //   getAuthDeptFromCache(): Department | null {
-    //     let dept = localStorage.getItem("authDept") as string;
-    //     var myObject: Department = JSON.parse(dept) as Department;
-    //     return myObject;
-    //   }
-
-    //   getAuthDeptId(): number | null {
-    //     return this.getAuthDeptFromCache().deptId;
-    //   }
-
+  getDeptById(deptId: number): Observable<any> {
+    return this.http.get<any>(BASE_API_URL + `/dept/get/` + deptId, { headers: this.getHeaders() }).pipe(
+      map(res => {
+        // Assuming the response has deptId and deptName properties
+        return { deptId: res.deptId, deptName: res.deptName };
+      }),
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError('Something went wrong while fetching department data.');
+      })
+    );
+  }
 
     addDepartment(dept: any) {
         console.log(dept);
@@ -92,18 +69,8 @@ export class DepartmentService {
         return this.http.post<any>(BASE_API_URL + `/dept/update/` + deptId, dept, { headers: this.getHeaders() });
     }
 
-    // getAllDepartments(currentPage: number, resultSize: number) {
-    //     return this.http.post<Department[]>(BASE_API_URL + `/dept/getAllDepartments?pgn=` + currentPage + `&sz=` + resultSize, { headers: this.getHeaders() });
-    // }
-
-
-      getAllDepartments(currentPage: number, resultSize: number) {
-        return this.http.get<Department[]>(BASE_API_URL + `/dept/getAllDepartments?pgn=` + currentPage + `&sz=` + resultSize, { headers: this.getHeaders() });
-      }
-
-    // getAllDepartments(currentPage: number, resultSize: number) {
-    //     return this.http.post<Department[]>(BASE_API_URL + `/dept/getAllDepartments`,resultSize ,{ headers: this.getHeaders() });
-    // }
-
+    getAllDepartments(currentPage: number, resultSize: number) {
+      return this.http.get<Department[]>(BASE_API_URL + `/dept/getAllDepartments?pgn=` + currentPage + `&sz=` + resultSize, { headers: this.getHeaders() });
+    }
 }
 

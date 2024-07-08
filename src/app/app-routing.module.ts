@@ -15,6 +15,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { DepartmentComponent } from './department/department.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
+import {PerformanceReportComponent} from "./performance-report/performance-report.component";
 
 
 const routes: Routes = [
@@ -85,6 +86,11 @@ const routes: Routes = [
   {
     component : ShowEmpDetailsComponent,
     path : 'show-emp-details',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : PerformanceReportComponent,
+    path : 'performance-report',
     canActivate : [AuthGuard]
   }
 

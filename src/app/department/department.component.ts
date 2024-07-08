@@ -79,25 +79,6 @@ export class DepartmentComponent implements OnInit {
     this.openConfirmationDialog(deptId);
   }
 
-  // loadDepartments(currentPage: number): void {
-  //   this.subscriptions.push(
-  //     this.departmentService.getAllDepartments(currentPage, this.resultSize).subscribe(
-  //       (departments: Department[]) => {
-  //         this.departments.push(...departments);
-  //         this.dataSource.data = this.departments;
-  //         if (this.departments.length <= 0 && this.resultPage === 1) {
-  //           this.hasMoreResult = false;
-  //         }
-  //         this.fetchingResult = false;
-  //         this.resultPage++;
-  //       },
-  //       (error: { error: { message: any; }; }) => {
-  //         console.log(error.error.message);
-  //       }
-  //     )
-  //   );
-  // }
-
   loadDepartments(currentPage: number): void {
     this.subscriptions.push(
       this.departmentService.getAllDepartments(currentPage, this.resultSize).subscribe(

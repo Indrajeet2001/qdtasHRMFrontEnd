@@ -49,16 +49,6 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    // this.userService.getUserById(this.userService.getAuthUserId()).subscribe(
-    //   (user: User) => {
-    //     this.u = user;
-    //     this.isLoading = false;
-    //   },
-    //   error => {
-    //     this.errorMessage = "Failed to load user data";
-    //     this.isLoading = false;
-    //   }
-    // );
   }
 
   showDetails(form: NgForm): void {
@@ -67,55 +57,6 @@ export class EmployeeDetailsComponent implements OnInit {
       this.loadUsers(username);
     }
   }
-
-  // OpenDetails(userId: number): void {
-  //   this.isLoading = true; // Show the loader
-  //   const dialogRef = this.dialog.open(ShowEmpComponent, {
-  //     width: '700px',
-  //     data: userId,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.isLoading = false; // Hide the loader
-  //     if (result === 'success') {
-  //       this.successMessage = 'Details loaded successfully';
-  //     } else if (result === 'failure') {
-  //       this.errorMessage = 'Could not load details';
-  //     }
-  //   });
-  // }
-
-
-  // loadUser(username: string): void {
-  //   this.subscriptions.push(
-  //     this.userService.getUserByUsername(username).subscribe(
-  //       (user: User) => {
-  //         this.users.push(user);
-  //         this.dataSource.data = this.users;
-  //       },
-  //       (error: any) => {
-  //         console.error('Error occurred while loading user:', error);
-  //         this.errorMessage = 'Failed to load user data';
-  //       }
-  //     )
-  //   );
-  // }
-
-  // loadUsers(username: string): void {
-  //   this.subscriptions.push(
-  //     this.userService.getUsersByUsername(username).subscribe(
-  //       (users: User[]) => {
-  //         // Add the retrieved users to the existing users array
-  //         this.users = this.users.concat(users);
-  //         this.dataSource.data = this.users;
-  //       },
-  //       (error: any) => {
-  //         console.error('Error occurred while loading users:', error);
-  //         this.errorMessage = 'Failed to load user data';
-  //       }
-  //     )
-  //   );
-  // }
 
   loadUsers(username: string): void {
     this.subscriptions.push(
@@ -128,6 +69,7 @@ export class EmployeeDetailsComponent implements OnInit {
             // Add the retrieved users to the existing users array
             this.users = this.users.concat(users);
             this.dataSource.data = this.users;
+            this.isFormSubmitted = true;
           }
         },
         (error: any) => {
@@ -158,36 +100,7 @@ export class EmployeeDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {})
   }
 
-  // showDetails(employeeDetails: NgForm) {
-  //   if (employeeDetails.valid) {
-  //     this.userFields = [];
-  //     const formValue = employeeDetails.value;
-  //     // Example: Assuming user is an object with properties matching form fields
-  //     this.user = {
-  //       firstName: formValue.UserName.split(' ')[0],
-  //       middleName : formValue.UserName.split(' ')[1],
-  //       lastName: formValue.UserName.split(' ')[2],
-  //       email: formValue.email
-  //       // Add other user properties as needed
-  //     };
-  //     // Populate userFields array with form values
-  //     for (const [key, value] of Object.entries(formValue)) {
-  //       this.userFields.push({ label: key, value: value });
-  //     }
-  //   }
-  // }
 
-  // getUserDetails(userId: number): void {
-  //   // const userId = 1; // Example user ID, replace with your logic to get the user ID
-  //   this.userService.getUserInfo(userId).subscribe(
-  //     (user: User) => {
-  //       this.user = user;
-  //     },
-  //     (error) => {
-  //       this.errorMessage = 'Failed to load user details';
-  //     }
-  //   );
-  // }
 
   isMale(): string {
     if (this.u && this.u.gender) {

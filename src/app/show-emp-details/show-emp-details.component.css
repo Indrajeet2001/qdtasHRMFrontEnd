@@ -188,13 +188,13 @@
 
   .inp-field {
     display: flex;
-    gap: 40px;
+    gap: 5px;
   }
 
   .buttons-container {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px; /* Adjust as needed */
+    /*margin-top: 20px; !* Adjust as needed *!*/
 }
 
 .btn-maroon {
@@ -385,7 +385,85 @@
       max-width: 100%;
       overflow-x: auto;
       overflow-y: auto;
+      height : 505px;
     }
-
-
   }
+
+/* Reduced spacing between input fields */
+.inp-row {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.inp-field {
+  display: flex;
+  flex-wrap: wrap;
+  /*gap: 8px; !* Reduced gap *!*/
+  margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.inp {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Adjust as needed */
+}
+
+.form-label, .form-name {
+  margin-right: 5px; /* Reduced right margin */
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  /*margin-top: 0px;*/
+  padding-bottom: 20px; /* Added bottom padding */
+}
+
+.date-pickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Reduced gap */
+  margin-top: 10px; /* Reduced top margin */
+}
+
+.exit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media (max-width: 767px) {
+  .inp-field {
+    flex-direction: column;
+  }
+
+  .inp {
+    width: 100%;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px; /* Ensure padding is applied on mobile as well */
+  }
+
+  .date-pickers {
+    flex-direction: column;
+  }
+}
+
+
