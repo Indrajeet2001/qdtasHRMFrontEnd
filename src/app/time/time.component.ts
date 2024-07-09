@@ -86,19 +86,21 @@ export class TimeComponent implements OnInit {
     endTimeDate.setHours(endHour, endMinute);
 
     if (endTimeDate < startTimeDate) {
-      this.snackBar.open('Please enter the correct end time', 'Close', {
-        duration: 3000,
-        panelClass: ['error-snackbar']
-      });
+      this.errorMessage = 'End time entered should be after start time';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 3000);
       this.endTime = '--:--';
     } else if (endTimeDate.getTime() === startTimeDate.getTime()) {
-      this.snackBar.open('Start Time and End Time cannot be the same', 'Close', {
-        duration: 3000,
-        panelClass: ['error-snackbar']
-      });
+      this.errorMessage = 'Start Time and End Time cannot be the same';
+      setTimeout(() => {
+        this.errorMessage = null;
+      }, 3000);
       this.endTime = '--:--';
     }
   }
+
+
 
 
   setTime() {
@@ -245,12 +247,6 @@ export class TimeComponent implements OnInit {
     this.errorMessage = null;
   }
 
-  openErrorSnackBar(message: string) {
-    let config = new MatSnackBarConfig();
-    config.panelClass = ['custom-snackbar']; // Add your custom class here
-    config.duration = 3000; // Set duration as needed
-    this.snackBar.open(message, 'Close', config);
-  }
 
   navigateBack(time: Time) {
     // Implement your navigation logic here, for example:

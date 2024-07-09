@@ -85,19 +85,26 @@
 }
 
 
-.error-message {
-  margin-top: 4px;
-  color: red;
-  font-size: 14px;
-}
-
-
-.error-snackBar {
-  background-color: red !important;
-  color: white !important;
-  font-size: 16px;
+.error-message-notification {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 50% !important;
+  background-color: red;
+  color: white;
+  padding: 10px;
   text-align: center;
+  z-index: 1000;
 }
+
+.error-message
+{
+  color: red;
+}
+
 
 ::ng-deep .mat-mdc-form-field-error-wrapper {
   padding: 0 !important;
@@ -164,20 +171,6 @@ button[type="submit"] {
   background-color: green;
   color: white;
   padding: 10px;
-  text-align: center;
-  z-index: 1000;
-}
-
-.error-message-notification {
-  position: fixed;
-  bottom: 0;
-  left:0;
-  right: 0;
-  margin: auto;
-  width: 90% !important;
-  background-color: red;
-  color: white;
-  padding: 0px;
   text-align: center;
   z-index: 1000;
 }
@@ -508,11 +501,9 @@ textarea.form-control {
   }
 }
 
-.small-font {
-  font-size: 12px; /* Adjust the font size as needed */
-}
 
 .no-result-message {
+  font-size:10px;
   color: red; /* Optional: Adjust color to highlight the message */
   margin: 10px 0; /* Optional: Adjust spacing if needed */
 }
@@ -538,4 +529,8 @@ textarea.form-control {
 .back-button:hover mat-icon {
   color: darkred;
 }
+
+
+
+
 

@@ -73,12 +73,12 @@
                     <label class="form-label">Teams</label>
                     <ng-multiselect-dropdown [(ngModel)]="selectedTeams"
                                              [placeholder]="'Select Teams'" [data]="fullName"
-                                             [settings]="dropdownSettings" name="teams" required #teams="ngModel">
+                                             [settings]="dropdownSettings" name="teams" required #teams="ngModel" >
 
                     </ng-multiselect-dropdown>
 
                     <!-- Error message display -->
-                    <div *ngIf="teams.invalid && (teams.dirty || teams.touched)" class="error-message">
+                    <div *ngIf="teams.touched && teams.invalid && (teams.dirty || teams.touched)" class="error-message">
                       <span *ngIf="teams.errors?.['required'] && teams.touched">Select Team members</span>
                     </div>
 
@@ -96,8 +96,7 @@
                                              #managers="ngModel">
 
                     </ng-multiselect-dropdown>
-                    <div *ngIf="managers.invalid && (managers.dirty || managers.touched)"
-                         class="error-message">
+                    <div *ngIf="managers.touched && managers.invalid && (managers.dirty || managers.touched)" class="error-message">
                       <span *ngIf="managers.errors?.['required']">Select Managers</span>
                     </div>
                   </div>
@@ -127,12 +126,13 @@
                       <span *ngIf="type.errors?.['required']">Type is required.</span>
                     </div>
                   </div>
-
                 </div>
+
+
 
                 <div>
                   <div class="col text-end suv-btn">
-                    <button class="btn btn-maroon" id="sub" type="submit">Submit</button>
+                    <button class="btn btn-maroon" id="sub" type="submit" [disabled]="!projectFrom.valid">Submit</button>
                   </div>
 
                   <div class="error-message mandatory font-arial">

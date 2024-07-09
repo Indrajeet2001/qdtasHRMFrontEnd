@@ -468,3 +468,7 @@ tr:hover {
     text-align: center;
 
 }
+
+.form-control#type {
+  width: 95.5%;
+}
