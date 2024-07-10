@@ -4,6 +4,7 @@ import { UserService } from '../service/userServices';
 import { Subscription } from 'rxjs';
 import { Project } from '../model/project';
 import { MatTableDataSource } from '@angular/material/table';
+import {NgModel} from "@angular/forms";
 
 
 
@@ -176,6 +177,12 @@ dismissErrorMessage() {
     }, 1000);
   }
 
+
+  onDropdownFocusout(teams: NgModel) {
+    if (this.selectedTeams.length === 0) {
+      teams.control.markAsTouched();
+    }
+  }
 }
 
 

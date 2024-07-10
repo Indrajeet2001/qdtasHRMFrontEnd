@@ -72,9 +72,13 @@
 
                     <label class="form-label">Teams</label>
                     <ng-multiselect-dropdown [(ngModel)]="selectedTeams"
-                                             [placeholder]="'Select Teams'" [data]="fullName"
-                                             [settings]="dropdownSettings" name="teams" required #teams="ngModel" >
-
+                                             [placeholder]="'Select Teams'"
+                                             [data]="fullName"
+                                             [settings]="dropdownSettings"
+                                             name="teams"
+                                             required
+                                             #teams="ngModel"
+                                             (focusout)="onDropdownFocusout(teams)">
                     </ng-multiselect-dropdown>
 
                     <!-- Error message display -->
@@ -91,10 +95,13 @@
                   <div class="inp">
                     <label class="form-label">Managers</label>
                     <ng-multiselect-dropdown [(ngModel)]="selectedManagers"
-                                             [placeholder]="'Select Managers'" [data]="fullName"
-                                             [settings]="dropdownSettingsForManagers" name="managers" required
-                                             #managers="ngModel">
-
+                                             [placeholder]="'Select Managers'"
+                                             [data]="fullName"
+                                             [settings]="dropdownSettingsForManagers"
+                                             name="managers"
+                                             required
+                                             #managers="ngModel"
+                                             (focusout)="onDropdownFocusout(managers)">
                     </ng-multiselect-dropdown>
                     <div *ngIf="managers.touched && managers.invalid && (managers.dirty || managers.touched)" class="error-message">
                       <span *ngIf="managers.errors?.['required']">Select Managers</span>
