@@ -146,12 +146,10 @@ export class UserService {
 
 
 
-  applyLeave(leaveData: any, empId: number) {
-    let headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);
-    return this.http.post<any>(BASE_API_URL + `/leave/create/` + empId, leaveData, { headers: this.getHeaders() });
+  applyLeave(userData: any, empId: string): Observable<any> {
+    const url = `${BASE_API_URL}/leave/create/${empId}`;
+    return this.http.post(url, userData, { headers: this.getHeaders() });
   }
-
-
 
 
   deleteLeave(leaveId: number) {

@@ -18,7 +18,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
   selector: 'app-leave',
   templateUrl: './leave.component.html',
   styleUrls: ['./leave.component.css'],
-  
+
 })
 export class LeaveComponent {
   displayedColumns: string[] = ['employee', 'startDate', 'endDate', 'type','reason','status','actions'];
@@ -26,10 +26,10 @@ export class LeaveComponent {
 
 
 
-  constructor(private UserService: UserService, 
+  constructor(private UserService: UserService,
     public dialog: MatDialog,
      private snackBar: MatSnackBar ) {
-       
+
        const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 7);
     this.minDate = currentDate;
@@ -50,13 +50,13 @@ export class LeaveComponent {
   hasMoreResult: boolean = true;
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
- 
+
 
 
    successMessage: string | null = null;
   errorMessage: string | null = null;
 
-   
+
 
   ngOnInit() {
     this.UserService.profile();
@@ -65,7 +65,7 @@ export class LeaveComponent {
 }
 
   isSidebarExpanded: boolean = true;
-  isLoading: boolean = false; 
+  isLoading: boolean = false;
 
   onToggleSidebar(expanded: boolean) {
     this.isSidebarExpanded = expanded;
@@ -73,24 +73,25 @@ export class LeaveComponent {
 
   applyLeave(userData: any) {
     console.log(userData);
-    this.UserService.applyLeave(userData, this.empId).subscribe(
+    // Convert empId to string
+    const empIdString = this.empId.toString();
+    this.UserService.applyLeave(userData, empIdString).subscribe(
       (response: any) => {
         this.successMessage = 'Leave Applied Successfully';
-      setTimeout(() => {
-        this.successMessage = null;
-	window.location.reload();
-      }, 3000);
+        setTimeout(() => {
+          this.successMessage = null;
+          window.location.reload();
+        }, 3000);
       },
       (error: any) => {
+        console.error('Error occurred:', error);
         this.errorMessage = 'Something went wrong';
-      setTimeout(() => {
-        this.errorMessage = null;
-      }, 3000);
+        setTimeout(() => {
+          this.errorMessage = null;
+        }, 3000);
       }
     );
   }
-
-
 
   loadLeaves(currentPage: number) {
        this.subscriptions.push(
@@ -195,7 +196,7 @@ leaveApprovalStatus: { [key: number]: boolean } = {};
 
 
   //-------
-//delete leave 
+//delete leave
 
 deleteLeave(id:number) {
    this.openConfirmDialogforDelete(id);
