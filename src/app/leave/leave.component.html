@@ -31,28 +31,31 @@
                                     <mat-datepicker #startPicker></mat-datepicker>
                                 </mat-form-field>
                                 </div> -->
-                                <div class="inp">
-                                    <mat-form-field class="inp-date">
-                                        <input matInput [matDatepicker]="startPicker" [min]="minDate" [(ngModel)]="startDate" name="startDate"
-                                            id="sDate" placeholder="Choose Start Date" #startDateInput="ngModel" required>
-                                        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                                        <mat-datepicker #startPicker></mat-datepicker>
-                                        <mat-error class="error-message" *ngIf="startDateInput.invalid && (startDateInput.dirty || startDateInput.touched)">
-                                            <span *ngIf="startDateInput.errors?.['required']">Start Date is required</span>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-
-
-                                <!-- <div class="inp">
-                                <mat-form-field class="inp-date">
-                                    <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate"  id="eDate"
-                                        placeholder="Choose End Date">
-                                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                                    <mat-datepicker #endPicker></mat-datepicker>
+                              <div class="inp">
+                                <label class="form-label">Choose Start Date</label>
+                                <mat-form-field class="inp-date" appearance="fill">
+                                  <input matInput [matDatepicker]="startPicker" [min]="minDate" [(ngModel)]="startDate" name="startDate"
+                                         id="sDate" placeholder="Choose Start Date" #startDateInput="ngModel" required>
+                                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                                  <mat-datepicker #startPicker></mat-datepicker>
+                                  <mat-error class="error-message" *ngIf="startDateInput.invalid && (startDateInput.dirty || startDateInput.touched)">
+                                    <span *ngIf="startDateInput.errors?.['required']">Start Date is required</span>
+                                  </mat-error>
                                 </mat-form-field>
-                            </div> -->
+                              </div>
+
+
+
+                              <!-- <div class="inp">
+                              <mat-form-field class="inp-date">
+                                  <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate"  id="eDate"
+                                      placeholder="Choose End Date">
+                                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                                  <mat-datepicker #endPicker></mat-datepicker>
+                              </mat-form-field>
+                          </div> -->
                             <div class="inp">
+                              <label class="form-label">Choose End Date</label>
                                 <mat-form-field class="inp-date">
                                     <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate"
                                         id="eDate" placeholder="Choose End Date" #endDateInput="ngModel" required>
@@ -65,11 +68,6 @@
                             </div>
 
                             </div>
-
-
-
-
-
 
 
                             <div class="inp-field">
@@ -90,19 +88,22 @@
                                 </div>
 
 
-
-                                <div class="inp">
-                                    <label class="form-label">Reason</label>
-                                    <textarea class="form-control" id="reason" placeholder="Enter Reason for Leave"
-                                        ngModel name="reason" required #reason="ngModel" [ngClass]="{'invalid': reason.invalid && (reason.dirty || reason.touched),
-                                     'valid': reason.valid && (reason.dirty || reason.touched)}"
-                                        pattern="[^\s].*"> </textarea>
-                                    <div *ngIf="reason.invalid && (reason.dirty || reason.touched)"
-                                        class="error-message">
-                                        <span *ngIf="reason.errors?.['required']">Reason is required</span>
-                                        <span *ngIf="reason.errors?.['pattern']">Reason must not be blank</span>
-                                    </div>
+                              <div class="inp">
+                                <label class="form-label">Reason</label>
+                                <textarea class="form-control" id="reason" placeholder="Enter Reason for Leave"
+                                          ngModel name="reason" required #reason="ngModel"
+                                          [ngClass]="{'invalid': reason.invalid && (reason.dirty || reason.touched),
+                    'valid': reason.valid && (reason.dirty || reason.touched)}"
+                                          pattern="^[a-zA-Z0-9\s]*$"> </textarea>
+                                <div *ngIf="reason.invalid && (reason.dirty || reason.touched)"
+                                     class="error-message">
+                                  <span *ngIf="reason.errors?.['required']">Reason is required</span>
+                                  <span *ngIf="reason.errors?.['pattern']">Reason must not contain special characters</span>
                                 </div>
+                              </div>
+
+
+
                             </div>
 
                             <div>
@@ -112,6 +113,9 @@
                                         [disabled]="!leaveForm.valid">Submit</button>
                                 </div>
                             </div>
+                          <div class="error-message mandatory font-arial">
+                            <h5 class="not-bold">Please fill all the above fields.</h5>
+                          </div>
                         </div>
                     </form>
                 </div>
