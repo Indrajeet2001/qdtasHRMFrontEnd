@@ -1,17 +1,12 @@
-import { Component } from '@angular/core';
-import { UserService } from '../service/userServices';
-import { MatDialogModule } from '@angular/material/dialog';
-import { DialogboxComponent } from '../dialogbox/dialogbox.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar'
-import { User } from '../model/user';
-import { Leave } from '../model/leave';
-import { Subscription } from 'rxjs';
-import { OnInit, ViewChild } from '@angular/core';
-import {NativeDateAdapter} from '@angular/material/core';
-import { FormControl } from '@angular/forms';
-import { MatDatepickerInput } from '@angular/material/datepicker';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {Component} from '@angular/core';
+import {UserService} from '../service/userServices';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogboxComponent} from '../dialogbox/dialogbox.component';
+import {MatSnackBar} from '@angular/material/snack-bar'
+import {User} from '../model/user';
+import {Leave} from '../model/leave';
+import {Subscription} from 'rxjs';
+import {MatTableDataSource} from '@angular/material/table';
 
 
 @Component({
@@ -72,9 +67,25 @@ export class LeaveComponent {
   }
 
   applyLeave(userData: any) {
-    console.log(userData);
     // Convert empId to string
     const empIdString = this.empId.toString();
+
+    // Convert startDate and endDate to "YYYY-MM-DD" format
+    if (userData.startDate) {
+      const startDate = new Date(userData.startDate);
+      // Extract only the date part, discarding the time part
+      const startDateFormatted = new Date(Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()));
+      userData.startDate = startDateFormatted.toISOString().split('T')[0];
+    }
+    if (userData.endDate) {
+      const endDate = new Date(userData.endDate);
+      // Extract only the date part, discarding the time part
+      const endDateFormatted = new Date(Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()));
+      userData.endDate = endDateFormatted.toISOString().split('T')[0];
+    }
+
+    console.log(userData);
+
     this.UserService.applyLeave(userData, empIdString).subscribe(
       (response: any) => {
         this.successMessage = 'Leave Applied Successfully';
@@ -93,14 +104,18 @@ export class LeaveComponent {
     );
   }
 
+
+
   loadLeaves(currentPage: number) {
-       this.subscriptions.push(
+    this.subscriptions.push(
       this.UserService.getAllLeaves(currentPage, this.resultSize).subscribe(
         (l: Leave[]) => {
-          this.leaves.push(...l);
+          // Unshift new leaves to the beginning of the array
+          this.leaves = [...l, ...this.leaves];
           this.dataSource.data = this.leaves;
-          if (this.leaves.length <= 0 && this.resultPage === 1)
-            if (this.leaves.length <= 0) this.hasMoreResult = false;
+          if (this.leaves.length <= 0 && this.resultPage === 1) {
+            this.hasMoreResult = false;
+          }
           this.fetchingResult = false;
           this.resultPage++;
         }, (error) => {
@@ -109,6 +124,7 @@ export class LeaveComponent {
       )
     );
   }
+
 
 
   loadMoreleaves(): void {
@@ -246,6 +262,11 @@ dismissErrorMessage() {
 // }
 
 
+  FilterChange(data: Event) {
+    const value = (data.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
 getStatusColor(status: string): string {
   switch (status) {
     case 'REJECTED':
@@ -258,10 +279,5 @@ getStatusColor(status: string): string {
       return 'black'; // or any default color
   }
 }
-
-
-
-
-
 
 }

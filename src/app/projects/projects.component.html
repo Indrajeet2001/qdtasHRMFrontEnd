@@ -27,7 +27,7 @@
                   <div class="inp">
                     <label class="form-label">Project Name</label>
                     <input type="text" class="form-control" id="projectName"
-                           placeholder="Project name" ngModel name="projectName" #projectName="ngModel"
+                           placeholder="Project Name" ngModel name="projectName" #projectName="ngModel"
                            required
                            [ngClass]="{'invalid': projectName.invalid && (projectName.dirty || projectName.touched), 'valid': projectName.valid && (projectName.dirty || projectName.touched)}">
                     <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)"
@@ -139,6 +139,7 @@
 
                 <div>
                   <div class="col text-end suv-btn">
+                    <button class="btn btn-maroon" type="reset">Reset</button>
                     <button class="btn btn-maroon" id="sub" type="submit" [disabled]="!projectFrom.valid">Submit</button>
                   </div>
 
@@ -158,7 +159,8 @@
             <form>
 
               <div class="table-container">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
+                <input type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z">
 
 
                   <ng-container matColumnDef="projectName">

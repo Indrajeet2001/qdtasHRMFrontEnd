@@ -180,8 +180,8 @@
             <div class="card">
 
                 <div class="table-container">
-                <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
-
+                  <input type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
+                <table  mat-table [dataSource]="dataSource" class="mat-elevation">
                     <!-- ID Column -->
                     <ng-container matColumnDef="employee">
                             <th  mat-header-cell *matHeaderCellDef class="center"> Employee-ID </th>
@@ -254,7 +254,7 @@
                         Load More
                     </button>
                 </div>
-        </div>
+            </div>
         </div>
     </main>
 </div>

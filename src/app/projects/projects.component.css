@@ -72,10 +72,11 @@
     background-color: maroon;
     border-color: maroon;
     color: white;
-    width: auto;
+    width: 80px;
     padding: 0.375rem 0.75rem;
     margin-top: 20px;
     margin-bottom: -10px;
+    margin-left: 15px;
 
 }
 

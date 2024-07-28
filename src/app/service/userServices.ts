@@ -153,7 +153,7 @@ export class UserService {
 
 
   deleteLeave(leaveId: number) {
-    return this.http.post<String>(BASE_API_URL + `/leave/delete/` + leaveId, leaveId, { headers: this.getHeaders() });
+    return this.http.delete<String>(BASE_API_URL + `/leave/delete/` + leaveId,{ headers: this.getHeaders() });
   }
 
   changeLeaveStatus(leaveId: number) {
