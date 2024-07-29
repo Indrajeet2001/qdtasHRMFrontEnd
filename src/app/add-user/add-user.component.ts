@@ -113,13 +113,15 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.subscriptions.push(
       this.userService.getAllUsers(currentPage, this.resultSize).subscribe(
         (us: User[]) => {
-          this.users.push(...us);
+          this.users = [...us, ...this.users]; // Prepend new users
           this.dataSource.data = this.users;
-          if (this.users.length <= 0) this.hasMoreResult = false;
+          if (us.length <= 0) this.hasMoreResult = false;
           this.fetchingResult = false;
           this.resultPage++;
-        }, (error) => {
+        },
+        (error) => {
           console.log(error.error.message);
+          this.fetchingResult = false;
         }
       )
     );
@@ -132,6 +134,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
       this.isLoading = false;
     }, 1000);
   }
+
 
   openConfirmationDialog(uId: number): void {
     const dialogRef = this.dialog.open(DialogboxComponent, {
