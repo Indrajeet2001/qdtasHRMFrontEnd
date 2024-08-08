@@ -16,6 +16,16 @@ import { DepartmentComponent } from './department/department.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
 import {PerformanceReportComponent} from "./performance-report/performance-report.component";
+import { GeneralInfoComponent } from './general-info/general-info.component';
+import { StructureComponent } from './structure/structure.component';
+import { JobTitleComponent } from './job-title/job-title.component';
+import { AddJobTitleComponent } from './add-job-title/add-job-title.component';
+import { EmpStatusComponent } from './emp-status/emp-status.component';
+import { AddEmpStatusComponent } from './add-emp-status/add-emp-status.component';
+import { JobCategoriesComponent } from './job-categories/job-categories.component';
+import { AddJobCategoriesComponent } from './add-job-categories/add-job-categories.component';
+import { WorkshiftsComponent } from './workshifts/workshifts.component';
+import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.component';
 
 
 const routes: Routes = [
@@ -92,7 +102,58 @@ const routes: Routes = [
     component : PerformanceReportComponent,
     path : 'performance-report',
     canActivate : [AuthGuard]
+  },
+  {
+    component : GeneralInfoComponent,
+    path : 'general-info',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : StructureComponent,
+    path : 'structure',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : JobTitleComponent,
+    path : 'job-title',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : AddJobTitleComponent,
+    path : 'add-job-title',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : EmpStatusComponent,
+    path : 'emp-status',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : AddEmpStatusComponent,
+    path : 'add-emp-status',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : JobCategoriesComponent,
+    path : 'job-categories',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : AddJobCategoriesComponent,
+    path : 'add-job-categories',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : WorkshiftsComponent,
+    path : 'work-shifts',
+    canActivate : [AuthGuard]
+  },
+  {
+    component : AddWorkshiftsComponent,
+    path : 'add-work-shifts',
+    canActivate : [AuthGuard]
   }
+
 
 ];
 

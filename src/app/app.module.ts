@@ -47,6 +47,16 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
 import { PerformanceReportComponent } from './performance-report/performance-report.component';
 import {MatCardModule} from "@angular/material/card";
+import { GeneralInfoComponent } from './general-info/general-info.component';
+import { StructureComponent } from './structure/structure.component';
+import { JobTitleComponent } from './job-title/job-title.component';
+import { AddJobTitleComponent } from './add-job-title/add-job-title.component';
+import { EmpStatusComponent } from './emp-status/emp-status.component';
+import { AddEmpStatusComponent } from './add-emp-status/add-emp-status.component';
+import { JobCategoriesComponent } from './job-categories/job-categories.component';
+import { AddJobCategoriesComponent } from './add-job-categories/add-job-categories.component';
+import { WorkshiftsComponent } from './workshifts/workshifts.component';
+import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.component';
 
 
 @NgModule({
@@ -71,7 +81,17 @@ import {MatCardModule} from "@angular/material/card";
     EditDepartmentComponent,
     EmployeeDetailsComponent,
     ShowEmpDetailsComponent,
-    PerformanceReportComponent
+    PerformanceReportComponent,
+    GeneralInfoComponent,
+    StructureComponent,
+    JobTitleComponent,
+    AddJobTitleComponent,
+    EmpStatusComponent,
+    AddEmpStatusComponent,
+    JobCategoriesComponent,
+    AddJobCategoriesComponent,
+    WorkshiftsComponent,
+    AddWorkshiftsComponent
   ],
     imports: [
         BrowserModule,

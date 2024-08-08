@@ -209,6 +209,8 @@ export class AddUserComponent implements OnInit, AfterViewInit {
       this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber', 'designation', 'actions'];
     }
   }
+
+
 }
 
 

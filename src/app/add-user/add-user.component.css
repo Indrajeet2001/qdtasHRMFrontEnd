@@ -1,33 +1,33 @@
 .adduser {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .card {
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    border-radius: 5px;
-    width: 90%;
-    margin-top: 3%;
-    margin-left: 5%;
-    margin-bottom: 5%;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 90%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-bottom: 5%;
 
 }
 
 .adduserform {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 
 /* Button color */
 
 .container {
-    margin-top: 0%;
+  margin-top: 0%;
 }
 
 .title {
-    font-size: 30px;
-    color: maroon;
+  font-size: 30px;
+  color: maroon;
 
 }
 
@@ -41,31 +41,34 @@
 }
 
 .invalid {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .btn-maroon {
-    background-color: maroon;
-    border-color: maroon;
-    color: white;
-    width: 80px;
-    padding: 0.375rem 0.75rem;
-    margin-top: 20px;
-    margin-bottom: -10px;
-    margin-left: 15px;
+  background-color: maroon;
+  border-color: maroon;
+  color: white;
+  width: 80px;
+  padding: 0.375rem 0.75rem;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: 15px;
 }
 
 
 .btn-maroon:hover {
-    background-color: #c32148;
-    border-color: #c32148;
+  background-color: #c32148;
+  border-color: #c32148;
 }
 
 .icon-space {
-    margin-bottom: 10px;
-    /* Adjust the vertical space as needed */
+  margin-bottom: 10px;
+  /* Adjust the vertical space as needed */
 }
 
+.custom-margin{
+  margin-left: 20px; /* Adjust the value as needed */
+}
 
 .success-message {
   position: fixed;
@@ -103,17 +106,17 @@
 
 
 .close-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .load-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-bar {
@@ -122,16 +125,16 @@
 }
 
 .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .require {
-    color: red;
-    margin-left: 25px;
+  color: red;
+  margin-left: 25px;
 }
 
 
@@ -143,136 +146,136 @@
 
 
 
-    .inp-row {
-        display: grid;
-        width: 100vw;
-        padding: 0px !important;
-    }
+  .inp-row {
+    display: grid;
+    width: 100vw;
+    padding: 0px !important;
+  }
 
-    .container {
-        margin-top: 0% !important;
-    }
+  .container {
+    margin-top: 0% !important;
+  }
 
-    .title {
-        font-size: 24px !important;
-        color: maroon;
-    }
+  .title {
+    font-size: 24px !important;
+    color: maroon;
+  }
 
-    .card {
-        box-shadow: none;
-        transition: 0.3s;
-        width: 100% !important;
-        margin-top: 0% !important;
-        margin-left: 1% !important;
-        margin-bottom: 5%;
-    }
+  .card {
+    box-shadow: none;
+    transition: 0.3s;
+    width: 100% !important;
+    margin-top: 0% !important;
+    margin-left: 1% !important;
+    margin-bottom: 5%;
+  }
 
-    .adduserform {
-        display: flex;
-        flex-direction: column;
-    }
+  .adduserform {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .col-md-6 {
-        width: 50%;
-    }
+  .col-md-6 {
+    width: 50%;
+  }
 
-    /* Add margin to the card */
-    .card {
-        margin: 2px;
-    }
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
 
-    .inp-field {
-        display: flex;
-        flex-direction: column;
-        gap: 0px !important;
-        /* Reduce the gap between input fields */
-    }
+  .inp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+    /* Reduce the gap between input fields */
+  }
 
-    .inp {
-        width: 100%;
-        /* Set the width of input fields to full */
-    }
+  .inp {
+    width: 100%;
+    /* Set the width of input fields to full */
+  }
 
-    /* Add margin to the card */
-    .card {
-        margin: 2px;
-    }
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
 
-    .adduserform {
-        margin: 10px;
-        /* Add margin to the form container */
-    }
+  .adduserform {
+    margin: 10px;
+    /* Add margin to the form container */
+  }
 
-    .suv-btn {
-        padding: 10px;
-        display: inline-block;
-    }
+  .suv-btn {
+    padding: 10px;
+    display: inline-block;
+  }
 
-    .form-control {
-        width: 280px !important;
-    }
+  .form-control {
+    width: 280px !important;
+  }
 
-    /* Apply overflow properties for portrait orientation */
-    .table-container {
-        overflow-x: auto;
-        overflow-y: auto;
-    }
+  /* Apply overflow properties for portrait orientation */
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
 
-    .card-container {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: auto;
-    }
-
-
-    .success-message {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 500px;
-      background-color: green;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      border-radius: 5px;
-      z-index: 1000;
-      opacity: 1;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    .error-message-notification {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 500px;
-      background-color: red;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      border-radius: 5px;
-      z-index: 1000;
-      opacity: 1;
-      transition: opacity 0.3s ease-in-out;
-    }
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
 
 
-        .load-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  .success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
 
-        .mandatory {
-            margin-top: 10px;
-        }
+  .error-message-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
 
-                .error-message {
-                    color: red;
-                }
+
+  .load-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mandatory {
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+  }
 
 
 
@@ -281,41 +284,41 @@
 /* Additional styles for landscape orientation */
 @media (max-width: 767px),
 (orientation: landscape) {
-    .table-container {
-        overflow-x: scroll !important;
-        overflow-y: hidden !important;
-    }
+  .table-container {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
 
-    .card-container {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: auto;
-    }
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
 }
 
 
 @media (max-width: 1400px) {
 
-    .col-md-6 {
-        width: 100%;
-    }
+  .col-md-6 {
+    width: 100%;
+  }
 }
 
 
 
 input[type="search"] {
-    border: none;
-    background: transparent;
-    margin: 0;
-    padding: 7px 8px;
-    font-size: 14px;
-    color: inherit;
-    border: 1px solid transparent;
-    border-radius: inherit;
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
 }
 
 input[type="search"]::placeholder {
-    color: #bbb;
+  color: #bbb;
 }
 /*
 table,
@@ -335,111 +338,1780 @@ th {
 
 #myInput {
 
-    /* Add a search icon to input */
-    background-position: 10px 12px;
-    /* Position the search icon */
-    background-repeat: no-repeat;
-    /* Do not repeat the icon image */
-    width: 100%;
-    /* Full-width */
-    font-size: 16px;
-    /* Increase font-size */
-    padding: 12px 20px 12px 40px;
-    /* Add some padding */
-    border: 1px solid #ddd;
-    /* Add a grey border */
-    margin-bottom: 20px;
-    margin-top: 20px;
-    /* Add some space below the input */
-    border-radius: 20px;
+  /* Add a search icon to input */
+  background-position: 10px 12px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /* Add some space below the input */
+  border-radius: 20px;
 }
 
 #myTable {
-    border-collapse: collapse;
-    /* Collapse borders */
-    width: 100%;
-    /* Full-width */
-    border: 1px solid #ddd;
-    /* Add a grey border */
-    font-size: 16px;
-    /* Increase font-size */
+  border-collapse: collapse;
+  /* Collapse borders */
+  width: 100%;
+  /* Full-width */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  font-size: 16px;
+  /* Increase font-size */
 
 }
 
 #myTable th,
 #myTable td {
-    text-align: center;
-    /* Left-align text */
-    padding: 12px;
-    /* Add padding */
+  text-align: center;
+  /* Left-align text */
+  padding: 12px;
+  /* Add padding */
 }
 
 #myTable tr {
 
-    /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd;
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
 }
 
 #myTable tr.header,
 #myTable tr:hover {
-    /* Add a grey background color to the table header and on hover */
-    background-color: #f1f1f1;
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
 
 }
 
 .inp-row {
-    display: grid;
-    width: 100vw;
-    padding: 30px;
+  display: grid;
+  width: 100vw;
+  padding: 30px;
 
 }
 
 
 .department-select {
-    width: 48.5%;
-    /* Adjust the width as needed */
+  width: 48.5%;
+  /* Adjust the width as needed */
 }
 
 
 .inp-field {
-    display: flex;
-    gap: 40px;
+  display: flex;
+  gap: 40px;
 }
 
 
 .inp {
-    width: 50%;
-    margin-bottom: 10px;
+  width: 50%;
+  margin-bottom: 10px;
 }
 
 .suv-btn {
-    padding: 10px;
+  padding: 10px;
 
 }
 
 .card {
-    border-radius: 15px;
-    border: none;
+  border-radius: 15px;
+  border: none;
 }
 
 .icon-container {
-    background: transparent;
-    display: flex;
-    align-items: center;
+  background: transparent;
+  display: flex;
+  align-items: center;
 
 }
 
 .icon-space {
-    margin-right: 30px;
+  margin-right: 30px;
 
 
 }
 
 tr:hover {
-    background-color: rgb(255,235,235);
+  background-color: rgb(255,235,235);
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 
+}
+
+.custom-dropdown .btn-secondary {
+  background-color: maroon; /* Custom button background color */
+  color: maroon; /* Custom button text color */
+  border-color: maroon; /* Custom button border color */
+}
+
+.d-flex{
+  padding-left: 15px;
+  padding-top: 18px;
+  flex-direction: row; /* Arrange dropdowns vertically */
+  gap: 20px;
+}
+
+#cnt{
+  padding-top: 20px; /* Adjust the value as needed */
+}
+
+/* Add margin between buttons within each dropdown */
+.custom-dropdown .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Add specific styles for dropdown1 */
+#dropdown1 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #007bff; /* Change background color for demonstration */
+}
+
+/* Add specific styles for dropdown2 */
+#dropdown2 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #28a745; /* Change background color for demonstration */
+  margin-left: 100px;
+}
+
+.dropdown:hover {
+  background-color: maroon;
+
+}
+
+#btn1{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn1:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+
+#btn2{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn2:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+#btn3{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn3:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+.dropdown-item:hover {
+  background-color: maroon;
+  color : white;
+}.adduser {
+   overflow: hidden;
+ }
+
+.card {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 90%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+
+}
+
+.adduserform {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* Button color */
+
+.container {
+  margin-top: 0%;
+}
+
+.title {
+  font-size: 30px;
+  color: maroon;
+
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  font: bold 14px Arial, sans-serif;
+  font-weight: lighter;
+  /* Makes the text lighter (less bold) */
+  margin-top: 3px;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.btn-maroon {
+  background-color: maroon;
+  border-color: maroon;
+  color: white;
+  width: 80px;
+  padding: 0.375rem 0.75rem;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: 15px;
+}
+
+
+.btn-maroon:hover {
+  background-color: #c32148;
+  border-color: #c32148;
+}
+
+.icon-space {
+  margin-bottom: 10px;
+  /* Adjust the vertical space as needed */
+}
+
+.custom-margin{
+  margin-left: 20px; /* Adjust the value as needed */
+}
+
+.success-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.error-message-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.load-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-bar {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.require {
+  color: red;
+  margin-left: 25px;
+}
+
+
+
+
+/* Adjust the form layout for mobile devices */
+@media (max-width: 767px) {
+
+
+
+
+  .inp-row {
+    display: grid;
+    width: 100vw;
+    padding: 0px !important;
+  }
+
+  .container {
+    margin-top: 0% !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+    color: maroon;
+  }
+
+  .card {
+    box-shadow: none;
+    transition: 0.3s;
+    width: 100% !important;
+    margin-top: 0% !important;
+    margin-left: 1% !important;
+    margin-bottom: 5%;
+  }
+
+  .adduserform {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    width: 50%;
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .inp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+    /* Reduce the gap between input fields */
+  }
+
+  .inp {
+    width: 100%;
+    /* Set the width of input fields to full */
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .adduserform {
+    margin: 10px;
+    /* Add margin to the form container */
+  }
+
+  .suv-btn {
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .form-control {
+    width: 280px !important;
+  }
+
+  /* Apply overflow properties for portrait orientation */
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+
+  .success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .error-message-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+
+  .load-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mandatory {
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+
+
+}
+
+/* Additional styles for landscape orientation */
+@media (max-width: 767px),
+(orientation: landscape) {
+  .table-container {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
+
+@media (max-width: 1400px) {
+
+  .col-md-6 {
+    width: 100%;
+  }
+}
+
+
+
+input[type="search"] {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+  color: #bbb;
+}
+/*
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+
+}
+
+th {
+    text-align: left;
+} */
+
+
+
+#myInput {
+
+  /* Add a search icon to input */
+  background-position: 10px 12px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /* Add some space below the input */
+  border-radius: 20px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  /* Collapse borders */
+  width: 100%;
+  /* Full-width */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  font-size: 16px;
+  /* Increase font-size */
+
+}
+
+#myTable th,
+#myTable td {
+  text-align: center;
+  /* Left-align text */
+  padding: 12px;
+  /* Add padding */
+}
+
+#myTable tr {
+
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+
+}
+
+.inp-row {
+  display: grid;
+  width: 100vw;
+  padding: 30px;
+
+}
+
+
+.department-select {
+  width: 48.5%;
+  /* Adjust the width as needed */
+}
+
+
+.inp-field {
+  display: flex;
+  gap: 40px;
+}
+
+
+.inp {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.suv-btn {
+  padding: 10px;
+
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.icon-container {
+  background: transparent;
+  display: flex;
+  align-items: center;
+
+}
+
+.icon-space {
+  margin-right: 30px;
+
+
+}
+
+tr:hover {
+  background-color: rgb(255,235,235);
+}
+
+.center {
+  text-align: center;
+
+}
+
+.custom-dropdown .btn-secondary {
+  background-color: maroon; /* Custom button background color */
+  color: maroon; /* Custom button text color */
+  border-color: maroon; /* Custom button border color */
+}
+
+.d-flex{
+  padding-left: 15px;
+  padding-top: 18px;
+  flex-direction: row; /* Arrange dropdowns vertically */
+  gap: 20px;
+}
+
+#cnt{
+  padding-top: 20px; /* Adjust the value as needed */
+}
+
+/* Add margin between buttons within each dropdown */
+.custom-dropdown .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Add specific styles for dropdown1 */
+#dropdown1 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #007bff; /* Change background color for demonstration */
+}
+
+/* Add specific styles for dropdown2 */
+#dropdown2 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #28a745; /* Change background color for demonstration */
+  margin-left: 100px;
+}
+
+.dropdown:hover {
+  background-color: maroon;
+
+}
+
+#btn1{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn1:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+
+#btn2{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn2:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+#btn3{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn3:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+.dropdown-item:hover {
+  background-color: maroon;
+  color : white;
+}.adduser {
+   overflow: hidden;
+ }
+
+.card {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 90%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+
+}
+
+.adduserform {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* Button color */
+
+.container {
+  margin-top: 0%;
+}
+
+.title {
+  font-size: 30px;
+  color: maroon;
+
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  font: bold 14px Arial, sans-serif;
+  font-weight: lighter;
+  /* Makes the text lighter (less bold) */
+  margin-top: 3px;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.btn-maroon {
+  background-color: maroon;
+  border-color: maroon;
+  color: white;
+  width: 80px;
+  padding: 0.375rem 0.75rem;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: 15px;
+}
+
+
+.btn-maroon:hover {
+  background-color: #c32148;
+  border-color: #c32148;
+}
+
+.icon-space {
+  margin-bottom: 10px;
+  /* Adjust the vertical space as needed */
+}
+
+.custom-margin{
+  margin-left: 20px; /* Adjust the value as needed */
+}
+
+.success-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.error-message-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.load-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-bar {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.require {
+  color: red;
+  margin-left: 25px;
+}
+
+
+
+
+/* Adjust the form layout for mobile devices */
+@media (max-width: 767px) {
+
+
+
+
+  .inp-row {
+    display: grid;
+    width: 100vw;
+    padding: 0px !important;
+  }
+
+  .container {
+    margin-top: 0% !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+    color: maroon;
+  }
+
+  .card {
+    box-shadow: none;
+    transition: 0.3s;
+    width: 100% !important;
+    margin-top: 0% !important;
+    margin-left: 1% !important;
+    margin-bottom: 5%;
+  }
+
+  .adduserform {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    width: 50%;
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .inp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+    /* Reduce the gap between input fields */
+  }
+
+  .inp {
+    width: 100%;
+    /* Set the width of input fields to full */
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .adduserform {
+    margin: 10px;
+    /* Add margin to the form container */
+  }
+
+  .suv-btn {
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .form-control {
+    width: 280px !important;
+  }
+
+  /* Apply overflow properties for portrait orientation */
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+
+  .success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .error-message-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+
+  .load-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mandatory {
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+
+
+}
+
+/* Additional styles for landscape orientation */
+@media (max-width: 767px),
+(orientation: landscape) {
+  .table-container {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
+
+@media (max-width: 1400px) {
+
+  .col-md-6 {
+    width: 100%;
+  }
+}
+
+
+
+input[type="search"] {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+  color: #bbb;
+}
+/*
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+
+}
+
+th {
+    text-align: left;
+} */
+
+
+
+#myInput {
+
+  /* Add a search icon to input */
+  background-position: 10px 12px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /* Add some space below the input */
+  border-radius: 20px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  /* Collapse borders */
+  width: 100%;
+  /* Full-width */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  font-size: 16px;
+  /* Increase font-size */
+
+}
+
+#myTable th,
+#myTable td {
+  text-align: center;
+  /* Left-align text */
+  padding: 12px;
+  /* Add padding */
+}
+
+#myTable tr {
+
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+
+}
+
+.inp-row {
+  display: grid;
+  width: 100vw;
+  padding: 30px;
+
+}
+
+
+.department-select {
+  width: 48.5%;
+  /* Adjust the width as needed */
+}
+
+
+.inp-field {
+  display: flex;
+  gap: 40px;
+}
+
+
+.inp {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.suv-btn {
+  padding: 10px;
+
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.icon-container {
+  background: transparent;
+  display: flex;
+  align-items: center;
+
+}
+
+.icon-space {
+  margin-right: 30px;
+
+
+}
+
+tr:hover {
+  background-color: rgb(255,235,235);
+}
+
+.center {
+  text-align: center;
+
+}
+
+.custom-dropdown .btn-secondary {
+  background-color: maroon; /* Custom button background color */
+  color: maroon; /* Custom button text color */
+  border-color: maroon; /* Custom button border color */
+}
+
+.d-flex{
+  padding-left: 15px;
+  padding-top: 18px;
+  flex-direction: row; /* Arrange dropdowns vertically */
+  gap: 20px;
+}
+
+#cnt{
+  padding-top: 20px; /* Adjust the value as needed */
+}
+
+/* Add margin between buttons within each dropdown */
+.custom-dropdown .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Add specific styles for dropdown1 */
+#dropdown1 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #007bff; /* Change background color for demonstration */
+}
+
+/* Add specific styles for dropdown2 */
+#dropdown2 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #28a745; /* Change background color for demonstration */
+  margin-left: 100px;
+}
+
+.dropdown:hover {
+  background-color: maroon;
+
+}
+
+#btn1{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn1:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+
+#btn2{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn2:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+#btn3{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn3:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+.dropdown-item:hover {
+  background-color: maroon;
+  color : white;
+}.adduser {
+   overflow: hidden;
+ }
+
+.card {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 90%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+
+}
+
+.adduserform {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* Button color */
+
+.container {
+  margin-top: 0%;
+}
+
+.title {
+  font-size: 30px;
+  color: maroon;
+
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  font: bold 14px Arial, sans-serif;
+  font-weight: lighter;
+  /* Makes the text lighter (less bold) */
+  margin-top: 3px;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.btn-maroon {
+  background-color: maroon;
+  border-color: maroon;
+  color: white;
+  width: 80px;
+  padding: 0.375rem 0.75rem;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: 15px;
+}
+
+
+.btn-maroon:hover {
+  background-color: #c32148;
+  border-color: #c32148;
+}
+
+.icon-space {
+  margin-bottom: 10px;
+  /* Adjust the vertical space as needed */
+}
+
+.custom-margin{
+  margin-left: 20px; /* Adjust the value as needed */
+}
+
+.success-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.error-message-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.load-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-bar {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.require {
+  color: red;
+  margin-left: 25px;
+}
+
+
+
+
+/* Adjust the form layout for mobile devices */
+@media (max-width: 767px) {
+
+
+
+
+  .inp-row {
+    display: grid;
+    width: 100vw;
+    padding: 0px !important;
+  }
+
+  .container {
+    margin-top: 0% !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+    color: maroon;
+  }
+
+  .card {
+    box-shadow: none;
+    transition: 0.3s;
+    width: 100% !important;
+    margin-top: 0% !important;
+    margin-left: 1% !important;
+    margin-bottom: 5%;
+  }
+
+  .adduserform {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    width: 50%;
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .inp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+    /* Reduce the gap between input fields */
+  }
+
+  .inp {
+    width: 100%;
+    /* Set the width of input fields to full */
+  }
+
+  /* Add margin to the card */
+  .card {
+    margin: 2px;
+  }
+
+  .adduserform {
+    margin: 10px;
+    /* Add margin to the form container */
+  }
+
+  .suv-btn {
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .form-control {
+    width: 280px !important;
+  }
+
+  /* Apply overflow properties for portrait orientation */
+  .table-container {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+
+  .success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .error-message-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+
+  .load-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mandatory {
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+
+
+}
+
+/* Additional styles for landscape orientation */
+@media (max-width: 767px),
+(orientation: landscape) {
+  .table-container {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
+
+  .card-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
+
+@media (max-width: 1400px) {
+
+  .col-md-6 {
+    width: 100%;
+  }
+}
+
+
+
+input[type="search"] {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+  color: #bbb;
+}
+/*
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+
+}
+
+th {
+    text-align: left;
+} */
+
+
+
+#myInput {
+
+  /* Add a search icon to input */
+  background-position: 10px 12px;
+  /* Position the search icon */
+  background-repeat: no-repeat;
+  /* Do not repeat the icon image */
+  width: 100%;
+  /* Full-width */
+  font-size: 16px;
+  /* Increase font-size */
+  padding: 12px 20px 12px 40px;
+  /* Add some padding */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  /* Add some space below the input */
+  border-radius: 20px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  /* Collapse borders */
+  width: 100%;
+  /* Full-width */
+  border: 1px solid #ddd;
+  /* Add a grey border */
+  font-size: 16px;
+  /* Increase font-size */
+
+}
+
+#myTable th,
+#myTable td {
+  text-align: center;
+  /* Left-align text */
+  padding: 12px;
+  /* Add padding */
+}
+
+#myTable tr {
+
+  /* Add a bottom border to all table rows */
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+  /* Add a grey background color to the table header and on hover */
+  background-color: #f1f1f1;
+
+}
+
+.inp-row {
+  display: grid;
+  width: 100vw;
+  padding: 30px;
+
+}
+
+
+.department-select {
+  width: 48.5%;
+  /* Adjust the width as needed */
+}
+
+
+.inp-field {
+  display: flex;
+  gap: 40px;
+}
+
+
+.inp {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.suv-btn {
+  padding: 10px;
+
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.icon-container {
+  background: transparent;
+  display: flex;
+  align-items: center;
+
+}
+
+.icon-space {
+  margin-right: 30px;
+
+
+}
+
+tr:hover {
+  background-color: rgb(255,235,235);
+}
+
+.center {
+  text-align: center;
+
+}
+
+.custom-dropdown .btn-secondary {
+  background-color: maroon; /* Custom button background color */
+  color: maroon; /* Custom button text color */
+  border-color: maroon; /* Custom button border color */
+}
+
+.d-flex{
+  padding-left: 15px;
+  padding-top: 18px;
+  flex-direction: row; /* Arrange dropdowns vertically */
+  gap: 20px;
+}
+
+#cnt{
+  padding-top: 20px; /* Adjust the value as needed */
+}
+
+/* Add margin between buttons within each dropdown */
+.custom-dropdown .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+/* Add specific styles for dropdown1 */
+#dropdown1 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #007bff; /* Change background color for demonstration */
+}
+
+/* Add specific styles for dropdown2 */
+#dropdown2 .btn {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  background-color: #28a745; /* Change background color for demonstration */
+  margin-left: 100px;
+}
+
+.dropdown:hover {
+  background-color: maroon;
+
+}
+
+#btn1{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn1:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+
+#btn2{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn2:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+#btn3{
+  background-color: white;
+  border-color: black;
+  color : black;
+}
+
+#btn3:hover{
+  background-color: maroon;
+  border-color: maroon;
+  color : white;
+}
+
+.dropdown-item:hover {
+  background-color: maroon;
+  color : white;
 }
