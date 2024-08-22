@@ -28,9 +28,9 @@
                   <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 
-                    <ng-container matColumnDef="jobCat">
+                    <ng-container matColumnDef="jobCategoryName">
                       <th mat-header-cell *matHeaderCellDef> Job categories </th>
-                      <td mat-cell *matCellDef="let element"> {{element.jobTitle}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.jobCategoryName}} </td>
                     </ng-container>
 
 
@@ -67,4 +67,3 @@
     </div>
   </main>
 </div>
-
