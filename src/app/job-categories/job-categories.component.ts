@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {JobCategory} from "../model/jobCategory";
 import {Subscription} from "rxjs";
 import {User} from "../model/user";
@@ -7,11 +7,14 @@ import {UserService} from "../service/userServices";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSort } from '@angular/material/sort';
+import { DialogboxComponent } from '../dialogbox/dialogbox.component';
+import { EditJobcategoriesComponent } from '../edit-jobcategories/edit-jobcategories.component';
 
 @Component({
   selector: 'app-job-categories',
   templateUrl: './job-categories.component.html',
-  styleUrls: ['./job-categories.component.css']
+  styleUrls: ['./job-categories.component.css'],
 })
 export class JobCategoriesComponent {
   jobs: JobCategory[] = [];
@@ -27,8 +30,9 @@ export class JobCategoriesComponent {
   isLoggedIn!: User;
   role!: number;
   isLoading: boolean = false;
-  displayedColumns: string[] = [ 'jobCategoryName','action'];
+  displayedColumns: string[] = ['jobCategoryId', 'jobCategoryName', 'action'];
   dataSource: MatTableDataSource<JobCategory>;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
@@ -46,25 +50,28 @@ export class JobCategoriesComponent {
   }
 
   ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   isSidebarExpanded: boolean = true;
 
   loadJobs(currentPage: number): void {
     this.subscriptions.push(
-      this.userService.getAllJobCategory(currentPage, this.resultSize).subscribe(
-        (jb: JobCategory[]) => {
-          this.jobs = [...jb, ...this.jobs];
-          this.dataSource.data = this.jobs;
-          if (jb.length <= 0) this.hasMoreResult = false;
-          this.fetchingResult = false;
-          this.resultPage++;
-        },
-        (error) => {
-          console.log(error.error.message);
-          this.fetchingResult = false;
-        }
-      )
+      this.userService
+        .getAllJobCategory(currentPage, this.resultSize)
+        .subscribe(
+          (jb: JobCategory[]) => {
+            this.jobs = [...jb, ...this.jobs];
+            this.dataSource.data = this.jobs;
+            if (jb.length <= 0) this.hasMoreResult = false;
+            this.fetchingResult = false;
+            this.resultPage++;
+          },
+          (error) => {
+            console.log(error.error.message);
+            this.fetchingResult = false;
+          }
+        )
     );
   }
 
@@ -80,4 +87,66 @@ export class JobCategoriesComponent {
     this.isSidebarExpanded = expanded;
   }
 
+  deleteJobCategory(uId: number): void {
+    this.openConfirmationDialog(uId);
+    console.log(uId);
+  }
+
+  openConfirmationDialog(uId: number): void {
+    const dialogRef = this.dialog.open(DialogboxComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to delete?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.deleteJobCategory(uId).subscribe(
+          (response: any) => {
+            this.successMessage = 'Job category deleted Successfully';
+            setTimeout(() => {
+              this.successMessage = null;
+              window.location.reload();
+            }, 3000);
+          },
+          (error: any) => {
+            this.errorMessage = 'Could not delete job category';
+            setTimeout(() => {
+              this.errorMessage = null;
+            }, 3000);
+          }
+        );
+      }
+    });
+  }
+
+  editJob(jobId: number): void {
+    const dialogRef = this.dialog.open(EditJobcategoriesComponent, {
+      width: '800px',
+      data: { jobId: jobId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(jobId);
+
+      if (result === 'success') {
+        this.successMessage = 'User updated Successfully';
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else if (result === 'failure') {
+        this.errorMessage = 'Could not update user';
+      }
+    });
+  }
+
+  dismissSuccessMessage() {
+    this.successMessage = null;
+  }
+
+  dismissErrorMessage() {
+    this.errorMessage = null;
+  }
 }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {JobTitle} from "../model/jobTitle";
 import {Subscription} from "rxjs";
 import {User} from "../model/user";
@@ -7,11 +7,14 @@ import {UserService} from "../service/userServices";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSort } from '@angular/material/sort';
+import { DialogboxComponent } from '../dialogbox/dialogbox.component';
+import { EditJobtitleComponent } from '../edit-jobtitle/edit-jobtitle.component';
 
 @Component({
   selector: 'app-job-title',
   templateUrl: './job-title.component.html',
-  styleUrls: ['./job-title.component.css']
+  styleUrls: ['./job-title.component.css'],
 })
 export class JobTitleComponent implements OnInit, AfterViewInit {
   jobs: JobTitle[] = [];
@@ -27,8 +30,9 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   isLoggedIn!: User;
   role!: number;
   isLoading: boolean = false;
-  displayedColumns: string[] = ['jobName', 'jobDescription','action'];
+  displayedColumns: string[] = ['jobId', 'jobName', 'jobDescription', 'action'];
   dataSource: MatTableDataSource<JobTitle>;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
@@ -46,6 +50,7 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   isSidebarExpanded: boolean = true;
@@ -78,5 +83,68 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
+  }
+
+  deleteJob(uId: number): void {
+    this.openConfirmationDialog(uId);
+    console.log(uId);
+  }
+
+  openConfirmationDialog(uId: number): void {
+    const dialogRef = this.dialog.open(DialogboxComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to delete?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.deleteJob(uId).subscribe(
+          (response: any) => {
+            this.successMessage = 'Job title deleted Successfully';
+            setTimeout(() => {
+              this.successMessage = null;
+              window.location.reload();
+            }, 3000);
+          },
+          (error: any) => {
+            this.errorMessage = 'Could not delete job title';
+            setTimeout(() => {
+              this.errorMessage = null;
+            }, 3000);
+          }
+        );
+      }
+    });
+  }
+
+  editJob(jobId: number): void {
+    const dialogRef = this.dialog.open(EditJobtitleComponent, {
+      width: '800px',
+      data: { jobId: jobId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(jobId);
+
+      if (result === 'success') {
+        this.successMessage = 'User updated Successfully';
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else if (result === 'failure') {
+        this.errorMessage = 'Could not update user';
+      }
+    });
+  }
+
+  dismissSuccessMessage() {
+    this.successMessage = null;
+  }
+
+  dismissErrorMessage() {
+    this.errorMessage = null;
   }
 }

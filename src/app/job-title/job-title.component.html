@@ -8,6 +8,17 @@
     <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
 
 
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+          <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+        </div>
+        
+        <div *ngIf="errorMessage" class="error-message-notification">
+          {{ errorMessage }}
+          <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+        </div>
+
+
       <div class="adduser">
 
         <div class="card">
@@ -28,6 +39,11 @@
                   <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 
+                      <ng-container matColumnDef="jobId">
+                        <th mat-sort-header mat-header-cell *matHeaderCellDef> Job ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.jobId}} </td>
+                      </ng-container>
+
                     <ng-container matColumnDef="jobName">
                       <th mat-header-cell *matHeaderCellDef> Job Title </th>
                       <td mat-cell *matCellDef="let element"> {{element.jobName}} </td>
@@ -40,11 +56,11 @@
 
                     <ng-container matColumnDef="action">
                       <th mat-header-cell *matHeaderCellDef class="center"> Action </th>
-                      <td mat-cell *matCellDef="let user">
+                      <td mat-cell *matCellDef="let element">
                         <div class="icon-container">
-                          <i class="fa-solid fa-pen-to-square" id="edit" ></i>
+                          <i class="fa-solid fa-pen-to-square" id="edit" (click)="editJob(element.jobId)" ></i>
                           <span class="icon-space"></span>
-                          <i class="fa-solid fa-trash-can" ></i>
+                          <i class="fa-solid fa-trash-can"  (click)="deleteJob(element.jobId)" ></i>
                         </div>
                       </td>
                     </ng-container>

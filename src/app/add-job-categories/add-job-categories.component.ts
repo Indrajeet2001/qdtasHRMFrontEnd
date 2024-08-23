@@ -7,7 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-add-job-categories',
   templateUrl: './add-job-categories.component.html',
-  styleUrls: ['./add-job-categories.component.css']
+  styleUrls: ['./add-job-categories.component.css'],
 })
 export class AddJobCategoriesComponent {
   constructor(
@@ -55,5 +55,9 @@ export class AddJobCategoriesComponent {
 
   dismissErrorMessage() {
     this.errorMessage = null;
+  }
+
+  goToAddJobCat() {
+    this.router.navigate(['/job-categories']);
   }
 }

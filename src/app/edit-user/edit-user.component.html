@@ -69,7 +69,7 @@
                   valid: email.valid && (email.dirty || email.touched) }" />
                             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
                                 <span *ngIf="email.errors?.['required']">Email is required.</span>
-                                <span *ngIf="email.errors?.['pattern']">Email must contain @ and . symbols.</span>
+                                <span *ngIf="email.errors?.['pattern']">Email must contain and . symbols.</span>
                             </div>
                             <span *ngIf="u.email?.toLowerCase() == this.newEmail.toLowerCase()"
                                 class="error-message">Entered email is same as previous email</span>

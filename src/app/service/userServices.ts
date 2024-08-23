@@ -15,10 +15,9 @@ import {JobCategory} from "../model/jobCategory";
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   constructor(private http: HttpClient, private router: Router) {}
   loginSubject = new Subject<User>();
 
@@ -117,12 +116,12 @@ export class UserService {
   seachUser(currentPage: number, resultSize: number, key: string) {
     return this.http.get<User[]>(
       BASE_API_URL +
-      `/user/seachUser?pgn=` +
-      currentPage +
-      `&sz=` +
-      resultSize +
-      `&key=` +
-      key,
+        `/user/seachUser?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize +
+        `&key=` +
+        key,
       { headers: this.getHeaders() }
     );
   }
@@ -189,10 +188,10 @@ export class UserService {
   getAllLeaves(currentPage: number, resultSize: number) {
     return this.http.get<Leave[]>(
       BASE_API_URL +
-      `/leave/getAllLeaves?pgn=` +
-      currentPage +
-      `&sz=` +
-      resultSize,
+        `/leave/getAllLeaves?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
       { headers: this.getHeaders() }
     );
   }
@@ -245,12 +244,12 @@ export class UserService {
     );
     return this.http.get<any>(
       BASE_API_URL +
-      `/ts/getByEmpId/` +
-      eId +
-      `?pgn=` +
-      currentPage +
-      `&sz=` +
-      resultSize,
+        `/ts/getByEmpId/` +
+        eId +
+        `?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
       { headers: this.getHeaders() }
     );
   }
@@ -325,6 +324,30 @@ export class UserService {
     );
   }
 
+  deleteJob(userId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/job/deleteById/` + userId,
+      userId,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  updateJob(uId: number, jobData: any) {
+    return this.http.post<any>(
+      BASE_API_URL + `/job/updateById/` + uId,
+      jobData,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  getJobById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/job/getById/` + uId, {
+      headers: this.getHeaders(),
+    });
+  }
+
   // job category services
 
   addJobCategory(jobCategory: any) {
@@ -344,12 +367,36 @@ export class UserService {
   getAllJobCategory(currentPage: number, resultSize: number) {
     return this.http.get<JobCategory[]>(
       BASE_API_URL +
-      `/jobcategory/getAll?pgn=` +
-      currentPage +
-      `&sz=` +
-      resultSize,
+        `/jobcategory/getAll?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
       { headers: this.getHeaders() }
     );
+  }
+
+  deleteJobCategory(userId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/jobcategory/deleteJobById/` + userId,
+      userId,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  updateJobCategory(uId: number, jobData: any) {
+    return this.http.post<any>(
+      BASE_API_URL + `/jobcategory/updateJobById/` + uId,
+      jobData,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  getJobCategoryById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/jobcategory/getJobById/` + uId, {
+      headers: this.getHeaders(),
+    });
   }
 
   // Employment status services
@@ -367,12 +414,36 @@ export class UserService {
   getAllEmpStatus(currentPage: number, resultSize: number) {
     return this.http.get<EmpStatus[]>(
       BASE_API_URL +
-      `/employment/getAllJobs?pgn=` +
-      currentPage +
-      `&sz=` +
-      resultSize,
+        `/employment/getAllJobs?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
       { headers: this.getHeaders() }
     );
+  }
+
+  deleteEmpStatus(userId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/employment/deleteById/` + userId,
+      userId,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  updateEmpStatus(uId: number, jobData: any) {
+    return this.http.post<any>(
+      BASE_API_URL + `/employment/updateById/` + uId,
+      jobData,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  getEmpStatusById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/employment/getById/` + uId, {
+      headers: this.getHeaders(),
+    });
   }
 }
 
