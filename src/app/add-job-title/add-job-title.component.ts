@@ -7,7 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-add-job-title',
   templateUrl: './add-job-title.component.html',
-  styleUrls: ['./add-job-title.component.css']
+  styleUrls: ['./add-job-title.component.css'],
 })
 export class AddJobTitleComponent {
   constructor(
@@ -54,5 +54,9 @@ export class AddJobTitleComponent {
 
   dismissErrorMessage() {
     this.errorMessage = null;
+  }
+
+  goToJobTitle() {
+    this.router.navigate(['/job-title']);
   }
 }

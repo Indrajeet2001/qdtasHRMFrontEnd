@@ -57,6 +57,9 @@ import { JobCategoriesComponent } from './job-categories/job-categories.componen
 import { AddJobCategoriesComponent } from './add-job-categories/add-job-categories.component';
 import { WorkshiftsComponent } from './workshifts/workshifts.component';
 import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.component';
+import { EditJobtitleComponent } from './edit-jobtitle/edit-jobtitle.component';
+import { EditJobcategoriesComponent } from './edit-jobcategories/edit-jobcategories.component';
+import { EditEmpstatusComponent } from './edit-empstatus/edit-empstatus.component';
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.componen
     JobCategoriesComponent,
     AddJobCategoriesComponent,
     WorkshiftsComponent,
-    AddWorkshiftsComponent
+    AddWorkshiftsComponent,
+    EditJobtitleComponent,
+    EditJobcategoriesComponent,
+    EditEmpstatusComponent
   ],
     imports: [
         BrowserModule,
