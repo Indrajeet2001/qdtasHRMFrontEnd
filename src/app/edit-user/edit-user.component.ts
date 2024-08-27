@@ -11,7 +11,7 @@ import { User } from '../model/user';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
   constructor(
@@ -35,6 +35,8 @@ export class EditUserComponent implements OnInit {
   newrole: string = '';
   newdesignation: string = '';
   newpassword: string = '';
+  newjobCategoryId: string = '';
+  newemploymentStatusId: string = '';
 
   uId: number = this.userId;
 
@@ -45,7 +47,7 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
-    this.userService.getUserById(this.uId).subscribe(user => {
+    this.userService.getUserById(this.uId).subscribe((user) => {
       this.u = user;
     });
   }

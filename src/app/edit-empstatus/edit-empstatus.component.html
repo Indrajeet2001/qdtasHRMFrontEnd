@@ -8,12 +8,13 @@
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label">Employment status</label>
-                            <input type="text" class="form-control" id="org" ngModel="" required name="employmentStatusName"  [(ngModel)]="jobData.employmentStatusName"
-                                #org="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': org.invalid && (org.dirty || org.touched), 'valid': org.valid && (org.dirty ||
-                                            org.touched)}">
+                            <input type="text" class="form-control" id="employmentStatusName" ngModel="" required name="employmentStatusName"  [(ngModel)]="jobData.employmentStatusName"
+                                #employmentStatusName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': employmentStatusName.invalid && (employmentStatusName.dirty || employmentStatusName.touched), 'valid': employmentStatusName.valid && (employmentStatusName.dirty ||
+                                            employmentStatusName.touched)}">
 
-                            <div *ngIf="org.invalid && (org.dirty || org.touched)" class="error-message">
-
+                            <div *ngIf="employmentStatusName.invalid && (employmentStatusName.dirty || employmentStatusName.touched)" class="error-message">
+                                <span *ngIf="employmentStatusName.errors?.['required']">Please enter employment status</span>
+                                <span *ngIf="employmentStatusName.errors?.['pattern']">Please enter only alphabets</span>
                             </div>
                         </div>
 

@@ -34,6 +34,8 @@
                                             jobName.touched)}">
 
                     <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="error-message">
+                      <span *ngIf="jobName.errors?.['required']">Please enter job title</span>
+                      <span *ngIf="jobName.errors?.['pattern']">Please enter only alphabets</span>
 
                     </div>
                   </div>

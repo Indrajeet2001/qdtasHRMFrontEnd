@@ -21,7 +21,7 @@
                             <label class="form-label">Select field to edit</label>
                             <select class="form-select" id="select-field" (change)="onFieldSelect($event)">
                                 <option selected [disabled]="true">Select</option>
-                                <option value="userName" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >Username</option>
+                                <option value="userName" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Username</option>
                                 <option value="email">Email</option>
                                 <option value="firstName" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">First name</option>
                                 <option value="middleName" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Middle name</option>
@@ -32,6 +32,10 @@
                                 <option value="gender" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Gender</option>
                                 <option value="role" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Role</option>
                                 <option value="designation" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Designation
+                                </option>
+                                <option value="jobCategoryId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Job category
+                                </option>
+                                <option value="employmentStatusId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Employment status
                                 </option>
                                 <option value="password">Password</option>
                                 <option value="address">Address</option>
@@ -44,8 +48,8 @@
                         <div class="inp">
                             <label class="form-label">New Username</label>
                             <input type="text" class="form-control" [(ngModel)]="newUsername" ngModel required
-                                placeholder="Username" name="userName" #userName="ngModel" pattern="^[A-Za-z]+$"
-                                [ngClass]="{invalid:
+                                maxlength="20" placeholder="Username" name="userName" #userName="ngModel"
+                                pattern="^[A-Za-z]+$" [ngClass]="{invalid:
                     userName.invalid && (userName.dirty || userName.touched),
                   valid: userName.valid && (userName.dirty || userName.touched) }" />
                             <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="error-message">
@@ -170,7 +174,7 @@
                                 <span *ngIf="birthDate.errors?.['pattern']">Please enter in YYYY-MM-DD</span>
                             </div>
                             <span *ngIf="u.birthDate?.toString() == this.birthDate.toString()"
-                                class="error-message">Entered birthdate is same 
+                                class="error-message">Entered birthdate is same
                                 as
                                 previous birthdate </span>
                         </div>
@@ -192,6 +196,46 @@
                             </select>
                             <div *ngIf="deptId.invalid && (deptId.dirty || deptId.touched)" class="error-message">
                                 <span *ngIf="deptId.errors?.['required']">Please select department</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inp-row" *ngIf="selectedField === 'jobCategoryId'">
+                    <div class="inp-field">
+                        <div class="inp">
+                            <label class="form-label">New job category</label>
+                            <select class="form-select" ngModel name="jobCategoryId" required #jobCategoryId="ngModel"
+                                [(ngModel)]="newjobCategoryId" [ngClass]="{'invalid': jobCategoryId.invalid && (jobCategoryId.dirty || jobCategoryId.touched), 'valid': jobCategoryId.valid && (jobCategoryId.dirty ||
+                                                jobCategoryId.touched)}">
+                                <option selected [disabled]="true">Select job category</option>
+                                <option value=2>Frontend developer</option>
+                                <option value=3>Backend developer</option>
+                                <option value=4>UI/UX developer</option>
+                            </select>
+                            <div *ngIf="jobCategoryId.invalid && (jobCategoryId.dirty || jobCategoryId.touched)"
+                                class="error-message">
+                                <span *ngIf="jobCategoryId.errors?.['required']">Please job category</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inp-row" *ngIf="selectedField === 'employmentStatusId'">
+                    <div class="inp-field">
+                        <div class="inp">
+                            <label class="form-label">New employment status</label>
+                            <select class="form-select" ngModel name="employmentStatusId" required #employmentStatusId="ngModel"
+                                [(ngModel)]="newemploymentStatusId" [ngClass]="{'invalid': employmentStatusId.invalid && (employmentStatusId.dirty || employmentStatusId.touched), 'valid': employmentStatusId.valid && (employmentStatusId.dirty ||
+                                                                    employmentStatusId.touched)}">
+                                <option selected [disabled]="true">Select employment status</option>
+                                <option value=3>Full-time</option>
+                                <option value=4>Part-time</option>
+                                <option value=6>Internship</option>
+                            </select>
+                            <div *ngIf="employmentStatusId.invalid && (employmentStatusId.dirty || employmentStatusId.touched)"
+                                class="error-message">
+                                <span *ngIf="employmentStatusId.errors?.['required']">Please employment status</span>
                             </div>
                         </div>
                     </div>
@@ -240,7 +284,6 @@
                     </div>
                 </div>
 
-
                 <div class="inp-row" *ngIf="selectedField === 'designation'">
                     <div class="inp-field">
                         <div class="inp">
@@ -260,7 +303,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="inp-row" *ngIf="selectedField === 'password'">
                     <div class="inp-field">
@@ -297,8 +339,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="inp-row" *ngIf="selectedField === 'address'">
                     <div class="inp-field">
                         <div class="inp">
@@ -317,7 +357,6 @@
                     </div>
                 </div>
 
-
                 <div class="col text-end suv-btn">
                     <button type="reset" class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
                     <button type="submit" class="btn btn-maroon" [disabled]="!editfrom.valid || !selectedField || 
@@ -330,7 +369,7 @@
                                      u.gender?.toString() == this.newgender.toString() ||
                                      u.role?.toString() == this.newrole.toString() ||
                                      u.designation?.toString() == this.newdesignation.toString() ||
-                                     u.password?.toString() == this.newpassword.toString() "  >
+                                     u.password?.toString() == this.newpassword.toString() ">
                         Submit
                     </button>
                 </div>
