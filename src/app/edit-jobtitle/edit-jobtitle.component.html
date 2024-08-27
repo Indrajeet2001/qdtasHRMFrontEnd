@@ -4,23 +4,41 @@
             <form class="genrealInfo" #genrealInfoData="ngForm" (submit)="updateJob(genrealInfoData.value)">
                 <div class="inp-row">
                     <h2 class="title mb-3">Job title</h2>
+
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label">Job title</label>
-                            <input type="text" class="form-control" id="jobName" name="jobName" [(ngModel)]="jobData.jobName"   required />
+                            <input type="text" class="form-control" id="jobName" name="jobName"
+                                [(ngModel)]="jobData.jobName" required #jobName="ngModel" pattern="^[A-Za-z]+$"
+                                [ngClass]="{'invalid': jobName.invalid && (jobName.dirty || jobName.touched), 'valid': jobName.valid && (jobName.dirty || jobName.touched)}" />
+
+                           
+                            <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="error-message">
+                                <span *ngIf="jobName.errors?.['required']">Please enter job title</span>
+                                <span *ngIf="jobName.errors?.['pattern']">Please enter only alphabets</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label">Job Description</label>
-                            <input class="form-control" id="jobDescription" name="jobDescription"  [(ngModel)]="jobData.jobDescription"
-                                required>
+                            <input class="form-control" id="jobDescription" name="jobDescription"
+                                [(ngModel)]="jobData.jobDescription" required #jobDescription="ngModel"
+                                pattern="^[A-Za-z\s]+$"
+                                [ngClass]="{'invalid': jobDescription.invalid && (jobDescription.dirty || jobDescription.touched), 'valid': jobDescription.valid && (jobDescription.dirty || jobDescription.touched)}" />
+
+                          
+                            <div *ngIf="jobDescription.invalid && (jobDescription.dirty || jobDescription.touched)"
+                                class="error-message">
+                                <span *ngIf="jobDescription.errors?.['required']">Please enter job description</span>
+                                <span *ngIf="jobDescription.errors?.['pattern']">Please enter only alphabets</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col text-end suv-btn">
-                        <button class="btn btn-maroon" (click)="dismissDialogBox()" >Cancel</button>
+                        <button class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
                         <button class="btn btn-maroon" type="submit">Submit</button>
                     </div>
                 </div>
@@ -28,5 +46,3 @@
         </div>
     </div>
 </div>
-
-
