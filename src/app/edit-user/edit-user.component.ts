@@ -37,7 +37,7 @@ export class EditUserComponent implements OnInit {
   newpassword: string = '';
   newjobCategoryId: string = '';
   newemploymentStatusId: string = '';
-
+  newjobId : string = '';
   uId: number = this.userId;
 
   successMessage: string | null = null;

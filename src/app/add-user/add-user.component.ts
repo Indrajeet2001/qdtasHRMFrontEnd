@@ -204,9 +204,9 @@ export class AddUserComponent implements OnInit, AfterViewInit {
 
   displayColumns() {
     if (this.isLoggedIn.role === 'ROLE_USER') {
-      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber', 'designation'];
+      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber' ];
     } else {
-      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber', 'designation', 'actions'];
+      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber', 'actions'];
     }
   }
 
