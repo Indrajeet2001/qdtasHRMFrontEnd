@@ -200,10 +200,9 @@
                             </select>
                             <div *ngIf="deptId.invalid && (deptId.dirty || deptId.touched)" class="error-message">
                                 <span *ngIf="deptId.errors?.['required']">Please select department</span>
-
                             </div>
-
                         </div>
+
                         <div class="inp">
                             <label class="form-label">Role</label>
                             <select class="form-select" ngModel name="role" required #role="ngModel" [ngClass]="{'invalid': role.invalid && (role.dirty || role.touched), 'valid': role.valid && (role.dirty ||
@@ -263,19 +262,21 @@
 
                     <div class="dsgn">
                         <div class="inp-field">
-                            <div class="inp">
-                                <label class="form-label">Designation</label>
-                                <input type="text" class="form-control" id="designation" placeholder="Designation"
-                                    id="designation" ngModel name="designation" required #designation="ngModel"
-                                    pattern="^[A-Za-z.]+$" [ngClass]="{'invalid': designation.invalid && (designation.dirty || designation.touched), 'valid': designation.valid && (designation.dirty ||
-                                                                designation.touched)}">
-                                <div *ngIf="designation.invalid && (designation.dirty || designation.touched)"
-                                    class="error-message">
-                                    <span *ngIf="designation.errors?.['required']">Please enter Designation</span>
-                                    <span *ngIf="designation.errors?.['pattern']">Please enter only alphabets and
-                                        (.)</span>
+                                <div class="inp">
+                                    <label class="form-label">Job title</label>
+                                    <select class="form-select" ngModel name="jobId" placeholder="Select job title" required #jobId="ngModel"
+                                        [ngClass]="{'invalid': jobId.invalid && (jobId.dirty || jobId.touched), 'valid': jobId.valid && (jobId.dirty ||
+                                                                jobId.touched)}">
+                                        <option selected [disabled]="true">Select job title</option>
+                                        <option value=19>Software engineer</option>
+                                        <option value=20>Software tester</option>
+                                        <option value=21>QA lead</option>
+                                        <option value=22>HR manager</option>
+                                    </select>
+                                    <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
+                                        <span *ngIf="jobId.errors?.['required']">Please select job title</span>
+                                    </div>
                                 </div>
-                            </div>
 
                             <div class="inp">
                                 <label class="form-label"> Address</label>
@@ -319,41 +320,6 @@
             <div class="container p-2">
                 <form>
                     <input type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
-                    <!-- <div class="table-container">
-                        <table class="table" id="myTable">
-                            <tr class="header">
-                                <th style="width: 15%">User-Id</th>
-                                <th style="width: 15%">Username</th>
-                                <th style="width: 15%">First name</th>
-                                <th style="width: 20%">Middle name</th>
-                                <th style="width: 15%">Last name</th>
-                                <th style="width: 5%">Gender</th>
-                                <th style="width: 15%">Department</th>
-                                <th style="width: 15%">Phone no.</th>
-                                <th style="width: 10%">Designation</th>
-                                <th style="width: 10%"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >Action</th>
-                            </tr>
-                            <tr *ngFor="let user of users | filter : searchTerm">
-                                <td>{{ user.userId }}</td>
-                                <td>{{ user.userName }}</td>
-                                <td>{{ user.firstName }}</td>
-                                <td>{{ user.middleName }}</td>
-                                <td>{{ user.lastName }}</td>
-                                <td>{{ user.gender }}</td>
-                                <td>{{ user.dept?.deptName }}</td>
-                                <td>{{ user.phoneNumber }}</td>
-                                <td>{{ user.designation }}</td>
-                                <td *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
-                                    <div class="icon-container" >
-                                        <i class="fa-solid fa-pen-to-square" (click)="openEidtUser(user.userId)"></i>
-                                        <span class="icon-space"></span>
-                                        <i class="fa-solid fa-trash-can" (click)="deleteUser(user.userId)"></i>
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </div> -->
 
                     <div class="table-container">
                         <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -405,12 +371,6 @@
                                 <th mat-header-cell *matHeaderCellDef class="center"> Phone </th>
                                 <td mat-cell *matCellDef="let user" class="center"> {{user.phoneNumber}} </td>
                             </ng-container>
-
-                            <ng-container matColumnDef="designation">
-                                <th mat-header-cell *matHeaderCellDef class="center"> Designation </th>
-                                <td mat-cell *matCellDef="let user" class="center"> {{user.designation}} </td>
-                            </ng-container>
-
 
                             <ng-container matColumnDef="actions">
                                 <th mat-header-cell *matHeaderCellDef class="center"> Action </th>

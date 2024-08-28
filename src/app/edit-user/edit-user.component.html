@@ -31,7 +31,7 @@
                                 <option value="deptId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Department</option>
                                 <option value="gender" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Gender</option>
                                 <option value="role" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Role</option>
-                                <option value="designation" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Designation
+                                <option value="jobId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Job title
                                 </option>
                                 <option value="jobCategoryId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Job category
                                 </option>
@@ -284,22 +284,21 @@
                     </div>
                 </div>
 
-                <div class="inp-row" *ngIf="selectedField === 'designation'">
+                <div class="inp-row" *ngIf="selectedField === 'jobId'">
                     <div class="inp-field">
                         <div class="inp">
-                            <label class="form-label">Designation</label>
-                            <input type="text" class="form-control" [(ngModel)]="newdesignation" id="designation"
-                                ngModel name="designation" required #lastName="ngModel" pattern="^[A-Za-z.]+$"
-                                [ngClass]="{'invalid': lastName.invalid && (lastName.dirty || lastName.touched), 'valid': lastName.valid && (lastName.dirty ||
-                                            lastName.touched)}">
-                            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
-                                <span *ngIf="lastName.errors?.['required']">Please enter Designation</span>
-                                <span *ngIf="lastName.errors?.['pattern']">Please enter only alphabets</span>
+                            <label class="form-label">Job title</label>
+                            <select class="form-select" ngModel name="jobId"  [(ngModel)]="newjobId" placeholder="Select job title" required #jobId="ngModel" [ngClass]="{'invalid': jobId.invalid && (jobId.dirty || jobId.touched), 'valid': jobId.valid && (jobId.dirty ||
+                                 jobId.touched)}">
+                                <option selected [disabled]="true">Select job title</option>
+                                <option value=19>Software engineer</option>
+                                <option value=20>Software tester</option>
+                                <option value=21>QA lead</option>
+                                <option value=22>HR manager</option>
+                            </select>
+                            <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
+                                <span *ngIf="jobId.errors?.['required']">Please select job title</span>
                             </div>
-                            <span *ngIf="u.designation?.toString() == this.newdesignation.toString()"
-                                class="error-message">Entered designation is same
-                                as
-                                previous designation </span>
                         </div>
                     </div>
                 </div>
