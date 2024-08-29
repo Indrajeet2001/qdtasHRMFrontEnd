@@ -1,5 +1,4 @@
 <div class="adduser">
-    <div class="card">
         <div class="container p-2">
             <form class="genrealInfo" #genrealInfoData="ngForm" (submit)="updateJob(genrealInfoData.value)">
                 <div class="inp-row">
@@ -22,7 +21,7 @@
 
                     <div class="inp-field">
                         <div class="inp">
-                            <label class="form-label">Job Description</label>
+                            <label class="form-label">Job description</label>
                             <input class="form-control" id="jobDescription" name="jobDescription"
                                 [(ngModel)]="jobData.jobDescription" required #jobDescription="ngModel"
                                 pattern="^[A-Za-z\s]+$"
@@ -44,5 +43,5 @@
                 </div>
             </form>
         </div>
-    </div>
+
 </div>

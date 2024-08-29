@@ -1,18 +1,23 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse,
+} from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BASE_API_URL } from '../constansts';
-import { Observable, Subject , forkJoin , throwError} from 'rxjs';
+import { Observable, Subject, forkJoin, throwError } from 'rxjs';
 import { User } from '../model/user';
 import { Leave } from '../model/leave';
 import { map, catchError } from 'rxjs/operators';
 import { Time } from '../model/time';
-import {JobTitle} from "../model/jobTitle";
-import {EmpStatus} from "../model/empStatus";
-import {JobCategory} from "../model/jobCategory";
-
-
+import { JobTitle } from '../model/jobTitle';
+import { EmpStatus } from '../model/empStatus';
+import { JobCategory } from '../model/jobCategory';
+import { GeneralInfo } from '../model/genInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -445,7 +450,13 @@ export class UserService {
       headers: this.getHeaders(),
     });
   }
+
+  //General Information
+
+  generalInfo() {
+    return this.http.get<GeneralInfo[]>(
+      BASE_API_URL + `/generalinfo/getAllInfo`,
+      { headers: this.getHeaders() }
+    );
+  }
 }
-
-
-
