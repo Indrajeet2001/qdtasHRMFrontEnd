@@ -21,7 +21,7 @@ export class EditJobcategoriesComponent {
   ) {}
 
   ngOnInit() {
-    // console.log(this.data);
+
     this.jobId = this.data.jobId;
     this.loadJobs(this.jobId);
     // alert(this.jobId);
