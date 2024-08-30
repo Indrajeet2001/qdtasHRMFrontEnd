@@ -1,0 +1,37 @@
+<div class="container" id="cnt">
+    <div class="d-flex">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" id="btn1" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                User Management
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" id="btn2" type="button" data-bs-toggle="dropdown" 
+                aria-expanded="false">
+                Job
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/job-title" routerLinkActive="active-dropdown-item" >Job Title</a></li>
+                <li><a class="dropdown-item" routerLink="/job-categories" routerLinkActive="active-dropdown-item" >Job Categories</a></li>
+                <li><a class="dropdown-item" routerLink="/emp-status" routerLinkActive="active-dropdown-item" >Employee Status</a></li>
+                <li><a class="dropdown-item" routerLink="/work-shifts" routerLinkActive="active-dropdown-item" >Work Shifts</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" id="btn3" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Organization
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/general-info" routerLinkActive="active-dropdown-item" >General Information</a></li>
+                <li><a class="dropdown-item" routerLink="/structure" routerLinkActive="active-dropdown-item"  >Structure</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
