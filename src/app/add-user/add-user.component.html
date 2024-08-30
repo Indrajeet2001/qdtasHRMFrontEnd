@@ -12,7 +12,9 @@
 
 <div class="adduser">
 
-    <div class="container" id="cnt">
+    <app-dropdown> </app-dropdown>
+
+    <!-- <div class="container" id="cnt">
         <div class="d-flex">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" id="btn1" type="button" data-bs-toggle="dropdown"
@@ -48,7 +50,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="card" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
         <div class="container p-2">

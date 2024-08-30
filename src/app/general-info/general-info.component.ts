@@ -25,7 +25,6 @@ export class GeneralInfoComponent {
     this.userService.generalInfo().subscribe((res: GeneralInfo[]) => {
       this.info = res;
       this.info.forEach((item) => {
-
       });
     });
   }

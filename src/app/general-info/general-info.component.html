@@ -9,9 +9,7 @@
 
 
       <div class="adduser">
-
-
-
+        <app-dropdown> </app-dropdown>
         <div class="card">
           <div class="container p-2">
             <form class="genrealInfo" #genrealInfoData="ngForm" *ngFor="let item of info">
@@ -20,7 +18,7 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Organization Name</label>
-                    <input type="text" class="form-control" id="org" [(ngModel)]="item.organizationName" disabled
+                    <input type="text" class="form-control" id="org" [(ngModel)]="item.organizationName" readonly
                       required name="org" #org="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': org.invalid && (org.dirty || org.touched), 'valid': org.valid && (org.dirty ||
                                             org.touched)}">
 
@@ -31,7 +29,7 @@
                   <div class="inp">
                     <label class="form-label">Number of employees</label>
                     <input type="text" class="form-control" id="noOfEmp" [(ngModel)]="item.numberOfEmployees"
-                      name="noOfEmp" disabled #noOfEmp="ngModel" required
+                      name="noOfEmp" readonly #noOfEmp="ngModel" required
                       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       [ngClass]="{'invalid': noOfEmp.invalid && (noOfEmp.dirty || noOfEmp.touched), 'valid': noOfEmp.valid && (noOfEmp.dirty || noOfEmp.touched)}">
                     <div *ngIf="noOfEmp.invalid && (noOfEmp.dirty || noOfEmp.touched)" class="error-message">
@@ -42,7 +40,7 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Registration number</label>
-                    <input type="text" class="form-control" id="rn" [(ngModel)]="item.registrationNumber" disabled
+                    <input type="text" class="form-control" id="rn" [(ngModel)]="item.registrationNumber" readonly
                       name="rn" required #rn="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': rn.invalid && (rn.dirty || rn.touched), 'valid': rn.valid && (rn.dirty ||
                                             rn.touched)}">
                     <div *ngIf="rn.invalid && (rn.dirty || rn.touched)" class="error-message">
@@ -52,7 +50,7 @@
                   </div>
                   <div class="inp">
                     <label class="form-label">Tax ID</label>
-                    <input type="text" class="form-control" id="tax" [(ngModel)]="item.taxId" disabled name="tax"
+                    <input type="text" class="form-control" id="tax" [(ngModel)]="item.taxId" readonly name="tax"
                       required #tax="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': tax.invalid && (tax.dirty || tax.touched), 'valid': tax.valid && (tax.dirty ||
                                             tax.touched)}">
                     <div *ngIf="tax.invalid && (tax.dirty || tax.touched)" class="error-message">
@@ -64,7 +62,7 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Phone number</label>
-                    <input type="text" class="form-control" id="phn" [(ngModel)]="item.phoneNumber" disabled name="phn"
+                    <input type="text" class="form-control" id="phn" [(ngModel)]="item.phoneNumber" readonly name="phn"
                       required #phn="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': phn.invalid && (phn.dirty || phn.touched), 'valid': phn.valid && (phn.dirty ||
                                             phn.touched)}">
                     <div *ngIf="phn.invalid && (phn.dirty || phn.touched)" class="error-message">
@@ -77,7 +75,7 @@
                   <div class="inp">
                     <label class="form-label">Email</label>
                     <input type="text" class="form-control" id="email" [(ngModel)]="item.email" name="email"
-                      #email="ngModel" required disabled pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                      #email="ngModel" required readonly pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       [ngClass]="{'invalid': email.invalid && (email.dirty || email.touched), 'valid': email.valid && (email.dirty || email.touched)}">
                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
                     </div>
@@ -89,7 +87,7 @@
                   <div class="inp">
                     <label class="form-label">Address</label>
                     <input type="text" class="form-control" id="add" [(ngModel)]="item.address" name="add" required
-                      disabled #add="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': add.invalid && (add.dirty || add.touched), 'valid': add.valid && (add.dirty ||
+                      readonly #add="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': add.invalid && (add.dirty || add.touched), 'valid': add.valid && (add.dirty ||
                                                                             add.touched)}">
                     <div *ngIf="add.invalid && (add.dirty || add.touched)" class="error-message">
                       <span *ngIf="add.errors?.['required']">Please enter last name</span>
@@ -101,7 +99,7 @@
                   <div class="inp">
                     <label class="form-label">City</label>
                     <input type="text" class="form-control" id="city" [(ngModel)]="item.city" name="city"
-                      #city="ngModel" required disabled pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                      #city="ngModel" required readonly pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       [ngClass]="{'invalid': city.invalid && (city.dirty || city.touched), 'valid': city.valid && (city.dirty || city.touched)}">
                     <div *ngIf="city.invalid && (city.dirty || city.touched)" class="error-message">
                     </div>
@@ -113,7 +111,7 @@
                   <div class="inp">
                     <label class="form-label">State</label>
                     <input type="text" class="form-control" id="state" [(ngModel)]="item.state" name="state" required
-                      disabled #state="ngModel" pattern="^[A-Za-z]+$"
+                      readonly #state="ngModel" pattern="^[A-Za-z]+$"
                       [ngClass]="{'invalid': state.invalid && (state.dirty || state.touched), 'valid': state.valid && (state.dirty ||
                                                                                                             state.touched)}">
                     <div *ngIf="state.invalid && (state.dirty || state.touched)" class="error-message">
@@ -126,7 +124,7 @@
                   <div class="inp">
                     <label class="form-label">Country</label>
                     <input type="text" class="form-control" id="country" [(ngModel)]="item.country" name="country"
-                      #country="ngModel" required disabled pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                      #country="ngModel" required readonly pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       [ngClass]="{'invalid': country.invalid && (country.dirty || country.touched), 'valid': country.valid && (country.dirty || country.touched)}">
                     <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-message">
                     </div>
@@ -140,7 +138,7 @@
                   <div class="inp">
                     <label class="form-label">Zip/Postal code</label>
                     <input type="text" class="form-control" id="zip" [(ngModel)]="item.postalCode" name="zip"
-                      #zip="ngModel" required disabled pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                      #zip="ngModel" required readonly pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                       [ngClass]="{'invalid': zip.invalid && (zip.dirty || zip.touched), 'valid': zip.valid && (zip.dirty || zip.touched)}">
                     <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="error-message">
                     </div>
