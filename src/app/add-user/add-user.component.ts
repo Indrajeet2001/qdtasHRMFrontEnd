@@ -15,10 +15,9 @@ import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent implements OnInit, AfterViewInit {
-
   users: User[] = [];
   resultPage: number = 1;
   resultSize: number = 10;
@@ -32,14 +31,17 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   isLoggedIn!: User;
   role: number;
   isLoading: boolean = false;
+  isFormVisible = false;
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userService: UserService,
-              private router: Router,
-              public dialog: MatDialog,
-              private snackBar: MatSnackBar) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
     this.dataSource = new MatTableDataSource<User>();
     this.role = this.userService.getAuthUserId();
   }
@@ -56,7 +58,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
 
   saveUser(userData: any) {
     const token = localStorage.getItem('token');
-    console.log('Token:', token);  // Check token value
+    console.log('Token:', token); // Check token value
 
     this.userService.addUser(userData).subscribe(
       (response: any) => {
@@ -68,14 +70,14 @@ export class AddUserComponent implements OnInit, AfterViewInit {
       },
       (error: any) => {
         console.error('Error adding user:', error);
-        this.errorMessage = error.error?.message || 'An error occurred while adding the user';
+        this.errorMessage =
+          error.error?.message || 'An error occurred while adding the user';
         setTimeout(() => {
           this.errorMessage = null;
         }, 3000);
       }
     );
   }
-
 
   // saveUser(userData: any) {
   //   const token = localStorage.getItem('token');
@@ -135,14 +137,16 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     }, 1000);
   }
 
-
   openConfirmationDialog(uId: number): void {
     const dialogRef = this.dialog.open(DialogboxComponent, {
       width: '300px',
-      data: { title: 'Confirmation', message: 'Are you sure you want to delete?' }
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to delete?',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.userService.deleteUser(uId).subscribe(
           (response: any) => {
@@ -177,7 +181,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
       data: uId,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === 'success') {
         this.successMessage = 'User updated Successfully';
         setTimeout(() => {
@@ -194,7 +198,12 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   }
 
   isFormEmpty(form: NgForm): boolean {
-    return !form.valid || Object.keys(form.controls).some(control => form.controls[control].value === '');
+    return (
+      !form.valid ||
+      Object.keys(form.controls).some(
+        (control) => form.controls[control].value === ''
+      )
+    );
   }
 
   FilterChange(data: Event) {
@@ -204,13 +213,34 @@ export class AddUserComponent implements OnInit, AfterViewInit {
 
   displayColumns() {
     if (this.isLoggedIn.role === 'ROLE_USER') {
-      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber' ];
+      this.displayedColumns = [
+        'userId',
+        'userName',
+        'firstName',
+        'middleName',
+        'lastName',
+        'gender',
+        'deptId',
+        'phoneNumber',
+      ];
     } else {
-      this.displayedColumns = ['userId', 'userName', 'firstName', 'middleName', 'lastName', 'gender', 'deptId', 'phoneNumber', 'actions'];
+      this.displayedColumns = [
+        'userId',
+        'userName',
+        'firstName',
+        'middleName',
+        'lastName',
+        'gender',
+        'deptId',
+        'phoneNumber',
+        'actions',
+      ];
     }
   }
 
-
+  showForm() {
+    this.isFormVisible = !this.isFormVisible;
+  }
 }
 
 
