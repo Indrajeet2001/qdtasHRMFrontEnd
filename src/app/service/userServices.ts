@@ -18,6 +18,7 @@ import { JobTitle } from '../model/jobTitle';
 import { EmpStatus } from '../model/empStatus';
 import { JobCategory } from '../model/jobCategory';
 import { GeneralInfo } from '../model/genInfo';
+import { WorkShift } from '../model/workshift';
 
 @Injectable({
   providedIn: 'root',
@@ -458,5 +459,52 @@ export class UserService {
       BASE_API_URL + `/generalinfo/getAllInfo`,
       { headers: this.getHeaders() }
     );
+  }
+
+  //Workshifts
+
+  addWorkshift(data: any) {
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this.http.post<any>(BASE_API_URL + `/workshift/add`, data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getAllWorkshift(currentPage: number, resultSize: number) {
+    return this.http.get<WorkShift[]>(
+      BASE_API_URL +
+        `/workshift/getAll?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  deleteWorkshift(workId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/workshift/deleteById/` + workId,
+      workId,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  updateWorkshift(workId: number, shiftData: any) {
+    return this.http.post<any>(
+      BASE_API_URL + `/workshift/updateById/` + workId,
+      shiftData,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  getWorkshiftById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/workshift/getById/` + uId, {
+      headers: this.getHeaders(),
+    });
   }
 }

@@ -14,6 +14,11 @@
 
     <app-dropdown> </app-dropdown>
 
+
+    <div >
+        <button class="btn btn-add" (click)="showForm()" >Add</button>  
+    </div>
+
     <!-- <div class="container" id="cnt">
         <div class="d-flex">
             <div class="dropdown">
@@ -53,7 +58,7 @@
     </div> -->
 
     <div class="card" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
-        <div class="container p-2">
+        <div class="container p-2" *ngIf="isFormVisible" >
             <form class="adduserform" #addUserData="ngForm" (submit)="saveUser(addUserData.value)">
                 <div class="inp-row">
                     <h2 class="title mb-3">Add User</h2>
@@ -317,7 +322,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="cardd"  >
         <div class="card-container">
             <div class="container p-2">
                 <form>

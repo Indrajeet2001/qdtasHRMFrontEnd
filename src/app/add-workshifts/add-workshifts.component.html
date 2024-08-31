@@ -7,12 +7,21 @@
 
     <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
 
-
+            <div *ngIf="successMessage" class="success-message">
+              {{ successMessage }}
+              <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+            </div>
+            
+            <div *ngIf="errorMessage" class="error-message-notification">
+              {{ errorMessage }}
+              <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+            </div>
+            
       <div class="adduser">
         <app-dropdown> </app-dropdown>
         <div class="card">
           <div class="container p-2">
-            <form class="genrealInfo" #genrealInfoData="ngForm">
+            <form class="genrealInfo" #workShiftData="ngForm" (submit)="addWorkshift(workShiftData.value)"  >
               <div class="inp-row">
                 <h2 class="title mb-3">Workshifts</h2>
 
@@ -20,24 +29,25 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Shift name</label>
-                    <input type="text" class="form-control" id="org" ngModel="" required name="org"
-                           #org="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': org.invalid && (org.dirty || org.touched), 'valid': org.valid && (org.dirty ||
-                                            org.touched)}">
-
-                    <div *ngIf="org.invalid && (org.dirty || org.touched)" class="error-message">
+                    <input type="text" class="form-control" id="workShiftName" ngModel="" required name="workShiftName"
+                      #workShiftName="ngModel" pattern="^[A-Za-z\s]+$" [ngClass]="{'invalid': workShiftName.invalid && (workShiftName.dirty || workShiftName.touched), 'valid': workShiftName.valid && (workShiftName.dirty ||workShiftName.touched)}">
+                    
+                      <div *ngIf="workShiftName.invalid && (workShiftName.dirty || workShiftName.touched)" class="error-message">
+                        <span *ngIf="workShiftName.errors?.['required']">Please enter shift name</span>
+                        <span *ngIf="workShiftName.errors?.['pattern']">Please enter only alphabets</span>
                     </div>
                   </div>
                 </div>
 
-                <div class="inp-field">
+                <!-- <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Start time</label>
-                    <input type="time" class="form-control" id="org" ngModel="" required name="org"
-                           #org="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': org.invalid && (org.dirty || org.touched), 'valid': org.valid && (org.dirty ||
-                                                                            org.touched)}">
-
-                    <div *ngIf="org.invalid && (org.dirty || org.touched)" class="error-message">
+                    <input type="time" class="form-control" id="startTime" ngModel="" required name="startTime"
+                      #startTime="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': startTime.invalid && (startTime.dirty || startTime.touched), 'valid': startTime.valid && (startTime.dirty ||startTime.touched)}">
+                    <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)" class="error-message">
+                      <span *ngIf="workShiftName.errors?.['required']">Please enter start time</span>
                     </div>
+            
                   </div>
 
                 </div>
@@ -46,12 +56,38 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">End time</label>
-                    <input type="time" class="form-control" id="org" ngModel="" required name="org"
-                           #org="ngModel" pattern="^[A-Za-z]+$"
-                           [ngClass]="{'invalid': org.invalid && (org.dirty || org.touched), 'valid': org.valid && (org.dirty ||
-                                                                                                                                                                                    org.touched)}">
+                    <input type="time" class="form-control" id="endTime" ngModel="" required name="endTime"
+                      #endTime="ngModel" pattern="^[A-Za-z]+$"
+                      [ngClass]="{'invalid': endTime.invalid && (endTime.dirty || endTime.touched), 'valid': endTime.valid && (endTime.dirty || endTime.touched)}">
+                    <div *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)" class="error-message">
+                      <span *ngIf="workShiftName.errors?.['required']">Please enter end time</span>
+                    </div>
+                  </div>
+                </div> -->
 
-                    <div *ngIf="org.invalid && (org.dirty || org.touched)" class="error-message">
+
+
+                <div class="inp-field">
+                  <div class="inp">
+                    <label class="form-label">Start time</label>
+                    <input type="time" class="form-control" id="startTime" ngModel="" required name="startTime" #startTime="ngModel"
+                      [ngClass]="{'invalid': startTime.invalid && (startTime.dirty || startTime.touched), 'valid': startTime.valid && (startTime.dirty || startTime.touched)}">
+                    <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)" class="error-message">
+                      <span *ngIf="startTime.errors?.['required']">Please enter start time</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="inp-field">
+                  <div class="inp">
+                    <label class="form-label">End time</label>
+                    <input type="time" class="form-control" id="endTime" ngModel="" required name="endTime" #endTime="ngModel"
+                      [ngClass]="{'invalid': endTime.invalid && (endTime.dirty || endTime.touched) || isEndTimeInvalid(startTime.value, endTime.value), 'valid': endTime.valid && (endTime.dirty || endTime.touched) && !isEndTimeInvalid(startTime.value, endTime.value)}">
+                    <div *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)" class="error-message">
+                      <span *ngIf="endTime.errors?.['required']">Please enter end time</span>
+                    </div>
+                    <div *ngIf="isEndTimeInvalid(startTime.value, endTime.value)" class="error-message">
+                      <span>End time must not be earlier than start time</span>
                     </div>
                   </div>
                 </div>
@@ -59,8 +95,8 @@
 
 
                 <div class="col text-end suv-btn">
-                  <button class="btn btn-maroon" type="submit">Cancel</button>
-                  <button class="btn btn-maroon" type="submit">Submit</button>
+                  <button class="btn btn-maroon" (click)="goToWorkshift()" >Cancel</button>
+                  <button class="btn btn-maroon" type="submit" [disabled]="!workShiftData.valid"  >Submit</button>
                 </div>
 
 
