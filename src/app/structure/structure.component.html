@@ -19,17 +19,17 @@
 
                 <div class="tree">
                   <ul>
-                    <li>
-                      <span class="node">CEO</span>
+                    <li   *ngFor="let item of Structure" >
+                      <span class="node">{{item.ceo}}</span>
                       <mat-icon class="icon">arrow_downward</mat-icon>
                       <ul>
-                        <li><span class="node">Management</span></li>
+                        <li><span class="node">{{item.management}}</span></li>
                         <mat-icon>arrow_downward</mat-icon>
-                        <li><span class="node">Developer</span></li>
+                        <li><span class="node">{{item.developer}}</span></li>
                         <mat-icon>arrow_downward</mat-icon>
-                        <li><span class="node">Tester</span></li>
+                        <li><span class="node">{{item.tester}}</span></li>
                         <mat-icon>arrow_downward</mat-icon>
-                        <li><span class="node">UI Design</span></li>
+                        <li><span class="node">{{item.uiDesign}}</span></li>
                       </ul>
                     </li>
                   </ul>
@@ -50,4 +50,4 @@
       </div>
     </div>
   </main>
-</div><p>structure works!</p>
+

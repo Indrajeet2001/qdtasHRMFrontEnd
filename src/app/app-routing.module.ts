@@ -26,135 +26,139 @@ import { JobCategoriesComponent } from './job-categories/job-categories.componen
 import { AddJobCategoriesComponent } from './add-job-categories/add-job-categories.component';
 import { WorkshiftsComponent } from './workshifts/workshifts.component';
 import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.component';
+import { LeaveReportComponent } from './leave-report/leave-report.component';
 
 
 const routes: Routes = [
   {
     component: LoginComponent,
-    path: ''
+    path: '',
   },
   {
     component: ProfileComponent,
     path: 'profile',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: AddUserComponent,
     path: 'adduser',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: LeaveComponent,
     path: 'leave',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: TimeComponent,
     path: 'time',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: MyInfoComponent,
     path: 'myinfo',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: EditUserComponent,
     path: 'edit-user',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: ResetPasswordComponent,
     path: 'reset',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     component: TempPasswordComponent,
     path: 'changeTempPassword',
-     canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-   {
+  {
     component: TimeSheetDataComponent,
     path: 'timesheet',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-   {
+  {
     component: ProjectsComponent,
     path: 'project',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    component : DepartmentComponent,
-    path : 'department',
-    canActivate : [AuthGuard]
+    component: DepartmentComponent,
+    path: 'department',
+    canActivate: [AuthGuard],
   },
   {
-    component : EmployeeDetailsComponent,
-    path : 'employee-details',
-    canActivate : [AuthGuard]
+    component: EmployeeDetailsComponent,
+    path: 'employee-details',
+    canActivate: [AuthGuard],
   },
   {
-    component : ShowEmpDetailsComponent,
-    path : 'show-emp-details',
-    canActivate : [AuthGuard]
+    component: ShowEmpDetailsComponent,
+    path: 'show-emp-details',
+    canActivate: [AuthGuard],
   },
   {
-    component : PerformanceReportComponent,
-    path : 'performance-report',
-    canActivate : [AuthGuard]
+    component: PerformanceReportComponent,
+    path: 'performance-report',
+    canActivate: [AuthGuard],
   },
   {
-    component : GeneralInfoComponent,
-    path : 'general-info',
-    canActivate : [AuthGuard]
+    component: GeneralInfoComponent,
+    path: 'general-info',
+    canActivate: [AuthGuard],
   },
   {
-    component : StructureComponent,
-    path : 'structure',
-    canActivate : [AuthGuard]
+    component: StructureComponent,
+    path: 'structure',
+    canActivate: [AuthGuard],
   },
   {
-    component : JobTitleComponent,
-    path : 'job-title',
-    canActivate : [AuthGuard]
+    component: JobTitleComponent,
+    path: 'job-title',
+    canActivate: [AuthGuard],
   },
   {
-    component : AddJobTitleComponent,
-    path : 'add-job-title',
-    canActivate : [AuthGuard]
+    component: AddJobTitleComponent,
+    path: 'add-job-title',
+    canActivate: [AuthGuard],
   },
   {
-    component : EmpStatusComponent,
-    path : 'emp-status',
-    canActivate : [AuthGuard]
+    component: EmpStatusComponent,
+    path: 'emp-status',
+    canActivate: [AuthGuard],
   },
   {
-    component : AddEmpStatusComponent,
-    path : 'add-emp-status',
-    canActivate : [AuthGuard]
+    component: AddEmpStatusComponent,
+    path: 'add-emp-status',
+    canActivate: [AuthGuard],
   },
   {
-    component : JobCategoriesComponent,
-    path : 'job-categories',
-    canActivate : [AuthGuard]
+    component: JobCategoriesComponent,
+    path: 'job-categories',
+    canActivate: [AuthGuard],
   },
   {
-    component : AddJobCategoriesComponent,
-    path : 'add-job-categories',
-    canActivate : [AuthGuard]
+    component: AddJobCategoriesComponent,
+    path: 'add-job-categories',
+    canActivate: [AuthGuard],
   },
   {
-    component : WorkshiftsComponent,
-    path : 'work-shifts',
-    canActivate : [AuthGuard]
+    component: WorkshiftsComponent,
+    path: 'work-shifts',
+    canActivate: [AuthGuard],
   },
   {
-    component : AddWorkshiftsComponent,
-    path : 'add-work-shifts',
-    canActivate : [AuthGuard]
-  }
-
-
+    component: AddWorkshiftsComponent,
+    path: 'add-work-shifts',
+    canActivate: [AuthGuard],
+  },
+  {
+    component: LeaveReportComponent,
+    path: 'reports',
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
