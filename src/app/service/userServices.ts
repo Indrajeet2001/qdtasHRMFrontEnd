@@ -507,4 +507,12 @@ export class UserService {
       headers: this.getHeaders(),
     });
   }
+
+  //Orgainzation Structure
+
+  getOrgainzationStructure() {
+    return this.http.get<any>(BASE_API_URL + `/organization/getAllOrg`, {
+      headers: this.getHeaders(),
+    });
+  }
 }
