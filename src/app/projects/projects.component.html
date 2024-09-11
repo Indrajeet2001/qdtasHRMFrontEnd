@@ -34,7 +34,7 @@
                          class="error-message">
                                             <span *ngIf="projectName.errors?.['required']">Project Name is
                                                 required.</span>
-                      <span *ngIf="projectName.errors?.['pattern']">Project Name must contain @ and
+                      <span *ngIf="projectName.errors?.['pattern']">Project Name must contain  and
                                                 . symbols.</span>
                     </div>
                   </div>
@@ -154,12 +154,12 @@
         </div>
 
 
-        <div class="card">
+        <div class="cardd">
           <div class="container p-2">
             <form>
 
               <div class="table-container">
-                <input type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
+                <input class="input-box" type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z">
 
 

@@ -119,35 +119,11 @@
       </div>
 
 
-      <div class="card">
+      <div class="cardd">
         <div class="container p-2">
           <form>
-            <input type="text" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
-            <!-- <div class="table-container">
-                <table class="table" id="myTable">
-                    <tr class="header">
-                        <th style="width:15%;">User-ID</th>
-                        <th style="width:15%;">First name</th>
-                        <th style="width:20%;">Last name</th>
-                        <th style="width:15%;">Department</th>
-                        <th style="width:15%;">Designation</th>
-                        <th style="width:10%;">View</th>
-                    </tr>
-
-                    <tr *ngFor="let user of users | filter : searchTerm">
-                        <td>{{ user.userId }}</td>
-                        <td>{{ user.firstName }}</td>
-                        <td>{{ user.lastName }}</td>
-                        <td>{{ user.dept?.deptName }}</td>
-                        <td>{{ user.designation }}</td>
-                        <td>
-                            <div class="icon-container">
-                                <button mat-button (click)="navigateToTs(user.userId)">View</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div> -->
+            <input class="input-box" type="text" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
+           
 
 
             <div class="table-container"   *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
