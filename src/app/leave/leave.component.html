@@ -18,12 +18,12 @@
         <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
       </div>
 
-      <div class="leave-header">
+      <!-- <div class="leave-header">
         <button mat-raised-button class="leave-button">Apply</button>
         <button mat-raised-button class="leave-button">My Leave</button>
         <button mat-raised-button class="leave-button" (click)="openLeaveReports()" >Reports</button>
         <button mat-raised-button class="leave-button">Entitlements</button>
-      </div>
+      </div> -->
 
 
 
@@ -35,14 +35,6 @@
               <h2 class="title mb-3">Leave Application</h2>
               <div class="inp-field">
 
-                <!-- <div class="inp">
-                     <mat-form-field class="inp-date">
-                    <input matInput [matDatepicker]="startPicker" [min]="minDate" ngModel name="startDate" id="sDate"
-                        [(ngModel)]="startDate" placeholder="Choose Start Date">
-                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #startPicker></mat-datepicker>
-                </mat-form-field>
-                </div> -->
                 <div class="inp">
                   <label class="form-label">Choose Start Date</label>
                   <mat-form-field class="inp-date" appearance="fill">
@@ -56,16 +48,6 @@
                   </mat-form-field>
                 </div>
 
-
-
-                <!-- <div class="inp">
-                <mat-form-field class="inp-date">
-                    <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate"  id="eDate"
-                        placeholder="Choose End Date">
-                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #endPicker></mat-datepicker>
-                </mat-form-field>
-            </div> -->
                 <div class="inp">
                   <label class="form-label">Choose End Date</label>
                   <mat-form-field class="inp-date">
@@ -134,65 +116,10 @@
       </div>
 
 
-      <!-- <div class="card">
-          <div class="container p-2">
-              <form>
-
-                  <div class="table-container">
-                      <table class="table" id="myTable">
-                          <tr class="header">
-                              <th style="width:15%;">Employee name</th>
-                              <th style="width:15%;">Start Date</th>
-                              <th style="width:15%;">End Date</th>
-                              <th style="width:20%;">Leave Type</th>
-                              <th style="width:15%;">Reason</th>
-                              <th style="width:15%;">Status</th>
-                              <th style="width:10%;">Action</th>
-                          </tr>
-                          <tr *ngFor="let l of leaves; let i = index">
-                              <td>{{ l.employee.firstName + " " + l.employee.lastName}}</td>
-                              <td>{{ l.startDate }}</td>
-                              <td>{{ l.endDate }}</td>
-                              <td>{{l.type}}</td>
-                              <td>{{ l.reason }}</td>
-
-                              <td [ngStyle]="{ 'background-color': getStatusColor(l.status) }">{{ l.status }}</td>
-                              <td>
-                                  <div class="icon-container">
-                                      <mat-icon (click)="approveLeave(l.leaveId)" *ngIf="l.status == 'PENDING' "
-                                          style="color: green;">check</mat-icon>
-                                      <mat-icon (click)="rejectLeave(l.leaveId)" *ngIf="l.status == 'PENDING' "
-                                          style="color: red;">close</mat-icon>
-                                      <mat-icon (click)="deleteLeave(l.leaveId)"
-                                          *ngIf="l.status == 'REJECTED' || l.status =='APPROVED' "
-                                          style="color: red;">delete</mat-icon>
-                                  </div>
-                              </td>
-                          </tr>
-                      </table>
-                  </div>
-
-                  <div *ngIf="isLoading" class="loading-bar">
-                      <div class="spinner-container">
-                          <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
-                      </div>
-                  </div>
-
-                  <div class="load-button">
-                      <button (click)="loadMoreleaves()" *ngIf="hasMoreResult" mat-raised-button color="primary"
-                          style="background-color: maroon;" class="rounded-pill align-middle text-center">
-                          Load More
-                      </button>
-                  </div>
-
-              </form>
-          </div>
-      </div> -->
-
-      <div class="card">
+      <div class="cardd">
 
         <div class="table-container">
-          <input type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
+          <input class="input-box" type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
           <table  mat-table [dataSource]="dataSource" class="mat-elevation">
             <!-- ID Column -->
             <ng-container matColumnDef="employee">

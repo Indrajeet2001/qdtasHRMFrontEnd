@@ -97,16 +97,11 @@
 }
 
 .card {
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 15px;
-  border: none;
-  width: 90%;
-  margin-top: 5%;
-  margin-left: 5%;
-  margin-bottom: 5%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 20px auto;
+  width: 100%;
 }
 
 .card-img-container {

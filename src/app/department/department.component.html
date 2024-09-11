@@ -20,7 +20,7 @@
     <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
   </div>
 
-
+</main>
 
   <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
 
@@ -75,11 +75,11 @@
       </div>
 
 
-      <div class="card">
+      <div class="cardd">
         <div class="card-container">
           <div class="container p-2">
             <form>
-              <input type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
+              <input class="input-box" type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
 
 
               <div class="table-container">
@@ -128,5 +128,5 @@
         </div>
       </div>
     </div>
-</main>
+
 </div>
