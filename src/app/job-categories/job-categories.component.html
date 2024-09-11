@@ -35,6 +35,9 @@
 
 
                 <div class="table-container">
+
+                  <input type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
+
                   <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
                     <ng-container matColumnDef="jobCategoryId">
@@ -64,6 +67,19 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                   </table>
                 </div>
+
+                          <div *ngIf="isLoading" class="loading-bar">
+                            <div class="spinner-container">
+                              <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                          <div class="load-button">
+                            <button (click)="loadMoreJobs()" *ngIf="hasMoreResult" mat-raised-button color="primary"
+                              style="background-color: maroon;" class="rounded-pill align-middle text-center">
+                              Load More
+                            </button>
+                          </div>
 
               </div>
               <div>

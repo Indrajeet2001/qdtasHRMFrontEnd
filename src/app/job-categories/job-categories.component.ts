@@ -149,4 +149,9 @@ export class JobCategoriesComponent {
   dismissErrorMessage() {
     this.errorMessage = null;
   }
+
+  FilterChange(data: Event) {
+    const value = (data.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
 }

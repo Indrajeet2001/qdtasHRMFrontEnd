@@ -35,6 +35,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatSort) sort!: MatSort;
+  isPasswordVisible = false;
 
   constructor(
     private userService: UserService,
@@ -240,6 +241,14 @@ export class AddUserComponent implements OnInit, AfterViewInit {
 
   showForm() {
     this.isFormVisible = !this.isFormVisible;
+  }
+
+  showPassword() {
+    this.isPasswordVisible = true;
+  }
+
+  hidePassword() {
+    this.isPasswordVisible = false;
   }
 }
 

@@ -151,4 +151,9 @@ export class EmpStatusComponent {
       }
     });
   }
+
+  FilterChange(data: Event) {
+    const value = (data.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
 }

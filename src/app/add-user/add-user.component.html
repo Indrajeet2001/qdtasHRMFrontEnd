@@ -15,50 +15,14 @@
     <app-dropdown> </app-dropdown>
 
 
-    <div >
-        <button class="btn btn-add" (click)="showForm()" >Add</button>  
+    <div class="button" >
+        <button class="btn btn-add" (click)="showForm()">Add</button>
     </div>
 
-    <!-- <div class="container" id="cnt">
-        <div class="d-flex">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" id="btn1" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    User Management
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                </ul>
-            </div>
 
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" id="btn2" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Job
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" routerLink="/job-title">Job Title</a></li>
-                    <li><a class="dropdown-item" routerLink="/job-categories">Job Categories</a></li>
-                    <li><a class="dropdown-item" routerLink="/emp-status">Employee Status</a></li>
-                    <li><a class="dropdown-item" routerLink="/work-shifts">Work Shifts</a></li>
-                </ul>
-            </div>
 
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" id="btn3" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Organization
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" routerLink="/general-info">General Information</a></li>
-                    <li><a class="dropdown-item" routerLink="/structure">Structure</a></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
-    <div class="card" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
-        <div class="container p-2" *ngIf="isFormVisible" >
+    <div class="card" [ngClass]="{'hidden': !isFormVisible}"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
+        <div class="container p-2" *ngIf="isFormVisible">
             <form class="adduserform" #addUserData="ngForm" (submit)="saveUser(addUserData.value)">
                 <div class="inp-row">
                     <h2 class="title mb-3">Add User</h2>
@@ -142,8 +106,9 @@
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label" for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" ngModel
-                                name="password" required #password="ngModel"
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" id="password"
+                                placeholder="Password" ngModel (mouseover)="showPassword()"
+                                (mouseleave)="hidePassword()" name="password" required #password="ngModel"
                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,14}$"
                                 autocomplete="current-password" [ngClass]="{'invalid': password.invalid && (password.dirty || password.touched), 'valid': password.valid && (password.dirty ||
                                 password.touched)}">
@@ -156,8 +121,9 @@
                         </div>
                         <div class="inp">
                             <label class="form-label" for="confirm_password">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password"
-                                placeholder="Confirm Password" ngModel name="confirmPassword" required
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" id="confirm_password"
+                                placeholder="Confirm Password" ngModel (mouseover)="showPassword()"
+                                (mouseleave)="hidePassword()" name="confirmPassword" required
                                 #confirmPassword="ngModel" autocomplete="current-password" [ngClass]="{'invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched), 'valid': confirmPassword.valid && (confirmPassword.dirty ||
                             confirmPassword.touched)}" [pattern]="addUserData.value.password">
                             <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
@@ -269,21 +235,21 @@
 
                     <div class="dsgn">
                         <div class="inp-field">
-                                <div class="inp">
-                                    <label class="form-label">Job title</label>
-                                    <select class="form-select" ngModel name="jobId" placeholder="Select job title" required #jobId="ngModel"
-                                        [ngClass]="{'invalid': jobId.invalid && (jobId.dirty || jobId.touched), 'valid': jobId.valid && (jobId.dirty ||
+                            <div class="inp">
+                                <label class="form-label">Job title</label>
+                                <select class="form-select" ngModel name="jobId" placeholder="Select job title" required
+                                    #jobId="ngModel" [ngClass]="{'invalid': jobId.invalid && (jobId.dirty || jobId.touched), 'valid': jobId.valid && (jobId.dirty ||
                                                                 jobId.touched)}">
-                                        <option selected [disabled]="true">Select job title</option>
-                                        <option value=19>Software engineer</option>
-                                        <option value=20>Software tester</option>
-                                        <option value=21>QA lead</option>
-                                        <option value=22>HR manager</option>
-                                    </select>
-                                    <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
-                                        <span *ngIf="jobId.errors?.['required']">Please select job title</span>
-                                    </div>
+                                    <option selected [disabled]="true">Select job title</option>
+                                    <option value=19>Software engineer</option>
+                                    <option value=20>Software tester</option>
+                                    <option value=21>QA lead</option>
+                                    <option value=22>HR manager</option>
+                                </select>
+                                <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
+                                    <span *ngIf="jobId.errors?.['required']">Please select job title</span>
                                 </div>
+                            </div>
 
                             <div class="inp">
                                 <label class="form-label"> Address</label>
@@ -322,7 +288,7 @@
     </div>
 
 
-    <div class="cardd"  >
+    <div class="cardd">
         <div class="card-container">
             <div class="container p-2">
                 <form>

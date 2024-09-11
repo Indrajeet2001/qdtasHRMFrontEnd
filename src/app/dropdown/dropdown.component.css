@@ -1,88 +1,35 @@
-.custom-dropdown .btn-secondary {
-    background-color: maroon;
-    color: maroon;
-    border-color: maroon;
-}
-
-.d-flex {
-    padding-left: 10px;
-    padding-top: 18px;
-    flex-direction: row;
-    gap: 20px;
-}
-
-#cnt {
-    padding-top: 20px;
-}
-
-/* Add margin between buttons within each dropdown */
-.custom-dropdown .btn {
-    margin-bottom: 10px;
-}
-
-/* Add specific styles for dropdown1 */
-#dropdown1 .btn {
-    margin-bottom: 10px;
-    background-color: #007bff;
-}
-
-/* Add specific styles for dropdown2 */
-#dropdown2 .btn {
-    margin-bottom: 10px;
-    background-color: #28a745;
-    margin-left: 100px;
-}
-
-.dropdown:hover {
-    background-color: maroon;
-
-}
-
-#btn1 {
-    background-color: white;
-    border-color: black;
-    color: black;
-}
-
-#btn1:hover {
-    background-color: maroon;
-    border-color: maroon;
-    color: white;
-}
+ .container {
+     margin-top: 10px;
+     display: inline-block;
+ }
 
 
-#btn2 {
-    background-color: white;
-    border-color: black;
-    color: black;
-}
+ .dropdown {
+     margin-right: 20px;
+ }
 
-#btn2:hover {
-    background-color: maroon;
-    border-color: maroon;
-    color: white;
-}
+ .btn-secondary {
+     background-color: white;
+     color: black;
+     border-radius: 10px;
+ }
 
-#btn3 {
-    background-color: white;
-    border-color: black;
-    color: black;
-}
+ .btn-secondary:hover {
+     background-color: maroon;
+     color: white;
+ }
 
-#btn3:hover {
-    background-color: maroon;
-    border-color: maroon;
-    color: white;
-}
+ .dropdown-item {
+     margin: 0px;
 
-.dropdown-item:hover {
-    background-color: maroon;
-    color: white;
-}
+ }
 
+ .dropdown-item:hover {
+     background-color: maroon;
+     color: white;
+ }
 
-.active-dropdown-item {
-    background-color: maroon;
-    color: white;
-}
-
+ .active-dropdown-item {
+     background-color: maroon;
+     color: white;
+ }
