@@ -120,7 +120,7 @@ h2.title {
 
 /* Input field styling */
 input[type="text"] {
-  width: 30%;
+  width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -128,6 +128,10 @@ input[type="text"] {
   outline: none;
   box-sizing: border-box;
   transition: border-color 0.3s;
+}
+
+.input-box {
+  width: 30% !important;
 }
 
 input[type="text"]:focus {
