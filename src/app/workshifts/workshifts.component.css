@@ -140,6 +140,9 @@ td.center {
   background-color: rgb(255, 235, 235);
 }
 
+th.center{text-align: center;}
+
+
 
 .icon-container {
   display: flex;
