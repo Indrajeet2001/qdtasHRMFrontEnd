@@ -126,13 +126,13 @@ table {
 
 th,
 td {
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
 th.center,
 td.center {
-  text-align: left;
+  text-align: center;
   cursor: pointer;
 }
 
