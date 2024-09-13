@@ -165,13 +165,18 @@
                             <select class="form-select" ngModel name="deptId" placeholder="Select Department" required
                                 #deptId="ngModel" [ngClass]="{'invalid': deptId.invalid && (deptId.dirty || deptId.touched), 'valid': deptId.valid && (deptId.dirty ||
                                 deptId.touched)}">
-                                <option selected [disabled]="true">Select Department</option>
-                                <option value=1>Electronics</option>
+                                <option selected [disabled]="true">Select Department</option>   
+                                
+                                <option *ngFor="let item of departments" [value]="item.deptId">
+                                    {{ item.deptName}}
+                                </option>
+
+                                <!-- <option value=1>Electronics</option>
                                 <option value=2>IT</option>
                                 <option value=3>Medical</option>
                                 <option value=4>Non-tech</option>
                                 <option value=11>QA</option>
-                                <option value=15>Tester</option>
+                                <option value=15>Tester</option> -->
                             </select>
                             <div *ngIf="deptId.invalid && (deptId.dirty || deptId.touched)" class="error-message">
                                 <span *ngIf="deptId.errors?.['required']">Please select department</span>
@@ -201,11 +206,14 @@
                                 required #jobCategoryId="ngModel" [ngClass]="{'invalid': jobCategoryId.invalid && (jobCategoryId.dirty || jobCategoryId.touched), 'valid': jobCategoryId.valid && (jobCategoryId.dirty ||
                                                                         jobCategoryId.touched)}">
                                 <option selected [disabled]="true">Select Job category</option>
-                                <option value=3>Frontend developer</option>
+                                <option *ngFor="let item of jobs" [value]="item.jobCategoryId">
+                                    {{ item.jobCategoryName }}
+                                </option>
+                                <!-- <option value=3>Frontend developer</option>
                                 <option value=16>Backend developer</option>
                                 <option value=17>UI/UX developer</option>
                                 <option value=20>UI/UX developer</option>
-                                <option value=21>UI/UX developer</option>
+                                <option value=21>UI/UX developer</option> -->
                             </select>
                             <div *ngIf="jobCategoryId.invalid && (jobCategoryId.dirty || jobCategoryId.touched)"
                                 class="error-message">
@@ -222,11 +230,17 @@
                                 [ngClass]="{'invalid': employmentStatusId.invalid && (employmentStatusId.dirty || employmentStatusId.touched), 'valid': employmentStatusId.valid && (employmentStatusId.dirty ||
                                                                                                                     employmentStatusId.touched)}">
                                 <option selected [disabled]="true">Select Employment status</option>
-                                <option value=3>Full-time</option>
+                                
+                            <option *ngFor="let item of empStatus" [value]="item.employmentStatusId">
+                                {{ item.employmentStatusName}}
+                            </option>
+
+
+                                <!-- <option value=3>Full-time</option>
                                 <option value=16>Part-time</option>
                                 <option value=17>Internship</option>
                                 <option value=19>Internship</option>
-                                <option value=20>Internship</option>
+                                <option value=20>Internship</option> -->
                             </select>
                             <div *ngIf="employmentStatusId.invalid && (employmentStatusId.dirty || employmentStatusId.touched)"
                                 class="error-message">
@@ -247,14 +261,19 @@
                                     #jobId="ngModel" [ngClass]="{'invalid': jobId.invalid && (jobId.dirty || jobId.touched), 'valid': jobId.valid && (jobId.dirty ||
                                                                 jobId.touched)}">
                                     <option selected [disabled]="true">Select job title</option>
-                                    <option value=20>Software engineer</option>
+
+                                    <option *ngFor="let item of jobTitle" [value]="item.jobId">
+                                        {{ item.jobName}}
+                                    </option>
+
+                                    <!-- <option value=20>Software engineer</option>
                                     <option value=21>Software tester</option>
                                     <option value=22>QA lead</option>
                                     <option value=24>HR manager</option>
                                     <option value=25>HR manager</option>
                                     <option value=27>HR manager</option>
                                     <option value=30>HR manager</option>
-                                    <option value=31>HR manager</option>
+                                    <option value=31>HR manager</option> -->
                                 </select>
                                 <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
                                     <span *ngIf="jobId.errors?.['required']">Please select job title</span>

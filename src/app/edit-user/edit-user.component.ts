@@ -7,6 +7,7 @@ import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { User } from '../model/user';
+import { DepartmentService } from '../service/departmentServices';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,6 +18,7 @@ export class EditUserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private departmentService: DepartmentService,
     private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<AddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public userId: number
@@ -37,7 +39,7 @@ export class EditUserComponent implements OnInit {
   newpassword: string = '';
   newjobCategoryId: string = '';
   newemploymentStatusId: string = '';
-  newjobId : string = '';
+  newjobId: string = '';
   uId: number = this.userId;
 
   successMessage: string | null = null;
@@ -45,11 +47,20 @@ export class EditUserComponent implements OnInit {
   isLoggedIn!: User;
   u!: User;
 
+  jobs: any;
+  empStatus: any;
+  jobTitle: any;
+  departments: any;
+
   ngOnInit() {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.userService.getUserById(this.uId).subscribe((user) => {
       this.u = user;
     });
+       this.getAllJobCategories();
+       this.getEmpStatus();
+       this.getJobTitle();
+       this.getDepartments();
   }
 
   onFieldSelect(event: any) {
@@ -89,5 +100,31 @@ export class EditUserComponent implements OnInit {
 
   preventManualInput(event: KeyboardEvent) {
     event.preventDefault();
+  }
+
+  getAllJobCategories() {
+    this.userService.getAllJobCat().subscribe((data) => {
+      this.jobs = data;
+    });
+  }
+
+  getEmpStatus() {
+    this.userService.getAllEmpS().subscribe((data) => {
+      this.empStatus = data;
+    });
+  }
+
+  getJobTitle() {
+    this.userService.getAllJobTitle().subscribe((data) => {
+      this.jobTitle = data;
+      // console.table(this.jobTitle);
+    });
+  }
+
+  getDepartments() {
+    this.departmentService.getAllDDept().subscribe((data) => {
+      this.departments = data;
+      console.table(this.departments);
+    });
   }
 }
