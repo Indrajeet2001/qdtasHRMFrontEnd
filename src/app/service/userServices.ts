@@ -515,4 +515,47 @@ export class UserService {
       headers: this.getHeaders(),
     });
   }
+
+  //methods fot dropdown
+
+  //job Category
+  getAllJobCat() {
+    return this.http.get<any>(
+      BASE_API_URL + `/jobcategory/getAll?pgn=&sz=2000`,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  //workshift
+  // getAllWS(currentPage: number, resultSize: number) {
+  //   return this.http.get<WorkShift[]>(
+  //     BASE_API_URL +
+  //       `/workshift/getAll?pgn=` +
+  //       currentPage +
+  //       `&sz=` +
+  //       resultSize,
+  //     { headers: this.getHeaders() }
+  //   );
+  // }
+
+  //employment status
+
+  getAllEmpS() {
+    return this.http.get<any>(
+      BASE_API_URL +
+        `/employment/getAllJobs?pgn=&sz=2000` ,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  //job title
+  getAllJobTitle() {
+    return this.http.get<any>(
+      BASE_API_URL + `/job/getAllJobs?pgn=&sz=2000`,
+      { headers: this.getHeaders() }
+    );
+  }
 }
+
+
+

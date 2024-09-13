@@ -98,6 +98,8 @@ h2.title {
   background-color: maroon;
   color: white;
   border: none;
+  width: 100px;
+  height: 40px;
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;

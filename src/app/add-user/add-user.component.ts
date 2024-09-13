@@ -11,6 +11,8 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { NgForm } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { JobCategory } from '../model/jobCategory';
+import { DepartmentService } from '../service/departmentServices';
 
 @Component({
   selector: 'app-add-user',
@@ -36,12 +38,17 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatSort) sort!: MatSort;
   isPasswordVisible = false;
+  jobs: any;
+  empStatus: any;
+  jobTitle:any;
+  departments: any;
 
   constructor(
     private userService: UserService,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private departmentService: DepartmentService
   ) {
     this.dataSource = new MatTableDataSource<User>();
     this.role = this.userService.getAuthUserId();
@@ -51,6 +58,10 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.displayColumns();
     this.loadUsers(this.resultPage);
+    this.getAllJobCategories();
+    this.getEmpStatus();
+    this.getJobTitle();
+    this.getDepartments();
   }
 
   ngAfterViewInit() {
@@ -80,33 +91,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     );
   }
 
-  // saveUser(userData: any) {
-  //   const token = localStorage.getItem('token');
-  //   console.log('Token:', token);  // Check token value
 
-  //   this.userService.addUser(userData).subscribe(
-  //     (response: any) => {
-  //       this.successMessage = 'User added Successfully';
-  //       setTimeout(() => {
-  //         this.successMessage = null;
-  //         window.location.reload();
-  //       }, 3000);
-  //     },
-  //     (error: any) => {
-  //       console.error('Error:', error);  // Log error details
-  //       if (error.status === 403) {
-  //         this.errorMessage = 'You do not have permission to add a user.';
-  //       } else if (error.status === 400) {
-  //         this.errorMessage = 'An error occurred while adding the user';
-  //       } else {
-  //         this.errorMessage = 'An error occurred while adding the user';
-  //       }
-  //       setTimeout(() => {
-  //         this.errorMessage = null;
-  //       }, 3000);
-  //     }
-  //   );
-  // }
 
   deleteUser(uId: number): void {
     this.openConfirmationDialog(uId);
@@ -250,6 +235,35 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   hidePassword() {
     this.isPasswordVisible = false;
   }
+
+  getAllJobCategories() {
+    this.userService.getAllJobCat().subscribe((data) => {
+      this.jobs = data;
+      
+    });
+  }
+
+  getEmpStatus() {
+    this.userService.getAllEmpS().subscribe((data)=>{
+      this.empStatus= data;
+    })
+  }
+
+  getJobTitle() {
+    this.userService.getAllJobTitle().subscribe((data)=>{
+      this.jobTitle = data;
+            // console.table(this.jobTitle);
+
+    })
+  }
+
+  getDepartments() {
+    this.departmentService.getAllDDept().subscribe((data)=>{
+      this.departments = data;
+      console.table(this.departments);
+    })
+  }
+
 }
 
 
