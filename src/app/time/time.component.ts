@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-time',
   templateUrl: './time.component.html',
-  styleUrls: ['./time.component.css']
+  styleUrls: ['./time.component.css'],
 })
 export class TimeComponent implements OnInit {
   users: User[] = [];
@@ -31,7 +31,14 @@ export class TimeComponent implements OnInit {
   startDate!: Date;
   isSidebarExpanded: boolean = true;
   u!: User;
-  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'deptId', 'designation', 'view'];
+  displayedColumns: string[] = [
+    'userId',
+    'firstName',
+    'lastName',
+    'deptId',
+    'designation',
+    'view',
+  ];
   dataSource: MatTableDataSource<User>;
   empId: number = this.UserService.getAuthUserId();
   successMessage: string | null = null;
@@ -41,9 +48,10 @@ export class TimeComponent implements OnInit {
   dataSourceForUser: MatTableDataSource<Time>;
   @ViewChild('endDate') endDateInput: any; // This allows accessing the input element in the template
   endDate: string = '';
-  startTime: string = "";
-  endTime: string = "";
+  startTime: string = '';
+  endTime: string = '';
   private location: any;
+  timeSheetData: any;
 
   constructor(
     private UserService: UserService,
@@ -67,12 +75,16 @@ export class TimeComponent implements OnInit {
     console.log(this.eId);
     this.loadTimeSheet(this.resultPage, this.resultSize, this.eId);
     this.isLoading = true;
-    this.UserService.getUserById(this.UserService.getAuthUserId()).subscribe(user => {
-      this.u = user;
-      this.isLoading = false;
-    });
+    this.UserService.getUserById(this.UserService.getAuthUserId()).subscribe(
+      (user) => {
+        this.u = user;
+        this.isLoading = false;
+      }
+    );
     this.UserService.profile();
     this.loadUsers(this.resultPage);
+    this.getProjects();
+ 
   }
 
   updateTimeConstraints() {
@@ -100,13 +112,10 @@ export class TimeComponent implements OnInit {
     }
   }
 
-
-
-
   setTime() {
-    this.endTime = this.startTime
-    console.log(this.startTime)
-    console.log(this.endTime)
+    this.endTime = this.startTime;
+    console.log(this.startTime);
+    console.log(this.endTime);
   }
 
   onToggleSidebar(expanded: boolean) {
@@ -114,7 +123,6 @@ export class TimeComponent implements OnInit {
   }
 
   applyTimeSheet(userData: any) {
-    console.log(userData)
     this.UserService.addTimeSheet(userData).subscribe(
       (response: any) => {
         this.successMessage = 'Timesheet updated Successfully';
@@ -150,7 +158,8 @@ export class TimeComponent implements OnInit {
             if (this.users.length <= 0) this.hasMoreResult = false;
           this.fetchingResult = false;
           this.resultPage++;
-        }, (error) => {
+        },
+        (error) => {
           console.log(error.error.message);
         }
       )
@@ -166,13 +175,20 @@ export class TimeComponent implements OnInit {
   }
 
   navigateToTs(data: Number) {
-    this.router.navigate(['/timesheet', { eId: JSON.stringify(data) }], { relativeTo: this.route, queryParams: { 'eId': { data } } });
-  };
+    this.router.navigate(['/timesheet', { eId: JSON.stringify(data) }], {
+      relativeTo: this.route,
+      queryParams: { eId: { data } },
+    });
+  }
 
   loadTimeSheet(currentPage: Number, resultSize: Number, eId: Number) {
     this.isLoading = true;
     this.subscriptions.push(
-      this.UserService.getTimeSheetByEmpId(currentPage, resultSize, eId).subscribe(
+      this.UserService.getTimeSheetByEmpId(
+        currentPage,
+        resultSize,
+        eId
+      ).subscribe(
         (t: Time[]) => {
           this.timeSheets.push(...t);
           this.dataSourceForUser.data = this.timeSheets;
@@ -188,7 +204,6 @@ export class TimeComponent implements OnInit {
     );
   }
 
-
   loadMoreTimeSheet(): void {
     this.isLoading = true;
     this.loadTimeSheet(this.resultPage, this.resultSize, this.eId);
@@ -202,12 +217,18 @@ export class TimeComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   isFormEmpty(formData: any): boolean {
     // Check if any form field is empty
-    return !formData.startTime || !formData.endTime || !formData.date || !formData.projectId || !formData.note;
+    return (
+      !formData.startTime ||
+      !formData.endTime ||
+      !formData.date ||
+      !formData.projectId ||
+      !formData.note
+    );
   }
 
   FilterChange(data: Event) {
@@ -218,15 +239,15 @@ export class TimeComponent implements OnInit {
     if (value) {
       this.dataSource.filterPredicate = (data: User, filter: string) => {
         const fieldsToCheck = [
-          data.userId?.toString(),    // Convert userId to string
+          data.userId?.toString(), // Convert userId to string
           data.firstName?.toLowerCase(),
           data.lastName?.toLowerCase(),
           data.designation?.toLowerCase(),
-          data.dept?.deptName?.toLowerCase() // Assuming 'dept' has a property 'deptName'
+          data.dept?.deptName?.toLowerCase(), // Assuming 'dept' has a property 'deptName'
         ];
 
         // Check if any field starts with the filter value
-        return fieldsToCheck.some(field => {
+        return fieldsToCheck.some((field) => {
           const fieldValue = field?.toLowerCase();
           return fieldValue && fieldValue.startsWith(filter);
         });
@@ -237,8 +258,6 @@ export class TimeComponent implements OnInit {
     }
   }
 
-
-
   dismissSuccessMessage() {
     this.successMessage = null;
   }
@@ -247,13 +266,18 @@ export class TimeComponent implements OnInit {
     this.errorMessage = null;
   }
 
-
   navigateBack(time: Time) {
     // Implement your navigation logic here, for example:
     // Assuming you have a route set up for viewing details of a time entry
     this.router.navigate(['/time']); // Replace '/time' with your actual route
+  };
+
+
+  getProjects () {
+    this.UserService.getProjects().subscribe((data)=>{
+        this.timeSheetData = data;
+        console.table(this.timeSheetData);
+    })
   }
-
-
 
 }

@@ -51,10 +51,9 @@ export class LeaveComponent {
   hasMoreResult: boolean = true;
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
-
   successMessage: string | null = null;
   errorMessage: string | null = null;
-
+  totalLeaves: number | undefined;
   ngOnInit() {
     this.UserService.profile();
     this.empId = this.UserService.getAuthUserId();
@@ -199,6 +198,11 @@ export class LeaveComponent {
       if (result) {
         this.UserService.changeLeaveStatusApprove(index).subscribe(
           (response: any) => {
+             if (this.totalLeaves !== undefined) {
+               this.totalLeaves = this.totalLeaves - 1;
+               console.log(this.u.totalLeaves);
+               
+             }
             this.successMessage = 'Leave Accepted';
             setTimeout(() => {
               this.successMessage = null;

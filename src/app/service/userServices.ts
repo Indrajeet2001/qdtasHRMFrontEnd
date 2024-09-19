@@ -542,18 +542,23 @@ export class UserService {
 
   getAllEmpS() {
     return this.http.get<any>(
-      BASE_API_URL +
-        `/employment/getAllJobs?pgn=&sz=2000` ,
+      BASE_API_URL + `/employment/getAllJobs?pgn=&sz=2000`,
       { headers: this.getHeaders() }
     );
   }
 
   //job title
   getAllJobTitle() {
-    return this.http.get<any>(
-      BASE_API_URL + `/job/getAllJobs?pgn=&sz=2000`,
-      { headers: this.getHeaders() }
-    );
+    return this.http.get<any>(BASE_API_URL + `/job/getAllJobs?pgn=&sz=2000`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  //timesheet
+  getProjects() {
+    return this.http.get<any>(BASE_API_URL + `/project/getAllProjects?pgn=1&sz=2000`, {
+      headers: this.getHeaders(),
+    });
   }
 }
 
