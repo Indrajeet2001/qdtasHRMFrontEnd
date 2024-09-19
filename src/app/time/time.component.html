@@ -78,8 +78,11 @@
                           #projectId="ngModel" [ngClass]="{'invalid': projectId.invalid && (projectId.dirty || projectId.touched), 'valid': projectId.valid && (projectId.dirty ||
                                                             projectId.touched)}">
                     <option selected [disabled]="true">Select project</option>
-                    <option value=1>HRM</option>
-                    <option value=2>HomeLyf </option>
+                    <option *ngFor="let item of timeSheetData" [value]="item.projectId">
+                      {{ item.projectName }}
+                    </option>
+                    <!-- <option value=1>HRM</option>
+                    <option value=2>HomeLyf </option> -->
                   </select>
                   <div *ngIf="projectId.invalid && (projectId.dirty || projectId.touched)"
                        class="error-message">
