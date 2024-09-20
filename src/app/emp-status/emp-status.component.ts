@@ -30,11 +30,7 @@ export class EmpStatusComponent {
   isLoggedIn!: User;
   role!: number;
   isLoading: boolean = false;
-  displayedColumns: string[] = [
-    'employmentStatusId',
-    'employmentStatusName',
-    'action',
-  ];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<EmpStatus>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -51,6 +47,8 @@ export class EmpStatusComponent {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadEmpStatus(this.resultPage);
+        this.displayColumns();
+
   }
 
   ngAfterViewInit() {
@@ -155,5 +153,17 @@ export class EmpStatusComponent {
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = ['employmentStatusId', 'employmentStatusName'];
+    } else {
+      this.displayedColumns = [
+        'employmentStatusId',
+        'employmentStatusName',
+        'action',
+      ];
+    }
   }
 }
