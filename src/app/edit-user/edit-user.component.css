@@ -20,18 +20,18 @@
 }
 
 .title {
-    font-size: 30px;
-    color: maroon;
+    font-size: var(--titlefont-size);
+    color: var(--titlecolor);
 
 }
 
 .error-message {
-  color: red;
-  font-size: 12px;
-  font: bold 14px Arial, sans-serif;
-  font-weight: lighter;
-  /* Makes the text lighter (less bold) */
-  margin-top: 3px;
+    color: var(--error-messagecolor);
+    font-size: var(--error-messagefont-size);
+    font: var(--error-messagefont);
+    font-weight: var(--error-messagefont-weight);
+    margin-top: var(--error-messagemargin-top);
+    /* Makes the text lighter (less bold) */
 }
 
 .invalid {
@@ -61,38 +61,38 @@
 
 
 .success-message {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 500px;
-  background-color: green;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  z-index: 1000;
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 
 }
 
 .error-message-notification {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 500px;
-  background-color: red;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  z-index: 1000;
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .close-icon {

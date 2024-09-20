@@ -29,7 +29,7 @@
 
 
                 <div class="col text-end suv-btn">
-                  <button class="btn btn-maroon" routerLink="/add-job-categories">Add</button>
+                  <button class="btn btn-maroon" routerLink="/add-job-categories"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Add</button>
 
                 </div>
 

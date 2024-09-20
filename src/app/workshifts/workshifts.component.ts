@@ -56,6 +56,7 @@ export class WorkshiftsComponent {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadShifts(this.resultPage);
+    this.displayColumns();
   }
 
   ngAfterViewInit() {
@@ -154,5 +155,25 @@ export class WorkshiftsComponent {
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = [
+        'workShiftId',
+        'workShiftName',
+        'startTime',
+        'endTime',
+      ];
+    } else {
+      this.displayedColumns = [
+        'workShiftId',
+        'workShiftName',
+        'startTime',
+        'endTime',
+
+        'action',
+      ];
+    }
   }
 }

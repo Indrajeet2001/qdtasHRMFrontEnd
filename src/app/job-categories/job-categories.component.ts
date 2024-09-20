@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import {JobCategory} from "../model/jobCategory";
-import {Subscription} from "rxjs";
-import {User} from "../model/user";
-import {MatTableDataSource} from "@angular/material/table";
-import {UserService} from "../service/userServices";
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { JobCategory } from '../model/jobCategory';
+import { Subscription } from 'rxjs';
+import { User } from '../model/user';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../service/userServices';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 import { EditJobcategoriesComponent } from '../edit-jobcategories/edit-jobcategories.component';
@@ -30,7 +30,7 @@ export class JobCategoriesComponent {
   isLoggedIn!: User;
   role!: number;
   isLoading: boolean = false;
-  displayedColumns: string[] = ['jobCategoryId', 'jobCategoryName', 'action'];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<JobCategory>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -47,6 +47,7 @@ export class JobCategoriesComponent {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadJobs(this.resultPage);
+    this.displayColumns();
   }
 
   ngAfterViewInit() {
@@ -153,5 +154,13 @@ export class JobCategoriesComponent {
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = ['jobCategoryId', 'jobCategoryName'];
+    } else {
+      this.displayedColumns = ['jobCategoryId', 'jobCategoryName', 'action'];
+    }
   }
 }
