@@ -25,12 +25,12 @@
           <div class="container p-2">
             <form class="genrealInfo" #genrealInfoData="ngForm"  (submit)="addJobTitle(genrealInfoData.value)">
               <div class="inp-row">
-                <h2 class="title mb-3">Job title</h2>
+                <h2 class="title mb-3">Job Title</h2>
                 <div class="inp-field">
                   <div class="inp">
-                    <label class="form-label">Job title</label>
-                    <input type="text" class="form-control" id="jobName" ngModel="" required
-                           name="jobName" #jobName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': jobName.invalid && (jobName.dirty || jobName.touched), 'valid': jobName.valid && (jobName.dirty ||
+                    <label class="form-label">Job Title</label>
+                    <input type="text" class="form-control inpBox" id="jobName" ngModel="" required
+                           name="jobName" #jobName="ngModel" pattern="^[A-Za-z\s]+$" [ngClass]="{'invalid': jobName.invalid && (jobName.dirty || jobName.touched), 'valid': jobName.valid && (jobName.dirty ||
                                             jobName.touched)}">
 
                     <div *ngIf="jobName.invalid && (jobName.dirty || jobName.touched)" class="error-message">
@@ -44,7 +44,7 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Job Description</label>
-                    <textarea class="form-control" id="jobDescription" ngModel="" name="jobDescription" required #jobDescription="ngModel" pattern="^[A-Za-z\s]+$"
+                    <textarea class="form-control inpBox" id="jobDescription" ngModel="" name="jobDescription" required #jobDescription="ngModel" pattern="^[A-Za-z\s]+$"
                               [ngClass]="{'invalid': jobDescription.invalid && (jobDescription.dirty || jobDescription.touched), 'valid': jobDescription.valid && (jobDescription.dirty ||
                                 jobDescription.touched)}"></textarea>
                     <div *ngIf="jobDescription.invalid && (jobDescription.dirty || jobDescription.touched)" class="error-message">

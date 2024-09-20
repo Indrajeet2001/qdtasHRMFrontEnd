@@ -26,18 +26,18 @@
 }
 
 .title {
-    font-size: 30px;
-    color: maroon;
+    font-size: var(--titlefont-size);
+    color: var(--titlecolor);
 
 }
 
 .error-message {
-    color: red;
-    font-size: 12px;
-    font: bold 14px Arial, sans-serif;
-    font-weight: lighter;
+    color: var(--error-messagecolor);
+    font-size: var(--error-messagefont-size);
+    font: var(--error-messagefont);
+    font-weight: var(--error-messagefont-weight);
+    margin-top: var(--error-messagemargin-top);
     /* Makes the text lighter (less bold) */
-    margin-top: 3px;
 }
 
 .invalid {

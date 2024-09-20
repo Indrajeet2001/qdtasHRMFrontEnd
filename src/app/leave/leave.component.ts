@@ -1,14 +1,13 @@
-import {Component} from '@angular/core';
-import {UserService} from '../service/userServices';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogboxComponent} from '../dialogbox/dialogbox.component';
-import {MatSnackBar} from '@angular/material/snack-bar'
-import {User} from '../model/user';
-import {Leave} from '../model/leave';
-import {Subscription} from 'rxjs';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component } from '@angular/core';
+import { UserService } from '../service/userServices';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogboxComponent } from '../dialogbox/dialogbox.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../model/user';
+import { Leave } from '../model/leave';
+import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-leave',
@@ -16,15 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./leave.component.css'],
 })
 export class LeaveComponent {
-  displayedColumns: string[] = [
-    'employee',
-    'startDate',
-    'endDate',
-    'type',
-    'reason',
-    'status',
-    'actions',
-  ];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Leave>;
 
   constructor(
@@ -51,13 +42,18 @@ export class LeaveComponent {
   hasMoreResult: boolean = true;
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
+  isLoggedIn!: User;
   successMessage: string | null = null;
   errorMessage: string | null = null;
-  totalLeaves: number | undefined;
+
   ngOnInit() {
     this.UserService.profile();
     this.empId = this.UserService.getAuthUserId();
     this.loadLeaves(this.resultPage);
+
+    this.isLoggedIn = this.UserService.getAuthUserFromCache();
+    this.displayColumns();
+    console.table(this.isLoggedIn);
   }
 
   isSidebarExpanded: boolean = true;
@@ -198,11 +194,6 @@ export class LeaveComponent {
       if (result) {
         this.UserService.changeLeaveStatusApprove(index).subscribe(
           (response: any) => {
-             if (this.totalLeaves !== undefined) {
-               this.totalLeaves = this.totalLeaves - 1;
-               console.log(this.u.totalLeaves);
-               
-             }
             this.successMessage = 'Leave Accepted';
             setTimeout(() => {
               this.successMessage = null;
@@ -289,5 +280,28 @@ export class LeaveComponent {
 
   openLeaveReports() {
     this.router.navigate(['/reports']);
+  }
+
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = [
+        'employee',
+        'startDate',
+        'endDate',
+        'type',
+        'reason',
+        'status',
+      ];
+    } else {
+      this.displayedColumns = [
+        'employee',
+        'startDate',
+        'endDate',
+        'type',
+        'reason',
+        'status',
+        'actions',
+      ];
+    }
   }
 }

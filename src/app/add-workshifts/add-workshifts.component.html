@@ -28,8 +28,8 @@
 
                 <div class="inp-field">
                   <div class="inp">
-                    <label class="form-label">Shift name</label>
-                    <input type="text" class="form-control" id="workShiftName" ngModel="" required name="workShiftName"
+                    <label class="form-label">Shift Name</label>
+                    <input type="text" class="form-control inpBox" id="workShiftName" ngModel="" required name="workShiftName"
                       #workShiftName="ngModel" pattern="^[A-Za-z\s]+$" [ngClass]="{'invalid': workShiftName.invalid && (workShiftName.dirty || workShiftName.touched), 'valid': workShiftName.valid && (workShiftName.dirty ||workShiftName.touched)}">
                     
                       <div *ngIf="workShiftName.invalid && (workShiftName.dirty || workShiftName.touched)" class="error-message">
@@ -69,8 +69,8 @@
 
                 <div class="inp-field">
                   <div class="inp">
-                    <label class="form-label">Start time</label>
-                    <input type="time" class="form-control" id="startTime" ngModel="" required name="startTime" #startTime="ngModel"
+                    <label class="form-label">Start Time</label>
+                    <input type="time" class="form-control inpBox" id="startTime" ngModel="" required name="startTime" #startTime="ngModel"
                       [ngClass]="{'invalid': startTime.invalid && (startTime.dirty || startTime.touched), 'valid': startTime.valid && (startTime.dirty || startTime.touched)}">
                     <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)" class="error-message">
                       <span *ngIf="startTime.errors?.['required']">Please enter start time</span>
@@ -80,8 +80,8 @@
                 
                 <div class="inp-field">
                   <div class="inp">
-                    <label class="form-label">End time</label>
-                    <input type="time" class="form-control" id="endTime" ngModel="" required name="endTime" #endTime="ngModel"
+                    <label class="form-label">End Time</label>
+                    <input type="time" class="form-control inpBox" id="endTime" ngModel="" required name="endTime" #endTime="ngModel"
                       [ngClass]="{'invalid': endTime.invalid && (endTime.dirty || endTime.touched) || isEndTimeInvalid(startTime.value, endTime.value), 'valid': endTime.valid && (endTime.dirty || endTime.touched) && !isEndTimeInvalid(startTime.value, endTime.value)}">
                     <div *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)" class="error-message">
                       <span *ngIf="endTime.errors?.['required']">Please enter end time</span>

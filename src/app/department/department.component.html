@@ -28,20 +28,20 @@
 
 
 
-      <div class="card" *ngIf="isLoggedIn?.role !== 'ROLE_DEPT'">
+      <div class="card" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
         <div class="container p-2">
           <form class="adddepartmentform" #addDeptData="ngForm" (submit)="saveDepartment(addDeptData.value)">
             <div class="inp-row">
               <h2 class="title mb-3">Add Department</h2>
               <div class="inp-field">
                 <div class="inp">
-                  <label class="form-label">DepartmentName</label>
+                  <label class="form-label">Department Name</label>
                   <input type="text" class="form-control" id="deptName" placeholder="Enter Department name" ngModel required
-                    name="deptName" #deptName="ngModel" pattern="^[A-Za-z]+$" [ngClass]="{'invalid': deptName.invalid && (deptName.dirty || deptName.touched), 'valid': deptName.valid && (deptName.dirty ||
+                    name="deptName" #deptName="ngModel" pattern="^[A-Za-z\s]+$" [ngClass]="{'invalid': deptName.invalid && (deptName.dirty || deptName.touched), 'valid': deptName.valid && (deptName.dirty ||
                               deptName.touched)}">
 
                   <div *ngIf="deptName.invalid && (deptName.dirty || deptName.touched)" class="error-message">
-                    <span *ngIf="deptName.errors?.['required']">Please enter DepartmentName</span>
+                    <span *ngIf="deptName.errors?.['required']">Please enter Department Name</span>
                     <span *ngIf="deptName.errors?.['pattern']">Please enter only alphabets</span>
                   </div>
                 </div>

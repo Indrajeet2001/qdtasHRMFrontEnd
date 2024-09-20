@@ -36,7 +36,6 @@ export class TimeComponent implements OnInit {
     'firstName',
     'lastName',
     'deptId',
-    'designation',
     'view',
   ];
   dataSource: MatTableDataSource<User>;

@@ -46,10 +46,10 @@
 }
 
 h2.title {
-    margin-top: 20px;
-    font-size: 28px;
-    text-align: left;
-    color: maroon;
+    margin-top: var(--titlemargin-top);
+    font-size: var(--titlefont-size);
+    text-align: var(--titletext-align);
+    color: var(--titlecolor);
 }
 
 .inp-row {
@@ -89,8 +89,8 @@ h2.title {
 }
 
 .inp .error-message {
-    color: red;
-    font-size: 12px;
+    color: var(--inperror-messagecolor);
+    font-size: var(--inperror-messagefont-size);
 }
 
 
@@ -99,16 +99,16 @@ h2.title {
 }
 
 .btn-maroon {
-    background-color: maroon;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-left: 20px;
+    background-color: var(--btnmaroonbackgroundcolor);
+    color: var(--btnmarooncolor);
+    border-radius: var(--btnmaroonborderradius);
+    border: var(--btnmaroonborder);
+    cursor: var(--btnmarooncursor);
+    margin: var(--btnmaroonmargin);
 }
 
 .btn-maroon:hover {
-    background-color: darkred;
+    background-color: var(--btnmaroonhoverbackgroundcolor);
 }
 
 
@@ -151,14 +151,14 @@ h2.title {
 
 /* Input field styling */
 input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
+    width: var(--inputtypetextwidth);
+    padding: var(--inputtypetextpadding);
+    font-size: var(--inputtypetextfont-size);
+    border: var(--inputtypetextborder);
+    border-radius: var(--inputtypetextborder-radius);
+    outline: var(--inputtypetextoutline);
+    box-sizing: var(--inputtypetextbox-sizing);
+    transition: var(--inputtypetexttransition);
 }
 
 .input-box {
@@ -218,24 +218,24 @@ td.center {
 }
 
 .load-button button {
-    background-color: maroon;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    background-color: var(--load-buttonbuttonbackground-color);
+    color: var(--load-buttonbuttoncolor);
+    border-radius: var(--load-buttonbuttonborder-radius);
+    border: var(--load-buttonbuttonborder);
+    padding: var(--load-buttonbuttonpadding);
+    font-size: var(--load-buttonbuttonfont-size);
+    cursor: var(--load-buttonbuttoncursor);
+    transition: var(--load-buttonbuttontransition);
 }
 
 .load-button button:hover {
-    background-color: darkred;
-    transform: scale(1.05);
+    background-color: var(--load-buttonbuttonhoverbackground-color);
+    transform: var(--load-buttonbuttonhovertransform);
 }
 
 .load-button button:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.5);
+    outline: var(--load-buttonbuttonfocusoutline);
+    box-shadow: var(--load-buttonbuttonfocusbox-shadow);
 }
 
 
@@ -254,4 +254,11 @@ td.center {
         width: 100%;
         margin-top: 10px;
     }
+}
+
+
+
+th.center {
+    text-align: center;
+
 }

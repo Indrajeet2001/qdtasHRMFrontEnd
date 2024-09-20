@@ -94,7 +94,7 @@
 
               <div class="inp">
                 <label class="form-label">Note</label>
-                <textarea class="form-control" id="note" placeholder="Today's Task" ngModel
+                <textarea class="form-control inpBox" id="note" placeholder="Today's Task" ngModel
                           name="note" required  #note="ngModel" [ngClass]="{'invalid': note.invalid && (note.dirty || note.touched),
                                      'valid': note.valid && (note.dirty || note.touched)}"
                           pattern="[^\s].*"> </textarea>
@@ -125,7 +125,7 @@
       <div class="cardd">
         <div class="container p-2">
           <form>
-            <input class="input-box" type="text" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
+            <input class="input-box" type="text"   id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
            
 
 
@@ -157,13 +157,6 @@
                   <th mat-header-cell *matHeaderCellDef class="center"> Department </th>
                   <td mat-cell *matCellDef="let user" class="center"> {{user.dept?.deptName}} </td>
                 </ng-container>
-
-
-                <ng-container matColumnDef="designation">
-                  <th mat-header-cell *matHeaderCellDef class="center"> Designation </th>
-                  <td mat-cell *matCellDef="let user" class="center"> {{user.designation}} </td>
-                </ng-container>
-
 
 
                 <ng-container matColumnDef="view">

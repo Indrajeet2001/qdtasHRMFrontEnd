@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {JobTitle} from "../model/jobTitle";
-import {Subscription} from "rxjs";
-import {User} from "../model/user";
-import {MatTableDataSource} from "@angular/material/table";
-import {UserService} from "../service/userServices";
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { JobTitle } from '../model/jobTitle';
+import { Subscription } from 'rxjs';
+import { User } from '../model/user';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../service/userServices';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 import { EditJobtitleComponent } from '../edit-jobtitle/edit-jobtitle.component';
@@ -30,7 +30,7 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   isLoggedIn!: User;
   role!: number;
   isLoading: boolean = false;
-  displayedColumns: string[] = ['jobId', 'jobName', 'jobDescription', 'action'];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<JobTitle>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -47,6 +47,7 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadJobs(this.resultPage);
+    this.displayColumns();
   }
 
   ngAfterViewInit() {
@@ -151,5 +152,13 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = ['jobId', 'jobName', 'jobDescription'];
+    } else {
+      this.displayedColumns = ['jobId', 'jobName', 'jobDescription', 'action'];
+    }
   }
 }

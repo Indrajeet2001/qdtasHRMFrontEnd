@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f6f6f6; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #f6f6f6;
+}
 
 
 .success-message {
@@ -20,6 +28,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
 }
+
 
 
 
@@ -56,4 +65,74 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
+}
+
+
+:root {
+
+    /*add button */
+    --btnmaroonbackgroundcolor: maroon;
+    --btnmarooncolor: white;
+    --btnmaroonborderradius: 5px;
+    --btnmaroonborder: none;
+    --btnmarooncursor: pointer;
+    --btnmaroonmargin: 10px;
+    --btnmaroonhoverbackgroundcolor: darkred;
+    /* button end */
+
+    /* title */
+    --titlemargin-top: 20px;
+    --titlefont-size: 28px;
+    --titletext-align: left;
+    --titlecolor: maroon;
+    /* title end */
+
+    /* search bar */
+    --inputboxwidth: 30%;
+    --inputboxmarginbottom: 10px;
+    --inputtypetextfocusbordercolor: black;
+    --inputtypetextwidth: 100%;
+    --inputtypetextpadding: 10px;
+    --inputtypetextfont-size: 14px;
+    --inputtypetextborder: 1px solid #ccc;
+    --inputtypetextborder-radius: 5px;
+    --inputtypetextoutline: none;
+    --inputtypetextbox-sizing: border-box;
+    --inputtypetexttransition: border-color 0.3s;
+    /* search bar end */
+
+    /* load button */
+    --loadingbarmargin: 20px 0;
+    --loadingbartextalign: center;
+    --loadbuttontextalign: center;
+    --loadbuttonmargintop: 20px;
+
+    --load-buttonbuttonbackground-color: maroon;
+    --load-buttonbuttoncolor: white;
+    --load-buttonbuttonborder-radius: 5px;
+    --load-buttonbuttonborder: none;
+    --load-buttonbuttonpadding: 10px 20px;
+    --load-buttonbuttonfont-size: 16px;
+    --load-buttonbuttoncursor: pointer;
+    --load-buttonbuttontransition: background-color 0.3s, transform 0.2s;
+
+    --load-buttonbuttonhoverbackground-color: darkred;
+    --load-buttonbuttonhovertransform: scale(1.05);
+
+    --load-buttonbuttonfocusoutline: none;
+    --load-buttonbuttonfocusbox-shadow: 0 0 0 2px rgba(128, 0, 0, 0.5);
+
+    /* error msg in edite section */
+    --error-messagecolor: red;
+    --error-messagefont-size: 12px;
+    --error-messagefont: bold 14px Arial, sans-serif;
+    --error-messagefont-weight: lighter;
+    --error-messagemargin-top: 3px;
+    /* error msg in edite section */
+
+    /* inp error msg */
+    --inperror-messagecolor: red;
+    --inperror-messagefont-size: 12px;
+
+
 }

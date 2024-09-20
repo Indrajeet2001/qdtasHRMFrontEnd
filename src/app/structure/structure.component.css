@@ -47,10 +47,10 @@
 }
 
 h2.title {
-  margin-top: 20px;
-  font-size: 28px;
-  text-align: left;
-  color: maroon;
+  margin-top: var(--titlemargin-top);
+  font-size: var(--titlefont-size);
+  text-align: var(--titletext-align);
+  color: var(--titlecolor);
 }
 
 .inp-row {

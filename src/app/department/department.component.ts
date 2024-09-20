@@ -8,14 +8,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 import { EditDepartmentComponent } from '../edit-department/edit-department.component';
 import { MatSort } from '@angular/material/sort';
-import {MatTableDataSource} from "@angular/material/table";
-import {Subscription} from "rxjs";
-import {NgForm} from "@angular/forms";
+import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { User } from '../model/user';
+import { UserService } from '../service/userServices';
 
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  styleUrls: ['./department.component.css'],
 })
 export class DepartmentComponent implements OnInit {
   departments: Department[] = [];
@@ -28,13 +30,15 @@ export class DepartmentComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
   searchTerm: string = '';
-  isLoggedIn!: Department;
+  // isLoggedIn!: Department;
+  isLoggedIn!: User;
   isLoading: boolean = false;
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Department>;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private departmentService: DepartmentService,
+    private userService: UserService,
     private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -43,7 +47,9 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.displayColumns();
+    this.isLoggedIn = this.userService.getAuthUserFromCache();
+    this.displayColumnss();
+    console.log(this.isLoggedIn);
     this.loadDepartments(this.resultPage);
   }
 
@@ -81,17 +87,20 @@ export class DepartmentComponent implements OnInit {
 
   loadDepartments(currentPage: number): void {
     this.subscriptions.push(
-      this.departmentService.getAllDepartments(currentPage, this.resultSize).subscribe(
-        (department: Department[]) => {
-          this.departments.push(...department);
-          this.dataSource.data = this.departments;
-          if (this.departments.length <= 0) this.hasMoreResult = false;
-          this.fetchingResult = false;
-          this.resultPage++;
-        }, (error) => {
-          console.log(error.error.message);
-        }
-      )
+      this.departmentService
+        .getAllDepartments(currentPage, this.resultSize)
+        .subscribe(
+          (department: Department[]) => {
+            this.departments.push(...department);
+            this.dataSource.data = this.departments;
+            if (this.departments.length <= 0) this.hasMoreResult = false;
+            this.fetchingResult = false;
+            this.resultPage++;
+          },
+          (error) => {
+            console.log(error.error.message);
+          }
+        )
     );
   }
 
@@ -106,10 +115,13 @@ export class DepartmentComponent implements OnInit {
   openConfirmationDialog(deptId: number): void {
     const dialogRef = this.dialog.open(DialogboxComponent, {
       width: '300px',
-      data: { title: 'Confirmation', message: 'Are you sure you want to delete?' }
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to delete?',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.departmentService.deleteDepartment(deptId).subscribe(
           (response: any) => {
@@ -144,7 +156,7 @@ export class DepartmentComponent implements OnInit {
       data: deptId,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === 'success') {
         this.successMessage = 'Department updated Successfully';
         setTimeout(() => {
@@ -161,7 +173,12 @@ export class DepartmentComponent implements OnInit {
   }
 
   isFormEmpty(form: NgForm): boolean {
-    return !form.valid || Object.keys(form.controls).some(control => form.controls[control].value === '');
+    return (
+      !form.valid ||
+      Object.keys(form.controls).some(
+        (control) => form.controls[control].value === ''
+      )
+    );
   }
 
   FilterChange(data: Event) {
@@ -169,8 +186,16 @@ export class DepartmentComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  displayColumns() {
-    if (this.isLoggedIn && this.isLoggedIn.role === 'ROLE_DEPT') {
+  // displayColumns() {
+  //   if (this.isLoggedIn && this.isLoggedIn.role === 'ROLE_DEPT') {
+  //     this.displayedColumns = ['deptId', 'deptName'];
+  //   } else {
+  //     this.displayedColumns = ['deptId', 'deptName', 'actions'];
+  //   }
+  // }
+
+  displayColumnss() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
       this.displayedColumns = ['deptId', 'deptName'];
     } else {
       this.displayedColumns = ['deptId', 'deptName', 'actions'];

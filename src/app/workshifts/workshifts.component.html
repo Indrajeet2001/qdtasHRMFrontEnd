@@ -29,7 +29,7 @@
 
 
                 <div class="col text-end suv-btn">
-                  <button class="btn btn-maroon" routerLink="/add-work-shifts">Add</button>
+                  <button class="btn btn-maroon" routerLink="/add-work-shifts"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Add</button>
 
                 </div>
 
@@ -45,7 +45,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="workShiftName">
-                      <th mat-header-cell *matHeaderCellDef> Name </th>
+                      <th mat-header-cell *matHeaderCellDef> Shift Name </th>
                       <td mat-cell *matCellDef="let element"> {{element.workShiftName}} </td>
                     </ng-container>
 

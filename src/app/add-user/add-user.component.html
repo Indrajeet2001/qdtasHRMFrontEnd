@@ -15,13 +15,13 @@
     <app-dropdown> </app-dropdown>
 
 
-    <div class="button" >
+    <div class="button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >
         <button class="btn btn-add" (click)="showForm()">Add</button>
     </div>
 
 
 
-    <div class="card" [ngClass]="{'hidden': !isFormVisible}"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
+    <div class="card" [ngClass]="{'hidden': !isFormVisible}"  >
         <div class="container p-2" *ngIf="isFormVisible">
             <form class="adduserform" #addUserData="ngForm" (submit)="saveUser(addUserData.value)">
                 <div class="inp-row">
@@ -90,7 +90,7 @@
 
 
                         <div class="inp">
-                            <label class="form-label">DOB</label>
+                            <label class="form-label">Date of Birth</label>
                             <input type="date" name="datafield" class="form-control" id="dob" placeholder="dd-mm-yy"
                                 ngModel name="birthDate" required #birthDate="ngModel" pattern="\d{4}-\d{2}-\d{2}"
                                 [ngClass]="{'invalid': birthDate.invalid && (birthDate.dirty || birthDate.touched), 'valid': birthDate.valid && (birthDate.dirty || birthDate.touched)}"
@@ -314,7 +314,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> 
 
 
     <div class="cardd">

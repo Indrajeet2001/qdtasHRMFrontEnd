@@ -14,6 +14,10 @@
   /* Optional: Add transition for smooth animation */
 }
 
+.inpBox {
+  width: 48.5%;
+}
+
 .expanded {
   margin-left: 80px;
   margin-right: 20px;
@@ -46,10 +50,10 @@
 }
 
 h2.title {
-  margin-top: 20px;
-  font-size: 28px;
-  text-align: left;
-  color: maroon;
+  margin-top: var(--titlemargin-top);
+  font-size: var(--titlefont-size);
+  text-align: var(--titletext-align);
+  color: var(--titlecolor);
 }
 
 .inp-row {
@@ -99,16 +103,16 @@ h2.title {
 }
 
 .btn-maroon {
-  background-color: maroon;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  margin-left: 20px;
+  background-color: var(--btnmaroonbackgroundcolor);
+  color: var(--btnmarooncolor);
+  border-radius: var(--btnmaroonborderradius);
+  border: var(--btnmaroonborder);
+  cursor: var(--btnmarooncursor);
+  margin: var(--btnmaroonmargin);
 }
 
 .btn-maroon:hover {
-  background-color: darkred;
+  background-color: var(--btnmaroonhoverbackgroundcolor);
 }
 
 
@@ -151,14 +155,14 @@ h2.title {
 
 /* Input field styling */
 input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  box-sizing: border-box;
-  transition: border-color 0.3s;
+  width: var(--inputtypetextwidth);
+  padding: var(--inputtypetextpadding);
+  font-size: var(--inputtypetextfont-size);
+  border: var(--inputtypetextborder);
+  border-radius: var(--inputtypetextborder-radius);
+  outline: var(--inputtypetextoutline);
+  box-sizing: var(--inputtypetextbox-sizing);
+  transition: var(--inputtypetexttransition);
 }
 
 .input-box {
@@ -254,4 +258,12 @@ td.center {
     width: 100%;
     margin-top: 10px;
   }
+}
+
+
+/* center */
+th.center,
+td.center {
+  text-align: center;
+
 }
