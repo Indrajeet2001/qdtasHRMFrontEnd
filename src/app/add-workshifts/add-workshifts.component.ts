@@ -54,13 +54,19 @@ export class AddWorkshiftsComponent {
   }
 
   isEndTimeInvalid(startTime: string, endTime: string): boolean {
-    if (!startTime || !endTime) {
-      return false; // No validation if either value is missing
-    }
-
-    const start = new Date(`1970-01-01T${startTime}:00`);
-    const end = new Date(`1970-01-01T${endTime}:00`);
-
-    return end <= start; // Returns true if end time is less than or equal to start time
+  if (!startTime || !endTime) {
+    return false; 
   }
+
+  const start = new Date(`1970-01-01T${startTime}:00`);
+  let end = new Date(`1970-01-01T${endTime}:00`);
+
+
+  if (end <= start) {
+    end.setDate(end.getDate() + 1);
+  }
+
+  return end <= start; 
+}
+
 }
