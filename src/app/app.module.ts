@@ -63,6 +63,8 @@ import { EditEmpstatusComponent } from './edit-empstatus/edit-empstatus.componen
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { EditWorkshiftsComponent } from './edit-workshifts/edit-workshifts.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -103,40 +105,39 @@ import { LeaveReportComponent } from './leave-report/leave-report.component';
     EditEmpstatusComponent,
     DropdownComponent,
     EditWorkshiftsComponent,
-    LeaveReportComponent
+    LeaveReportComponent,
+    RecruitmentComponent,
+    DashboardComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        MatProgressBarModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatListModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        MatProgressSpinnerModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatTableModule,
-        MatSortModule,
-        NgxMaterialTimepickerModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        NgMultiSelectDropDownModule.forRoot(),
-        MatCardModule
-
-
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    MatProgressBarModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatSortModule,
+    NgxMaterialTimepickerModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatCardModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
-
 })
-export class AppModule { }
+export class AppModule {}

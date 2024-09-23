@@ -27,6 +27,8 @@ import { AddJobCategoriesComponent } from './add-job-categories/add-job-categori
 import { WorkshiftsComponent } from './workshifts/workshifts.component';
 import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -157,6 +159,16 @@ const routes: Routes = [
   {
     component: LeaveReportComponent,
     path: 'reports',
+    canActivate: [AuthGuard],
+  },
+  {
+    component: RecruitmentComponent,
+    path: 'recruitment',
+    canActivate: [AuthGuard],
+  },
+  {
+    component: DashboardComponent,
+    path: 'dashBoard',
     canActivate: [AuthGuard],
   },
 ];
