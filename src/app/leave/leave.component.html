@@ -18,28 +18,36 @@
         <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
       </div>
 
-      <!-- <div class="leave-header">
-        <button mat-raised-button class="leave-button">Apply</button>
-        <button mat-raised-button class="leave-button">My Leave</button>
-        <button mat-raised-button class="leave-button" (click)="openLeaveReports()" >Reports</button>
-        <button mat-raised-button class="leave-button">Entitlements</button>
-      </div> -->
-
-
-
 
       <div class="card">
         <div class="container p-2">
           <form class="leaveform" #leaveForm="ngForm" (submit)="applyLeave(leaveForm.value)">
             <div class="inp-row">
-              <h2 class="title mb-3">Leave Application</h2>
+            <div class="row-container">
+              <h2 class="title">Leave Application</h2>
+              <!-- <h5 class="title mb-3" *ngIf="leaves.length > 0">Total Leaves: {{ leaves[0].employee.totalLeaves }}</h5> -->
+                <div>
+                  <!-- Show Total Leaves if >= 0 -->
+              <h5 class="title mb-3">
+                Total Leaves: {{ leaves.length > 0 ? leaves[0].employee.totalLeaves : '20' }}
+              </h5>
+                
+                  <!-- Show error if Total Leaves < 0 -->
+                  <span class="error-message-notification" *ngIf="leaves.length > 0 && leaves[0].employee.totalLeaves! < 0">
+                    Your total leave balance for the year has been exhausted.
+                  </span>
+                </div>
+            </div>
+
+          
+
               <div class="inp-field">
 
                 <div class="inp">
                   <label class="form-label">Choose Start Date</label>
                   <mat-form-field class="inp-date" appearance="fill">
-                    <input matInput [matDatepicker]="startPicker" [min]="minDate" [(ngModel)]="startDate" name="startDate"
-                           id="sDate" placeholder="Choose Start Date" #startDateInput="ngModel" required>
+                    <input matInput [matDatepicker]="startPicker"  [min]="minDate" [(ngModel)]="startDate" name="startDate"
+                           id="sDate" placeholder="Choose Start Date" #startDateInput="ngModel" required >
                     <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                     <mat-datepicker #startPicker></mat-datepicker>
                     <mat-error class="error-message" *ngIf="startDateInput.invalid && (startDateInput.dirty || startDateInput.touched)">
@@ -51,10 +59,10 @@
                 <div class="inp">
                   <label class="form-label">Choose End Date</label>
                   <mat-form-field class="inp-date">
-                    <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate"
-                           id="eDate" placeholder="Choose End Date" #endDateInput="ngModel" required>
+                    <input matInput [matDatepicker]="endPicker"  [min]="startDate" ngModel name="endDate"
+                           id="eDate" placeholder="Choose End Date" #endDateInput="ngModel" required >
                     <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #endPicker></mat-datepicker>
+                    <mat-datepicker #endPicker  ></mat-datepicker>
                     <mat-error class="error-message" *ngIf="endDateInput.invalid && (endDateInput.dirty || endDateInput.touched)">
                       <span *ngIf="endDateInput.errors?.['required']">End Date is required</span>
                     </mat-error>

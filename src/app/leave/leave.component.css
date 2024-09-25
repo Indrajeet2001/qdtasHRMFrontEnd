@@ -26,8 +26,26 @@
   /* Adjust based on your collapsed sidebar width */
 }
 
+.highlight-start {
+  background-color: red !important;
+  /* Red background for start dates */
+  color: white !important;
+  /* White text for contrast */
+}
 
+.highlight-end {
+  background-color: red !important;
+  /* Red background for end dates */
+  color: white !important;
+  /* White text for contrast */
+}
 
+.highlighted-date {
+  background-color: red;
+  /* Change this to your desired highlight color */
+  color: white;
+  /* Optional: Change text color */
+}
 
 .card {
   border: 1px solid #ddd;
@@ -50,7 +68,25 @@ h2.title {
   font-size: var(--titlefont-size);
   text-align: var(--titletext-align);
   color: var(--titlecolor);
+  margin-right: 10px;
 }
+
+h5.title {
+  margin-top: var(--titlemargin-top);
+  font-size: 20px;
+  text-align: var(--titletext-align);
+  color: var(--titlecolor);
+  margin-right: 10px;
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  /* Aligns the items vertically in the middle */
+  justify-content: space-between;
+  /* Adjusts spacing between the items */
+}
+
 
 .inp-row {
   display: flex;
