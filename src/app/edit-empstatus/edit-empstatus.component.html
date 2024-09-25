@@ -5,6 +5,7 @@
             <form class="genrealInfo" #genrealInfoData="ngForm" (submit)="updateEmpStatus(genrealInfoData.value)" >
                 <div class="inp-row">
                     <h2 class="title mb-3">Employment Status</h2>
+                            <span class="close" (click)="dismissDialogBox()">&times;</span>
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label">Employment Status</label>

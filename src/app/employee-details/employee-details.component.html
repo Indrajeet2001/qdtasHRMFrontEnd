@@ -27,7 +27,7 @@
           <h2 class="title mb-3">Employee Details</h2>
           <div class="inp-field">
             <div class="inp">
-              <label class="form-label">Employee UserName</label>
+              <label class="form-label">Employee Username</label>
               <input
                 type="text"
                 class="form-control"
@@ -42,7 +42,7 @@
                 [ngClass]="{'invalid': UserName.invalid && (UserName.dirty || UserName.touched), 'valid': UserName.valid && (UserName.dirty || UserName.touched)}"
               >
               <div *ngIf="UserName.invalid && (UserName.dirty || UserName.touched)" class="error-message">
-                <span *ngIf="UserName.errors?.['required']">Please enter UserName</span>
+                <span *ngIf="UserName.errors?.['required']">Please enter Username</span>
                 <span *ngIf="UserName.errors?.['pattern']">Please enter only alphabets</span>
                 <span *ngIf="UserName.errors?.['maxlength']">Username cannot exceed 25 characters</span>
               </div>
@@ -76,9 +76,9 @@
               </td>
             </ng-container>
 
-            <ng-container matColumnDef="designation">
-              <th mat-header-cell *matHeaderCellDef> Designation </th>
-              <td mat-cell *matCellDef="let user"> {{ user?.designation }} </td>
+            <ng-container matColumnDef="jobtitle">
+              <th mat-header-cell *matHeaderCellDef> Job Title </th>
+              <td mat-cell *matCellDef="let user"> {{ user?.jobId.jobName }} </td>
             </ng-container>
 
             <ng-container matColumnDef="phoneNumber">
@@ -95,8 +95,8 @@
               </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="['userId', 'userName', 'designation', 'phoneNumber', 'action']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['userId', 'userName', 'designation', 'phoneNumber', 'action']"></tr>
+            <tr mat-header-row *matHeaderRowDef="['userId', 'userName', 'jobtitle', 'phoneNumber', 'action']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['userId', 'userName', 'jobtitle', 'phoneNumber', 'action']"></tr>
           </table>
         </div>
       </div>

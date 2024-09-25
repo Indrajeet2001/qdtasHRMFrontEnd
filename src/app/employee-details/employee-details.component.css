@@ -186,10 +186,11 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
-th.center,
-td.center {
-    text-align: left;
-    cursor: pointer;
+
+
+th.center {
+    text-align: center;
+
 }
 
 .table-row:hover {

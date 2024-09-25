@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { User } from "../model/user";
-import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { UserService } from "../service/userServices";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-performance-report',
   templateUrl: './performance-report.component.html',
-  styleUrls: ['./performance-report.component.css']
+  styleUrls: ['./performance-report.component.css'],
 })
 export class PerformanceReportComponent {
   sideNavStatus: boolean = true;
@@ -25,7 +25,8 @@ export class PerformanceReportComponent {
     private userService: UserService,
     public dialog: MatDialog,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<PerformanceReportComponent>
   ) {}
 
   ngOnInit() {
@@ -50,17 +51,23 @@ export class PerformanceReportComponent {
       const startDate = this.fromDate.toISOString().split('T')[0];
       const endDate = this.toDate.toISOString().split('T')[0];
 
-      this.userService.getUserPerformance(this.data.userId, startDate, endDate).subscribe(
-        (performance: number) => {
-          console.log('Performance:', performance);
-          this.performanceValue = performance;
-          this.successMessage = `Performance calculated successfully: ${performance}`;
-        },
-        (error) => {
-          console.error('Error occurred while calculating performance:', error);
-          this.errorMessage = 'Something went wrong while calculating performance.';
-        }
-      );
+      this.userService
+        .getUserPerformance(this.data.userId, startDate, endDate)
+        .subscribe(
+          (performance: number) => {
+            console.log('Performance:', performance);
+            this.performanceValue = performance;
+            this.successMessage = `Performance calculated successfully: ${performance}`;
+          },
+          (error) => {
+            console.error(
+              'Error occurred while calculating performance:',
+              error
+            );
+            this.errorMessage =
+              'Something went wrong while calculating performance.';
+          }
+        );
     } else {
       this.errorMessage = 'Please select both From and To dates.';
     }
@@ -68,6 +75,10 @@ export class PerformanceReportComponent {
 
   dismissSuccessMessage() {
     this.successMessage = null;
+  }
+
+  dismissDialogBox() {
+    this.dialogRef.close();
   }
 
   dismissErrorMessage() {
