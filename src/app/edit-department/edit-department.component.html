@@ -1,64 +1,4 @@
-<!-- <div *ngIf="successMessage" class="success-message">
-    {{ successMessage }}
-    <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
-</div>
 
-<div *ngIf="errorMessage" class="error-message-notification">
-    <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
-    {{ errorMessage }}
-</div>
-
-<div class="editdept">
-    <div class="card">
-        <div class="card">
-            <div class="container p-2">
-                <form class="editdeptform" #editform="ngForm" (submit)="saveEditedData(editform.value)">
-                    <div class="imp-row">
-                        <h2 class="title mb-3">Edit Department</h2>
-                            <div class="inp-field">
-                                <div class="inp">
-                                    <label class="form-label">Select field to edit</label>
-                                    <select class="form-select" id="select-field" (change)="onFieldSelect($event)">
-                                        <option selected [disabled]="true">Select</option>
-                                        <option value="deptName">Department Name</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="inp-row" *ngIf="selectedField === 'deptName'">
-                        <div class="inp-field">
-                            <div class="inp">
-                                <label class="form-label">New DepartmentName</label>
-                                <input type="text" class="form-control" [(ngModel)]="newDeptName" ngModel required
-                                    placeholder="deptName" name="deptName" #deptName="ngModel" pattern="^[A-Za-z]+$"
-                                    [ngClass]="{invalid:deptName.invalid && (deptName.dirty || deptName.touched), 
-                                          valid: deptName.valid && (deptName.dirty || deptName.touched) }" />
-                                <div *ngIf="deptName.invalid && (deptName.dirty || deptName.touched)" class="error-message">
-                                    <span *ngIf="deptName.errors?.['required']">Please enter DepartmentName</span>
-                                    <span *ngIf="deptName.errors?.['pattern']">Please enter only alphabets</span>
-                                </div>
-                                <span *ngIf="u.deptName?.toLowerCase() == this.newDeptName.toLowerCase()"
-                                    class="error-message">Entered DepartmentName is same as previous DepartmentName</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col text-end suv-btn">
-                        <button type="reset" class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
-                        <button type="submit" class="btn btn-maroon" [disabled]="!editform.valid || !selectedField ">     
-                                        
-                            Submit
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-</div> -->
 <div *ngIf="successMessage" class="success-message">
     {{ successMessage }}
     <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
@@ -71,7 +11,7 @@
   
   <div class="editdept">
     <div class="card">
-      <div class="card">
+      <div class="">
         <div class="container p-2">
           <form class="editdeptform" #editForm="ngForm" (submit)="saveEditedData(editForm.value)">
             <div *ngIf="isLoading" class="loading">
@@ -80,6 +20,7 @@
             <div *ngIf="!isLoading">
               <div class="imp-row">
                 <h2 class="title mb-3">Edit Department</h2>
+                    <span class="close" (click)="dismissDialogBox()">&times;</span>
                 <div class="inp-field">
                   <!-- <div class="inp">
                     <label class="form-label">Select field to edit</label>

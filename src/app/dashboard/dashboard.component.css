@@ -25,3 +25,19 @@
     margin-right: 20px;
     /* Adjust based on your collapsed sidebar width */
 }
+
+.row {
+    margin-bottom: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 280px;
+    margin-top: 20px;
+}
+
+.card-body {
+    flex-grow: 1;
+
+}

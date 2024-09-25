@@ -16,12 +16,12 @@ import { ShowEmpDetailsComponent } from '../show-emp-details/show-emp-details.co
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.css']
+  styleUrls: ['./employee-details.component.css'],
 })
 export class EmployeeDetailsComponent implements OnInit {
-// showDetails(_t23: NgForm) {
-// throw new Error('Method not implemented.');
-// }
+  // showDetails(_t23: NgForm) {
+  // throw new Error('Method not implemented.');
+  // }
   sideNavStatus: boolean = true;
   successMessage: string | null = null;
   errorMessage: string | null = null;
@@ -48,6 +48,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.table(this.u);
     this.isLoading = true;
   }
 
@@ -87,20 +88,17 @@ export class EmployeeDetailsComponent implements OnInit {
     );
   }
 
-  OpenDetails(userId : Number) : void{
-    const dialogRef = this.dialog.open(ShowEmpDetailsComponent , {
+  OpenDetails(userId: Number): void {
+    const dialogRef = this.dialog.open(ShowEmpDetailsComponent, {
       // width : '1000px',
       // data : userId,
       width: '80%', // Adjust width as per your preference
-      height: '100%', // Adjust height as per your preference
+      height: '50%', // Adjust height as per your preference
       data: userId,
-      maxHeight: '90vh', // Ensure the dialog does not exceed 90% of the viewport height
-
+      // Ensure the dialog does not exceed 90% of the viewport height
     });
-    dialogRef.afterClosed().subscribe(result => {})
+    dialogRef.afterClosed().subscribe((result) => {});
   }
-
-
 
   isMale(): string {
     if (this.u && this.u.gender) {
@@ -118,7 +116,12 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   isFormEmpty(form: NgForm): boolean {
-    return !form.valid || Object.keys(form.controls).some(control => form.controls[control].value === '');
+    return (
+      !form.valid ||
+      Object.keys(form.controls).some(
+        (control) => form.controls[control].value === ''
+      )
+    );
   }
 
   saveEmployee() {
@@ -132,6 +135,7 @@ export class EmployeeDetailsComponent implements OnInit {
   dismissErrorMessage() {
     this.errorMessage = null;
   }
+
 
   onToggleSidebar(expanded: boolean) {
     this.isSidebarExpanded = expanded;
@@ -148,11 +152,10 @@ export class EmployeeDetailsComponent implements OnInit {
       data: uId,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result == 'success') {
         this.successMessage = 'Updated Successfully';
         window.location.reload();
-
       } else if (result == 'failure') {
         this.errorMessage = 'Could not update';
       }
@@ -161,10 +164,9 @@ export class EmployeeDetailsComponent implements OnInit {
 
   displayColumns() {
     if (this.isLoggedIn && this.isLoggedIn.role === 'ROLE_DEPT') {
-      this.displayedColumns = ['userId', 'userName', 'designation', 'phoneNumber'];
+      this.displayedColumns = ['userId', 'userName', 'jobtitle', 'phoneNumber'];
     } else {
-      this.displayedColumns = ['userId', 'userName', 'designation', 'phoneNumber'];
+      this.displayedColumns = ['userId', 'userName', 'jobtitle', 'phoneNumber'];
     }
   }
-
 }

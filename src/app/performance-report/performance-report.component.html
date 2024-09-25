@@ -1,118 +1,56 @@
-<!--<div class="container-fluid g-0">-->
-<!--  <div class="display-area">-->
-<!--    <div class="myinfo">-->
+<div *ngIf="successMessage" class="success-message">
+  {{ successMessage }}
+  <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+</div>
 
-<!--      <div *ngIf="successMessage" class="success-message">-->
-<!--        {{ successMessage }}-->
-<!--        <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>-->
-<!--      </div>-->
+<div *ngIf="errorMessage" class="error-message-notification">
+  {{ errorMessage }}
+  <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+</div>
 
-<!--      <div *ngIf="errorMessage" class="error-message-notification">-->
-<!--        {{ errorMessage }}-->
-<!--        <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>-->
-<!--      </div>-->
 
-<!--      <div class="card">-->
-<!--        <div class="container p-2">-->
-<!--          <div class="inp-row">-->
-<!--            <h2 class="title mb-3">Performance and Report</h2>-->
-<!--            <mat-divider class="custom-divider"></mat-divider>-->
 
-<!--            <div class="inp-field date-pickers">-->
-<!--              <div class="inp">-->
-<!--                <label class="form-label">From</label>-->
-<!--                <mat-form-field appearance="fill">-->
-<!--                  <mat-label>From Date</mat-label>-->
-<!--                  <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate" name="fromDate">-->
-<!--                  <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>-->
-<!--                  <mat-datepicker #fromPicker></mat-datepicker>-->
-<!--                </mat-form-field>-->
-<!--              </div>-->
-<!--              <div class="inp">-->
-<!--                <label class="form-label">To</label>-->
-<!--                <mat-form-field appearance="fill">-->
-<!--                  <mat-label>To Date</mat-label>-->
-<!--                  <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate" name="toDate">-->
-<!--                  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>-->
-<!--                  <mat-datepicker #toPicker></mat-datepicker>-->
-<!--                </mat-form-field>-->
-<!--              </div>-->
-<!--            </div>-->
-
-<!--            <div class="buttons-container">-->
-<!--              <button class="btn btn-maroon suv-btn" (click)="calculatePerformance()">Calculate Performance</button>-->
-<!--              <button class="btn btn-maroon suv-btn">Generate Report</button>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Section to display performance value &ndash;&gt;-->
-<!--            <div *ngIf="performanceValue !== null" class="performance-value-container">-->
-<!--              <label class="form-label">Performance Value:</label>-->
-<!--              <span class="performance-value">{{ performanceValue }}</span>-->
-<!--            </div>-->
-
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="container-fluid g-0">
-  <div class="display-area">
-    <div class="myinfo">
+  <div class="card">
+    <div class="container p-2">
+      <div class="inp-row">
+        <h2 class="title mb-3">Performance and Report</h2>
+            <span class="close" (click)="dismissDialogBox()">&times;</span>
+        <mat-divider class="custom-divider"></mat-divider>
 
-      <div *ngIf="successMessage" class="success-message">
-        {{ successMessage }}
-        <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
-      </div>
-
-      <div *ngIf="errorMessage" class="error-message-notification">
-        {{ errorMessage }}
-        <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
-      </div>
-
-      <div class="card">
-        <div class="container p-2">
-          <div class="inp-row">
-            <h2 class="title mb-3">Performance and Report</h2>
-            <mat-divider class="custom-divider"></mat-divider>
-
-            <div class="inp-field date-pickers">
-              <div class="inp">
-                <label class="form-label">From</label>
-                <mat-form-field appearance="fill">
-                  <mat-label>From Date</mat-label>
-                  <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate" name="fromDate">
-                  <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #fromPicker></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="inp">
-                <label class="form-label">To</label>
-                <mat-form-field appearance="fill">
-                  <mat-label>To Date</mat-label>
-                  <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate" name="toDate">
-                  <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #toPicker></mat-datepicker>
-                </mat-form-field>
-              </div>
-            </div>
-
-            <div class="buttons-container">
-              <button class="btn btn-maroon suv-btn" (click)="calculatePerformance()">Calculate Performance</button>
-              <button class="btn btn-maroon suv-btn">Generate Report</button>
-            </div>
-
-            <!-- Section to display performance value -->
-            <div *ngIf="performanceValue !== null" class="performance-value-container">
-              <label class="form-label">Performance Value:</label>
-              <span class="performance-value">{{ performanceValue }}</span>
-            </div>
-
+        <div class="inp-field date-pickers">
+          <div class="inp">
+            <label class="form-label">From</label>
+            <mat-form-field appearance="fill">
+              <mat-label>From Date</mat-label>
+              <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate" name="fromDate">
+              <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+              <mat-datepicker #fromPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="inp">
+            <label class="form-label">To</label>
+            <mat-form-field appearance="fill">
+              <mat-label>To Date</mat-label>
+              <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate" name="toDate">
+              <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+              <mat-datepicker #toPicker></mat-datepicker>
+            </mat-form-field>
           </div>
         </div>
-      </div>
 
+        <div class="buttons-container">
+          <button class="btn btn-maroon suv-btn" (click)="calculatePerformance()">Calculate Performance</button>
+          <button class="btn btn-maroon suv-btn" >Generate Report</button>
+        </div>
+
+        <div *ngIf="performanceValue !== null" class="performance-value-container">
+          <label class="form-label">Performance Value:</label>
+          <span class="performance-value">{{ performanceValue }}</span>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
+

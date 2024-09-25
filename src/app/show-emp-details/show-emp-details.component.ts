@@ -10,7 +10,7 @@ import {PerformanceReportComponent} from "../performance-report/performance-repo
 @Component({
   selector: 'app-show-emp-details',
   templateUrl: './show-emp-details.component.html',
-  styleUrls: ['./show-emp-details.component.css']
+  styleUrls: ['./show-emp-details.component.css'],
 })
 export class ShowEmpDetailsComponent {
   sideNavStatus: boolean = true;
@@ -19,18 +19,18 @@ export class ShowEmpDetailsComponent {
   isLoading: boolean = true;
   performanceValue: string | null = null;
 
-
   user: User | undefined;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public userId: number,
-    private userService: UserService,public dialog: MatDialog, private http: HttpClient,
+    private userService: UserService,
+    public dialog: MatDialog,
+    private http: HttpClient,
     private dialogRef: MatDialogRef<ShowEmpDetailsComponent>, // Add this parameter,
     private router: Router
   ) {}
 
   ngOnInit() {
-
     this.userService.getUserById(this.userId).subscribe(
       (user: User) => {
         this.user = user;
@@ -42,7 +42,6 @@ export class ShowEmpDetailsComponent {
     );
   }
 
-
   isFormSubmitted: boolean = false;
   // constructor(private UserService: UserService, ) {
   // }
@@ -51,7 +50,6 @@ export class ShowEmpDetailsComponent {
 
   fromDate: Date | undefined;
   toDate: Date | undefined;
-
 
   isMale(): string {
     if (this.u && this.u.gender) {
@@ -79,22 +77,27 @@ export class ShowEmpDetailsComponent {
   //   }
   // }
 
-
   calculatePerformance() {
     if (this.fromDate && this.toDate) {
       const startDate = this.fromDate.toISOString().split('T')[0];
       const endDate = this.toDate.toISOString().split('T')[0];
 
-      this.userService.getUserPerformance(this.userId, startDate, endDate).subscribe(
-        (performance: number) => {
-          console.log('Performance:', performance);
-          this.successMessage = `Performance calculated successfully: ${performance}`;
-        },
-        (error) => {
-          console.error('Error occurred while calculating performance:', error);
-          this.errorMessage = 'Something went wrong while calculating performance.';
-        }
-      );
+      this.userService
+        .getUserPerformance(this.userId, startDate, endDate)
+        .subscribe(
+          (performance: number) => {
+            console.log('Performance:', performance);
+            this.successMessage = `Performance calculated successfully: ${performance}`;
+          },
+          (error) => {
+            console.error(
+              'Error occurred while calculating performance:',
+              error
+            );
+            this.errorMessage =
+              'Something went wrong while calculating performance.';
+          }
+        );
     } else {
       this.errorMessage = 'Please select both From and To dates.';
     }
@@ -105,34 +108,30 @@ export class ShowEmpDetailsComponent {
   }
 
   openPerformance_Report(): void {
-    this.dialogRef.close(); // Close the current dialog
+    this.dialogRef.close(); 
 
     const dialogRef = this.dialog.open(PerformanceReportComponent, {
       width: '700px',
-      data: { userId: this.userId } // Pass userId as data
+      data: { userId: this.userId }, 
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === 'success') {
-    //     this.successMessage = 'Department updated Successfully';
-    //     setTimeout(() => {
-    //       window.location.reload();
-    //     }, 1500);
-    //   } else if (result === 'failure') {
-    //     this.errorMessage = 'Could not update department';
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.successMessage = 'Calculated report Successfully';
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else if (result === 'failure') {
+        this.errorMessage = 'Could not calculate report';
+      }
+    });
   }
 
+ 
 
-
-  exit() {
-    this.router.navigate(['/employee-details']).then(
-      () => console.log('Navigation succeeded'),
-      err => console.error('Navigation failed:', err)
-    );
+  dismissDialogBox() {
+    this.dialogRef.close();
   }
-
 
   dismissSuccessMessage() {
     this.successMessage = null;
@@ -141,5 +140,4 @@ export class ShowEmpDetailsComponent {
   dismissErrorMessage() {
     this.errorMessage = null;
   }
-
 }

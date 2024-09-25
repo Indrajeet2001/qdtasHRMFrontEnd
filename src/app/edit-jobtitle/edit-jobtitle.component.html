@@ -3,7 +3,7 @@
             <form class="genrealInfo" #genrealInfoData="ngForm" (submit)="updateJob(genrealInfoData.value)">
                 <div class="inp-row">
                     <h2 class="title mb-3">Job Title</h2>
-
+                        <span class="close" (click)="dismissDialogBox()">&times;</span>
                     <div class="inp-field">
                         <div class="inp">
                             <label class="form-label">Job Title</label>
