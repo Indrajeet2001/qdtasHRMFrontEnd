@@ -1,21 +1,21 @@
 import { User } from "./user";
 
 export class Leave {
+  leaveId!: number;
 
-    leaveId!: number;
+  employee!: User;
 
-    employee!: User;
+  startDate!: Date;
+  
+  totalLeaves!: number;
 
-    startDate!: Date;
+  endDate!: Date;
 
-    endDate!: Date;
+  type!: string;
 
-    type!: string;
+  reason!: string;
 
-    reason!: string;
-
-    status!: string;
-
+  status!: string;
 }
 
 

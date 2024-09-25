@@ -45,15 +45,13 @@ export class LeaveComponent {
   isLoggedIn!: User;
   successMessage: string | null = null;
   errorMessage: string | null = null;
-
+  
   ngOnInit() {
     this.UserService.profile();
     this.empId = this.UserService.getAuthUserId();
     this.loadLeaves(this.resultPage);
-
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
     this.displayColumns();
-    console.table(this.isLoggedIn);
   }
 
   isSidebarExpanded: boolean = true;
@@ -89,8 +87,6 @@ export class LeaveComponent {
       userData.endDate = endDateFormatted.toISOString().split('T')[0];
     }
 
-    console.log(userData);
-
     this.UserService.applyLeave(userData, empIdString).subscribe(
       (response: any) => {
         this.successMessage = 'Leave Applied Successfully';
@@ -113,9 +109,9 @@ export class LeaveComponent {
     this.subscriptions.push(
       this.UserService.getAllLeaves(currentPage, this.resultSize).subscribe(
         (l: Leave[]) => {
-          // Unshift new leaves to the beginning of the array
           this.leaves = [...l, ...this.leaves];
           this.dataSource.data = this.leaves;
+
           if (this.leaves.length <= 0 && this.resultPage === 1) {
             this.hasMoreResult = false;
           }
