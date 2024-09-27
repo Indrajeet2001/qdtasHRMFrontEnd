@@ -99,3 +99,10 @@
     height: 30px;
 
 }
+
+
+@media (max-width: 768px) {
+    .toggle-button{
+        display: none;
+    }
+}

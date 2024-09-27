@@ -38,6 +38,37 @@
 }
 
 .card-body {
-    flex-grow: 1;
+    display: flex;
+}
 
+.card-title {
+    margin: 0;
+    font-weight: 900;
+}
+
+
+.card:hover {
+    background-color: #f0f0f0;
+}
+
+.card:hover .card-body 
+.card:hover .card-body .card-title {
+    color: inherit;
+}
+
+.icon {
+    height: 60px;
+    width: 60px;
+    font-size: 36px;
+}
+
+.icon:hover {
+color: maroon;
+cursor: pointer;
+}
+
+
+.btn-maroon {
+    background-color: maroon;
+    color: white;
 }

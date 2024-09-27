@@ -3,6 +3,7 @@ mat-toolbar {
     top: 0;
     z-index: 100;
     background: #f7f7f7;
+    
 
 }
 
@@ -15,20 +16,32 @@ button {
     border: 0;
     background: transparent;
 }
-
-.user {
-    font-size: 14px;
-}
-
-.user-image {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-
-.user-image-icon {
-    height: 18px;
+.image-button h6 {
+    margin-left: 5px;
+    color: white;
     font-size: 16px;
+    letter-spacing: 1px;
+}
+    
+
+
+.image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.image-button:hover {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: darkred;
+}
+
+.profile-image {
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;   
 }
 
 ::ng-deep .mat-menu-content {
@@ -37,6 +50,7 @@ button {
 
 .mat-toolbar.maroon-theme {
     background-color: maroon;
+    
 
 }
 
