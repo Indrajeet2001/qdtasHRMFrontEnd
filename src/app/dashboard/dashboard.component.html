@@ -1,78 +1,158 @@
 <div *ngIf="successMessage" class="success-message">
-    {{ successMessage }}
-    <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+  {{ successMessage }}
+  <mat-icon class="close-icon" (click)="dismissSuccessMessage()"
+    >close</mat-icon
+  >
 </div>
 
 <div *ngIf="errorMessage" class="error-message-notification">
-    {{ errorMessage }}
-    <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+  {{ errorMessage }}
+  <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
 </div>
 
-
-
 <div class="container-fluid g-0">
-    <app-header> </app-header>
+  <app-header> </app-header>
 
-    <main>
-        <app-sidenav (toggle)="onToggleSidebar($event)"></app-sidenav>
+  <main>
+    <app-sidenav (toggle)="onToggleSidebar($event)"></app-sidenav>
 
-
-        <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
-
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 1</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 2</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 3</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-4 w-">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 4</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 5</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card 6</h5>
-                                <p class="card-text">Some quick example text to build on the card title.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+    <div
+      class="display-area"
+      [ngClass]="{ expanded: isSidebarExpanded, collapsed: !isSidebarExpanded }"
+    >
+      <div class="row">
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex">
+                <mat-icon class="fs-5 title">menu</mat-icon>
+                <h5 class="card-title fs-6">My Actions</h5>
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-start">
+                <h6>Pages</h6>
+              </div>
+            </div>
+          </div>
         </div>
-    </main>
+
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex mb-4">
+                <mat-icon class="fs-5 title">launch</mat-icon>
+                <h5 class="card-title fs-6">Quick Launch</h5>
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-evenly ">
+                <mat-icon
+                  class="icon p-2"
+                  title="Go to add user"
+                  routerLink="/profile"
+                  >account_circle</mat-icon
+                >
+                <mat-icon class="icon p-2" title="Go to leaves" routerLink="/leave"
+                  >calendar_today</mat-icon
+                >
+                <mat-icon
+                  class="icon p-2"
+                  title="Go to timesheet"
+                  routerLink="/time"
+                  >access_time</mat-icon
+                >
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-evenly">
+                <mat-icon
+                  class="icon p-2"
+                  title="Go to recruitment"
+                  routerLink="/recruitment"
+                  >person_search</mat-icon
+                >
+                <mat-icon
+                  class="icon p-2"
+                  title="Go to project"
+                  routerLink="/project"
+                  >assessment</mat-icon
+                >
+                <mat-icon
+                  class="icon p-2"
+                  title="Go to department"
+                  routerLink="/department"
+                  >group</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex mb-1">
+                <mat-icon class="fs-5 title">calendar_today</mat-icon>
+                <h5 class="card-title fs-6">Leave</h5>
+              </div>
+              <div class="d-flex mb-1 gap-4">
+                <button type="button" class="btn btn-maroon  position-relative"  (click)="showNotifications()">
+                  Leaves Applied
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
+                    {{ pendingCount }}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+                <button type="button" class="btn btn-maroon" (click)="toggleVisibility()">{{isVisible ? 'Hide' : 'Show'}}</button>
+              </div>
+              <div *ngIf="isVisible">
+                <div  *ngFor="let l of pendingLeaves">
+              <p class="text-black small rounded p-2 mb-1"  style="background-color: #e4e4e4; cursor: pointer;" (click)="showNotifications()">
+                {{ l.employee.userName }} has applied for leave from {{ l.startDate }} to {{ l.endDate }} for the reason: "{{ l.reason}}".
+              </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex">
+                <mat-icon class="fs-5 title">access_time</mat-icon>
+                <h5 class="card-title fs-6">Timesheets</h5>
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-start">
+                <h6>Pages</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex">
+                <mat-icon class="fs-5 title">assessment</mat-icon>
+                <h5 class="card-title fs-6">Projects</h5>
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-start">
+                <h6>Pages</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card d-flex">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex">
+                <mat-icon class="fs-5 title">person_search</mat-icon>
+                <h5 class="card-title fs-6">Employee Details</h5>
+              </div>
+              <div class="d-flex mt-3 mx-3 justify-content-start">
+                <h6>Pages</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>

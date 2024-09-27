@@ -33,3 +33,10 @@
      background-color: maroon;
      color: white;
  }
+
+
+ @media (max-width: 768px) {
+.container {
+       overflow-x: auto;
+    }
+ }

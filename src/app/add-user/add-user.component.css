@@ -209,31 +209,22 @@ td.center {
   box-shadow: var(--load-buttonbuttonfocusbox-shadow);
 }
 
-
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .inp-field {
-    flex-direction: column;
-  }
-
-  .inp {
-    width: 100%;
-  }
-
-  .btn-maroon {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-
-
-
-
-/* Actoin th */
-
-
 th.center {
   text-align: center;
 
 }
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+  .adduser {
+  overflow-x: auto;
+  padding: 20px;
+  }
+
+}
+
+
+
+

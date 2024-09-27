@@ -1,15 +1,16 @@
 <mat-toolbar class="maroon-theme">
     <mat-toolbar-row class="justify-content-between">
         <button mat-icon-button (click)="toggleSidebar()">
-            <mat-icon>menu</mat-icon>
+            <mat-icon  >menu</mat-icon>
         </button>
         <div class="toolbar-right">
             <!-- Add an image to display -->
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <img src="./assets/images/pic.png" alt="Profile Image" style="width: 30px; height: 30px;">
+            <button [matMenuTriggerFor]="menu"  class="image-button">
+               <img src="./assets/images/user.png" alt="Profile Image"  class="profile-image">
+               <h6>{{isLogged.userName}}</h6>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>Profile</button>
+                <button routerLink="/myinfo" mat-menu-item>Profile</button>
                 <button  mat-menu-item *ngIf="isLoggedIn()" class="btn" (click)="logout()">Logout</button>
             </mat-menu>
         </div>

@@ -1,19 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../service/userServices';
 import { User } from '../model/user';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent  implements OnInit{
+export class HeaderComponent implements OnInit {
+  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
 
-   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  constructor(private userService: UserService, private router: Router) {}
 
-constructor(private userService: UserService, private router: Router) {}
+  isLogged!: User;
+  u!: User;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLogged = this.userService.getAuthUserFromCache();
+    console.table(this.isLogged);
+  }
 
   @Output() sidebarCollapsed = new EventEmitter<boolean>();
   isCollapsed: boolean = false;
@@ -23,20 +34,19 @@ constructor(private userService: UserService, private router: Router) {}
     this.sidebarCollapsed.emit(this.isCollapsed);
   }
 
+ 
+
   isLoggedIn() {
-    const token = localStorage.getItem("token");
-    if (token == null || token.length <= 0 ) {
+    const token = localStorage.getItem('token');
+    if (token == null || token.length <= 0) {
       return false;
     } else {
       return true;
     }
   }
 
-
   logout() {
-    this.userService.clearc(); 
-    this.router.navigate(['/']); 
+    this.userService.clearc();
+    this.router.navigate(['/']);
   }
-
-
 }
