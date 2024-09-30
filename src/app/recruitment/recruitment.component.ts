@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { DepartmentService } from '../service/departmentServices';
 import { UserService } from '../service/userServices';
-import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { User } from '../model/user';
+import { Recruitment } from '../model/recruitment';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditRecruitmentComponent } from '../edit-recruitment/edit-recruitment.component';
 
 @Component({
   selector: 'app-recruitment',
@@ -15,49 +17,37 @@ export class RecruitmentComponent {
   errorMessage: string | null = null;
   jobTitle: any;
   departments: any;
-  selectedManagers = [];
   fullName: any[] = [];
   selectedTeams = [];
-  minDate: Date;
-  startDate!: Date;
+  displayedColumns: String[] = [];
   resultSizeForUser = 1000;
   private subscriptions: Subscription[] = [];
   users: User[] = [];
   u!: User;
+  recruitment: Recruitment[] = [];
+  isLoggedIn!: User;
+  isLoading: boolean = false;
+  resultSize: number = 10;
+  fetchingResult: boolean = false;
+  resultPage: number = 1;
+  hasMoreResult: boolean = true;
+  uName: any[] = [];
+  dataSource: MatTableDataSource<Recruitment>;
 
   isSidebarExpanded: boolean = true;
 
-  constructor(private userService: UserService) {
-    const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 7);
-    this.minDate = currentDate;
+  constructor(private userService: UserService, public dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource<Recruitment>();
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.userService.getAuthUserFromCache();
+    this.displayColumns();
     this.getJobs();
     const currentPage = 1;
-    this.loadUsers(currentPage);
+    this.loadHiringManager(currentPage);
+    this.loadRecruitment(this.resultPage);
   }
-
-  dropdownSettings = {
-    singleSelection: false,
-    idField: 'id',
-    textField: 'firstName',
-    selectAllText: 'Select All',
-    unSelectAllText: 'Unselect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true,
-  };
-
-  dropdownSettingsForManagers = {
-    singleSelection: false,
-    idField: 'id',
-    textField: 'firstName',
-    selectAllText: 'Select All',
-    unSelectAllText: 'Unselect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true,
-  };
 
   onToggleSidebar(expanded: boolean) {
     this.isSidebarExpanded = expanded;
@@ -78,26 +68,39 @@ export class RecruitmentComponent {
     });
   }
 
-  onDropdownFocusout(teams: NgModel) {
-    if (this.selectedTeams.length === 0) {
-      teams.control.markAsTouched();
+  displayColumns() {
+    if (this.isLoggedIn.role === 'ROLE_USER') {
+      this.displayedColumns = [
+        'jobName',
+        'experience',
+        'id',
+        'userName',
+        'status',
+      ];
+    } else {
+      this.displayedColumns = [
+        'jobName',
+        'experience',
+        'id',
+        'userName',
+        'status',
+        'actions',
+      ];
     }
   }
 
-  loadUsers(selectedPage: number): void {
-    this.loadUsernames(selectedPage);
-  }
-
-  loadUsernames(selectedPage: number): void {
+  loadHiringManager(selectedPage: number): void {
     this.subscriptions.push(
       this.userService
         .getAllUsers(selectedPage, this.resultSizeForUser)
         .subscribe(
           (users: User[]) => {
             this.users = users;
-            this.fullName = this.users
-              .map((user) => user.firstName + ' ' + user.lastName)
-              .filter((name) => !!name);
+
+            this.fullName = this.users.map((user) => ({
+              userId: user.userId,
+              fullName: user.firstName + ' ' + user.lastName,
+            }));
           },
           (error) => {
             console.log(error.error.message);
@@ -105,4 +108,80 @@ export class RecruitmentComponent {
         )
     );
   }
+
+  FilterChange(data: Event) {
+    const value = (data.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  addRecruitment(data: any) {
+    const token = localStorage.getItem('token');
+    this.userService.addRecruitment(data).subscribe(
+      (response: any) => {
+        this.successMessage = 'Recruitment added successfully';
+        setTimeout(() => {
+          this.successMessage = null;
+          window.location.reload();
+        }, 3000);
+      },
+      (error: any) => {
+        console.error('Error adding Recruitment :', error);
+        this.errorMessage =
+          error.error?.message ||
+          'An error occurred while adding the Recruitment ';
+        setTimeout(() => {
+          this.errorMessage = null;
+        }, 3000);
+      }
+    );
+  }
+
+  loadRecruitment(currentPage: number): void {
+    this.subscriptions.push(
+      this.userService
+        .getAllRecruitment(currentPage, this.resultSize)
+        .subscribe(
+          (jb: Recruitment[]) => {
+            this.recruitment = [...jb, ...this.recruitment];
+            this.dataSource.data = this.recruitment;
+            if (jb.length <= 0) this.hasMoreResult = false;
+            this.fetchingResult = false;
+            this.resultPage++;
+          },
+          (error) => {
+            console.log(error.error.message);
+            this.fetchingResult = false;
+          }
+        )
+    );
+  }
+
+  loadMoreRecruitment(): void {
+    this.isLoading = true;
+    this.loadRecruitment(this.resultPage);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  }
+
+
+  editRecruitment(rId: number): void {
+    const dialogRef = this.dialog.open(EditRecruitmentComponent, {
+      width: '900px',
+      data: { rId: rId },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(rId);
+      
+      if (result === 'success') {
+        this.successMessage = 'User updated Successfully';
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else if (result === 'failure') {
+        this.errorMessage = 'Could not update user';
+      }
+    });
+  }
+
 }

@@ -65,6 +65,7 @@ import { EditWorkshiftsComponent } from './edit-workshifts/edit-workshifts.compo
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LeaveReportComponent,
     RecruitmentComponent,
     DashboardComponent,
+    EditRecruitmentComponent,
   ],
   imports: [
     BrowserModule,

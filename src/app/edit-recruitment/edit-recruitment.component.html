@@ -1,0 +1,100 @@
+<div class="card">
+    <div class="container p-2">
+        <form class="recruitmentForm" #recruitmentData="ngForm" (submit)="updateRecruitment(recruitmentData.value)">
+            <div class="inp-row">
+                <h2 class="title mb-3">Recruitment</h2>
+                <span class="close" (click)="dismissDialogBox()">&times;</span>
+                <div class="inp-field">
+                    <div class="inp">
+                        <label class="form-label">Job title</label>
+                        <select class="form-select" ngModel id="job" name="job" placeholder="Select job title" required
+                        [(ngModel)]="Data.job.jobId"
+                            #job="ngModel" [ngClass]="{'invalid': job.invalid && (job.dirty || job.touched), 'valid': job.valid && (job.dirty ||
+                                                                    job.touched)}">
+
+                        <option selected disabled>---Select---</option>
+                        <option *ngFor="let item of jobTitle" [value]="item.jobId">
+                            {{ item.jobName}}
+                        </option>
+                        </select>
+                        <div *ngIf="job.invalid && (job.dirty || job.touched)" class="error-message">
+                            <span *ngIf="job.errors?.['required']">Please select Job Title</span>
+                        </div>
+                    </div>
+
+                    <div class="inp">
+                        <label class="form-label">Experience (In years)</label>
+                        <select class="form-select" id="experience" name="experience" ngModel required 
+                        [(ngModel)]="Data.experience"
+                            #experience="ngModel" [ngClass]="{'invalid': experience.invalid && (experience.dirty || experience.touched), 'valid': experience.valid && (experience.dirty ||
+                                      experience.touched)}">
+                            <option selected disabled>---Select---</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="3">4</option>
+                            <option value="3">5</option>
+                            <option value="3">6</option>
+                        </select>
+                        <div *ngIf="experience.invalid && (experience.dirty || experience.touched)"
+                            class="error-message">
+                            <span *ngIf="experience.errors?.['required']">Please select Experience</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inp-field">
+
+                    <div class="inp">
+                        <label class="form-label">Hiring Managers</label>
+                        <select class="form-select" ngModel id="user" name="user" placeholder="Select job title"
+                        [(ngModel)]="Data.user.userId"
+                             required #user="ngModel" [ngClass]="{'invalid': user.invalid && (user.dirty || user.touched), 'valid': user.valid && (user.dirty ||
+                                                                user.touched)}">
+
+                            <option selected disabled>---Select---</option>
+                            <option *ngFor="let item of fullName " [value]="item.userId">
+                                {{ item.fullName}}
+                            
+                            </option>
+
+                        </select>
+                        <div *ngIf="experience.invalid && (user.dirty || user.touched)" class="error-message">
+                            <span *ngIf="experience.errors?.['required']">Please select Hiring
+                                Managers</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="inp">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" id="status" name="status" ngModel required #status="ngModel" [(ngModel)]="Data.status"
+                            [ngClass]="{'invalid': status.invalid && (status.dirty || status.touched), 'valid': status.valid && (status.dirty ||
+                                          status.touched)}">
+                            <option selected disabled>---Select---</option>
+                            <option value="Open">Open</option>
+                            <option value="Close">Close</option>
+
+                        </select>
+                        <div *ngIf="status.invalid && (status.dirty || status.touched)" class="error-message">
+                            <span *ngIf="status.errors?.['required']">Please select Status</span>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div class="col text-end suv-btn">
+                    <button class="btn btn-maroon" type="reset">Reset</button>
+                    <button class="btn btn-maroon" type="submit" [disabled]="!recruitmentData.valid">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

@@ -39,21 +39,6 @@ export class EditJobcategoriesComponent {
     );
   }
 
-  // updateJob(data: any) {
-  //   this.userService.updateJobCategory(this.jobId, data).subscribe(
-  //     (res: any) => {
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //         // this.router.navigate(['/job-title']);
-  //       }, 1000);
-  //     },
-  //     (error: any) => {
-  //       setTimeout(() => {
-  //       }, 3000);
-
-  //     }
-  //   );
-  // }
 
   updateJob(data: any) {
     this.userService.updateJobCategory(this.jobId, data).subscribe(

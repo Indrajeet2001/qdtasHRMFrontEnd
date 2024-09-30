@@ -260,7 +260,6 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   getDepartments() {
     this.departmentService.getAllDDept().subscribe((data)=>{
       this.departments = data;
-      console.table(this.departments);
     })
   }
 

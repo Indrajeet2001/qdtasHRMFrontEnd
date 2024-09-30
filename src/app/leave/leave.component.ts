@@ -22,7 +22,7 @@ export class LeaveComponent {
     private UserService: UserService,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 7);
@@ -45,7 +45,7 @@ export class LeaveComponent {
   isLoggedIn!: User;
   successMessage: string | null = null;
   errorMessage: string | null = null;
-
+  leave: any;
   ngOnInit() {
     this.UserService.profile();
     this.empId = this.UserService.getAuthUserId();
@@ -90,7 +90,7 @@ export class LeaveComponent {
     this.UserService.applyLeave(userData, empIdString).subscribe(
       (response: any) => {
         this.successMessage = 'Leave Applied Successfully';
-        
+
         setTimeout(() => {
           this.successMessage = null;
           window.location.reload();
@@ -112,7 +112,6 @@ export class LeaveComponent {
         (l: Leave[]) => {
           this.leaves = [...l, ...this.leaves];
           this.dataSource.data = this.leaves;
-
           if (this.leaves.length <= 0 && this.resultPage === 1) {
             this.hasMoreResult = false;
           }
@@ -301,4 +300,6 @@ export class LeaveComponent {
       ];
     }
   }
+
+
 }
