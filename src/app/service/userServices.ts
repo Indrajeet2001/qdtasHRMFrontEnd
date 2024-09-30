@@ -589,15 +589,26 @@ export class UserService {
   }
 
   updateRecruitment(uId: number, jobData: any) {
-    return this.http.post<any>(BASE_API_URL + `/recruitment/` + uId, jobData, {
+    return this.http.post<any>(
+      BASE_API_URL + `/recruitment/update/` + uId,
+      jobData,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  getRecruitmentById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/recruitment/getById/` + uId, {
       headers: this.getHeaders(),
     });
   }
 
-  getRecruitmentById(uId: number) {
-    return this.http.get<any>(BASE_API_URL + `/recruitment/` + uId, {
-      headers: this.getHeaders(),
-    });
+  deleteRecruitment(uId: number) {
+    return this.http.delete<any>(
+      BASE_API_URL + `/recruitment/delete/` + uId,
+      { headers: this.getHeaders() }
+    );
   }
 }
 

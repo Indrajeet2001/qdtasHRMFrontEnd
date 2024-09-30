@@ -29,7 +29,7 @@ export class LoginComponent {
       (response: any) => {
         localStorage.setItem('token', response.token);
         this.userService.storeAuthUserInCache(response.user);
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/users']);
         this.isLoading = false;
       },
       (error: HttpErrorResponse) => {

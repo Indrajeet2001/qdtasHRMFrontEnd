@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {
     component: ProfileComponent,
-    path: 'profile',
+    path: 'users',
     canActivate: [AuthGuard],
   },
   {

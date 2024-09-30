@@ -94,6 +94,7 @@ h2.title {
 }
 
 
+
 .suv-btn {
     margin-top: 20px;
 }
@@ -184,18 +185,12 @@ table {
 }
 
 
+th.center {
+    text-align: center;
 
-th,
-td {
-    text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
-th.center,
-td.center {
-    text-align: left;
-    cursor: pointer;
-}
+
 
 .table-row:hover {
     background-color: rgb(255, 235, 235);
