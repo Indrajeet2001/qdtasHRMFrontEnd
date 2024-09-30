@@ -1,0 +1,149 @@
+
+.app-header {
+    z-index: -1;
+}
+
+
+
+.expanded {
+    margin-left: 80px;
+    margin-right: 20px;
+    /* Adjust based on your sidebar width */
+}
+
+.collapsed {
+    margin-left: 270px;
+    margin-right: 20px;
+    /* Adjust based on your collapsed sidebar width */
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 100%;
+}
+
+h2.title {
+    margin-top: var(--titlemargin-top);
+    font-size: var(--titlefont-size);
+    text-align: var(--titletext-align);
+    color: var(--titlecolor);
+}
+
+.inp-row {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inp-field {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+
+.inp {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.inp input,
+.inp select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.inp input:focus,
+.inp select:focus {
+    border-color: #007bff;
+}
+
+.inp .error-message {
+    color: red;
+    font-size: 12px;
+}
+
+
+.suv-btn {
+    margin-top: 20px;
+}
+
+.btn-maroon {
+    background-color: var(--btnmaroonbackgroundcolor);
+    color: var(--btnmarooncolor);
+    border-radius: var(--btnmaroonborderradius);
+    border: var(--btnmaroonborder);
+    cursor: var(--btnmarooncursor);
+    /* margin: var(--btnmaroonmargin); */
+    margin: 10px;
+}
+
+.btn-maroon:hover {
+    background-color: var(--btnmaroonhoverbackgroundcolor);
+}
+
+
+.error-message.mandatory {
+    color: red;
+    text-align: left;
+}
+
+
+/*Button CSS */
+
+.button {
+    margin: 10px 10px;
+    margin-bottom: 0px;
+    padding: 5px;
+
+
+}
+
+.btn-add {
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    gap: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .inp-field {
+        flex-direction: column;
+    }
+
+    .inp {
+        width: 100%;
+    }
+
+    .btn-maroon {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

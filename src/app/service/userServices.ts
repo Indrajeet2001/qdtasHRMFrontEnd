@@ -19,6 +19,7 @@ import { EmpStatus } from '../model/empStatus';
 import { JobCategory } from '../model/jobCategory';
 import { GeneralInfo } from '../model/genInfo';
 import { WorkShift } from '../model/workshift';
+import { Recruitment } from '../model/recruitment';
 
 @Injectable({
   providedIn: 'root',
@@ -556,7 +557,45 @@ export class UserService {
 
   //timesheet
   getProjects() {
-    return this.http.get<any>(BASE_API_URL + `/project/getAllProjects?pgn=1&sz=2000`, {
+    return this.http.get<any>(
+      BASE_API_URL + `/project/getAllProjects?pgn=1&sz=2000`,
+      {
+        headers: this.getHeaders(),
+      }
+    );
+  }
+
+  //recruitment
+
+  addRecruitment(data: any) {
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this.http.post<any>(BASE_API_URL + `/recruitment/add`, data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getAllRecruitment(currentPage: number, resultSize: number) {
+    return this.http.get<Recruitment[]>(
+      BASE_API_URL +
+        `/recruitment/all?pgn=` +
+        currentPage +
+        `&sz=` +
+        resultSize,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  updateRecruitment(uId: number, jobData: any) {
+    return this.http.post<any>(BASE_API_URL + `/recruitment/` + uId, jobData, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getRecruitmentById(uId: number) {
+    return this.http.get<any>(BASE_API_URL + `/recruitment/` + uId, {
       headers: this.getHeaders(),
     });
   }
