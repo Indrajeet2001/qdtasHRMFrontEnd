@@ -1,3 +1,14 @@
+<div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+    <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+</div>
+
+<div *ngIf="errorMessage" class="error-message-notification">
+    {{ errorMessage }}
+    <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+</div>
+
+
 <div class="card">
     <div class="container p-2">
         <form class="recruitmentForm" #recruitmentData="ngForm" (submit)="updateRecruitment(recruitmentData.value)">

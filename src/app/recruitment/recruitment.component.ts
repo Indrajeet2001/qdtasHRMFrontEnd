@@ -6,6 +6,7 @@ import { Recruitment } from '../model/recruitment';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditRecruitmentComponent } from '../edit-recruitment/edit-recruitment.component';
+import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 
 @Component({
   selector: 'app-recruitment',
@@ -70,18 +71,11 @@ export class RecruitmentComponent {
 
   displayColumns() {
     if (this.isLoggedIn.role === 'ROLE_USER') {
-      this.displayedColumns = [
-        'jobName',
-        'experience',
-        'id',
-        'userName',
-        'status',
-      ];
+      this.displayedColumns = ['jobName', 'experience', 'userName', 'status'];
     } else {
       this.displayedColumns = [
         'jobName',
         'experience',
-        'id',
         'userName',
         'status',
         'actions',
@@ -164,7 +158,6 @@ export class RecruitmentComponent {
     }, 1000);
   }
 
-
   editRecruitment(rId: number): void {
     const dialogRef = this.dialog.open(EditRecruitmentComponent, {
       width: '900px',
@@ -172,16 +165,49 @@ export class RecruitmentComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(rId);
-      
+
       if (result === 'success') {
-        this.successMessage = 'User updated Successfully';
+        this.successMessage = 'Recruitment updated Successfully';
         setTimeout(() => {
           window.location.reload();
         }, 1500);
       } else if (result === 'failure') {
-        this.errorMessage = 'Could not update user';
+        this.errorMessage = 'Could not update Recruitment';
       }
     });
   }
 
+  deleteRecruitment(rId: number): void {
+    this.openConfirmationDialog(rId);
+  }
+
+  openConfirmationDialog(rId: number): void {
+    const dialogRef = this.dialog.open(DialogboxComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to delete?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.deleteRecruitment(rId).subscribe(
+          (response: any) => {
+            this.successMessage = 'Recruitment deleted Successfully';
+            setTimeout(() => {
+              this.successMessage = null;
+              window.location.reload();
+            }, 3000);
+          },
+          (error: any) => {
+            this.errorMessage = 'Could not recruitment';
+            setTimeout(() => {
+              this.errorMessage = null;
+            }, 3000);
+          }
+        );
+      }
+    });
+  }
 }

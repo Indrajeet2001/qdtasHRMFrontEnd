@@ -31,7 +31,6 @@ export class EditRecruitmentComponent {
   recruitmentId!: any;
   public Data: any = { job: {}, user: {} };
 
-  
   constructor(
     private userService: UserService,
     private router: Router,
@@ -90,16 +89,26 @@ export class EditRecruitmentComponent {
     this.userService.updateRecruitment(this.recruitmentId, data).subscribe(
       (res: any) => {
         setTimeout(() => {
+          this.successMessage = 'Recruitment updated Successfully';
           window.location.reload();
         }, 1000);
       },
       (error: any) => {
-        console.error('Error updating job:', error);
+        this.errorMessage = 'Could not update Recruitment';
       }
     );
   }
 
   dismissDialogBox() {
     this.dialogRef.close();
+  }
+
+  dismissSuccessMessage() {
+    this.successMessage = null;
+  }
+
+  dismissErrorMessage() {
+    this.errorMessage = null;
+
   }
 }
