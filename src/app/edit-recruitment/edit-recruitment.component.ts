@@ -109,5 +109,6 @@ export class EditRecruitmentComponent {
 
   dismissErrorMessage() {
     this.errorMessage = null;
+
   }
 }
