@@ -384,7 +384,6 @@
                 </div>
 
                 <div class="col text-end suv-btn">
-                    <button type="reset" class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
                     <button type="submit" class="btn btn-maroon" [disabled]="!editfrom.valid || !selectedField || 
                                      u.userName?.toLowerCase() == this.newUsername.toLowerCase() ||
                                      u.email?.toLowerCase() == this.newEmail.toLowerCase() ||

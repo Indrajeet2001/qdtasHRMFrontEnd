@@ -35,7 +35,7 @@
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">New Department Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="newDeptName" ngModel required
+                    <input type="text" class="form-control" [(ngModel)]="u.deptName" ngModel required
                       placeholder="Department Name" name="deptName" #deptName="ngModel"
                       pattern="^[A-Za-z]+$"
                       [ngClass]="{
@@ -53,7 +53,6 @@
                 </div>
               </div>
               <div class="col text-end suv-btn">
-                <button type="reset" class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
                 <button type="submit" class="btn btn-maroon" [disabled]="!editForm.valid || isSameDeptName()">Submit</button>
               </div>
             </div>
