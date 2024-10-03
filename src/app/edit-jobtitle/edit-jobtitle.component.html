@@ -37,8 +37,7 @@
                     </div>
 
                     <div class="col text-end suv-btn">
-                        <button class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
-                        <button class="btn btn-maroon" type="submit">Submit</button>
+                        <button class="btn btn-maroon" type="submit" [disabled]="!genrealInfoData.valid">Submit</button>
                     </div>
                 </div>
             </form>

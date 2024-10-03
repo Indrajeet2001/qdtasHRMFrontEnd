@@ -1,63 +1,96 @@
 <div class="container-fluid g-0">
-
   <app-header> </app-header>
 
   <main>
     <app-sidenav (toggle)="onToggleSidebar($event)"></app-sidenav>
 
-    <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
+    <div
+      class="display-area"
+      [ngClass]="{ expanded: isSidebarExpanded, collapsed: !isSidebarExpanded }"
+    >
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+        <mat-icon class="close-icon" (click)="dismissSuccessMessage()"
+          >close</mat-icon
+        >
+      </div>
 
-          <div *ngIf="successMessage" class="success-message">
-            {{ successMessage }}
-            <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
-          </div>
-          
-          <div *ngIf="errorMessage" class="error-message-notification">
-            {{ errorMessage }}
-            <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
-          </div>
-
+      <div *ngIf="errorMessage" class="error-message-notification">
+        {{ errorMessage }}
+        <mat-icon class="close-icon" (click)="dismissErrorMessage()"
+          >close</mat-icon
+        >
+      </div>
 
       <div class="adduser">
         <app-dropdown> </app-dropdown>
         <div class="card">
           <div class="container p-2">
-            <form class="genrealInfo" #genrealInfoData="ngForm" (submit)="addEmpStatus(genrealInfoData.value)">
+            <form
+              class="genrealInfo"
+              #genrealInfoData="ngForm"
+              (submit)="addEmpStatus(genrealInfoData.value)"
+            >
               <div class="inp-row">
                 <h2 class="title mb-3">Employment Status</h2>
                 <div class="inp-field">
                   <div class="inp">
                     <label class="form-label">Employment Status</label>
-                    <input type="text" class="form-control inpBox" id="employmentStatusName" ngModel="" required name="employmentStatusName"
-                           #employmentStatusName="ngModel" pattern="^[A-Za-z\s]+$" [ngClass]="{'invalid': employmentStatusName.invalid && (employmentStatusName.dirty || employmentStatusName.touched), 'valid': employmentStatusName.valid && (employmentStatusName.dirty ||
-                                            employmentStatusName.touched)}">
+                    <input
+                      type="text"
+                      class="form-control inpBox"
+                      id="employmentStatusName"
+                      ngModel=""
+                      required
+                      name="employmentStatusName"
+                      #employmentStatusName="ngModel"
+                      pattern="^[A-Za-z\s]+$"
+                      [ngClass]="{
+                        invalid:
+                          employmentStatusName.invalid &&
+                          (employmentStatusName.dirty ||
+                            employmentStatusName.touched),
+                        valid:
+                          employmentStatusName.valid &&
+                          (employmentStatusName.dirty ||
+                            employmentStatusName.touched)
+                      }"
+                    />
 
-                    <div *ngIf="employmentStatusName.invalid && (employmentStatusName.dirty || employmentStatusName.touched)" class="error-message">
-                      <span *ngIf="employmentStatusName.errors?.['required']">Please enter employment status</span>
-                      <span *ngIf="employmentStatusName.errors?.['pattern']">Please enter only alphabets</span>
+                    <div
+                      *ngIf="
+                        employmentStatusName.invalid &&
+                        (employmentStatusName.dirty ||
+                          employmentStatusName.touched)
+                      "
+                      class="error-message"
+                    >
+                      <span *ngIf="employmentStatusName.errors?.['required']"
+                        >Please enter employment status</span
+                      >
+                      <span *ngIf="employmentStatusName.errors?.['pattern']"
+                        >Please enter only alphabets</span
+                      >
                     </div>
                   </div>
-
                 </div>
 
                 <div class="col text-end suv-btn">
-                  <button class="btn btn-maroon"  (click)="goToEmpStatus()" >Cancel</button>
-                  <button class="btn btn-maroon" type="submit">Submit</button>
+                  <button class="btn btn-maroon" type="reset">Reset</button>
+                  <button
+                    class="btn btn-maroon"
+                    type="submit"
+                    [disabled]="!genrealInfoData.valid"
+                  >
+                    Submit
+                  </button>
                 </div>
 
-
-                <div>
-
-
-                </div>
-
+                <div></div>
               </div>
             </form>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </main>

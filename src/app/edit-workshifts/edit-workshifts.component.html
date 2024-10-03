@@ -19,33 +19,6 @@
                         </div>
                     </div>
 
-                    <!-- <div class="inp-field">
-                        <div class="inp">
-                            <label class="form-label">Start time</label>
-                            <input type="time" class="form-control" id="startTime" ngModel="" required name="startTime"  [(ngModel)]="shiftData.startTime"
-                                #startTime="ngModel" 
-                                [ngClass]="{'invalid': startTime.invalid && (startTime.dirty || startTime.touched), 'valid': startTime.valid && (startTime.dirty ||startTime.touched)}">
-                            <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)" class="error-message">
-                                <span *ngIf="workShiftName.errors?.['required']">Please enter start time</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="inp-field">
-                        <div class="inp">
-                            <label class="form-label">End time</label>
-                            <input type="time" class="form-control" id="endTime" ngModel="" required name="endTime"  [(ngModel)]="shiftData.endTime"
-                                #endTime="ngModel"
-                                [ngClass]="{'invalid': endTime.invalid && (endTime.dirty || endTime.touched), 'valid': endTime.valid && (endTime.dirty || endTime.touched)}">
-
-                            <div *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)" class="error-message">
-                                <span *ngIf="workShiftName.errors?.['required']">Please enter end time</span>
-                            </div>
-                        </div>
-                    </div> -->
-
 
                                     <div class="inp-field">
                                         <div class="inp">
@@ -75,8 +48,7 @@
 
 
                     <div class="col text-end suv-btn">
-                        <button class="btn btn-maroon" (click)="dismissDialogBox()">Cancel</button>
-                        <button class="btn btn-maroon" type="submit" [disabled]="!workShiftData.valid"  >Submit</button>
+                        <button class="btn btn-maroon" type="submit"  >Submit</button>
                     </div>
 
 
