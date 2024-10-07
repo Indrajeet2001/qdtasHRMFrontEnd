@@ -55,7 +55,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.userService.getAuthUserFromCache();
+    this.isLoggedIn = this.userService.getAuthUserFromCache();   
     this.displayColumns();
     this.loadUsers(this.resultPage);
     this.getAllJobCategories();
@@ -253,7 +253,6 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.userService.getAllJobTitle().subscribe((data)=>{
       this.jobTitle = data;
             // console.table(this.jobTitle);
-
     })
   }
 

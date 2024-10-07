@@ -527,6 +527,29 @@ export class UserService {
     );
   }
 
+  //users
+
+  getAllUsersList() {
+    return this.http.get<any[]>(BASE_API_URL + `/user/getAll?pgn=&sz=2000`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  //timesheet
+
+  getTimeSheetById(eId: Number) {
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this.http.get<any>(
+      BASE_API_URL +
+        `/ts/getByEmpId/` +
+        eId + `?pgn=&sz=2000`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   //workshift
   // getAllWS(currentPage: number, resultSize: number) {
   //   return this.http.get<WorkShift[]>(
@@ -605,10 +628,9 @@ export class UserService {
   }
 
   deleteRecruitment(uId: number) {
-    return this.http.delete<any>(
-      BASE_API_URL + `/recruitment/delete/` + uId,
-      { headers: this.getHeaders() }
-    );
+    return this.http.delete<any>(BASE_API_URL + `/recruitment/delete/` + uId, {
+      headers: this.getHeaders(),
+    });
   }
 }
 

@@ -36,7 +36,6 @@ export class RecruitmentComponent {
   dataSource: MatTableDataSource<Recruitment>;
 
   isSidebarExpanded: boolean = true;
-
   constructor(private userService: UserService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Recruitment>();
   }

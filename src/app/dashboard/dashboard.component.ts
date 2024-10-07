@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/userServices';
 import { Leave } from '../model/leave';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../model/user';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private UserService: UserService, private router: Router) {}
+  constructor(
+    private UserService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   successMessage: string | null = null;
   errorMessage: string | null = null;
   leaves: Leave[] = [];
@@ -24,9 +30,13 @@ export class DashboardComponent implements OnInit {
   pendingCount: number = 0;
   pendingLeaves: any;
   isVisible: boolean = false;
+  users: any[] = [];
+  selectedUserId: any | null = null;
+  timeSheets: Time[] = [];
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadLeaves(this.resultPage);
+    this.getUsers();
   }
 
   onToggleSidebar(expanded: boolean) {
@@ -73,9 +83,48 @@ export class DashboardComponent implements OnInit {
   }
   toggleVisibility() {
     if (this.pendingLeaves.length > 3) {
-      this.router.navigate(['/leave']); 
+      this.router.navigate(['/leave']);
     } else {
       this.isVisible = !this.isVisible;
     }
   }
+
+  getUsers(): void {
+    this.UserService.getAllUsersList().subscribe((data) => {
+      this.users = data;
+    });
+  }
+
+  onUserChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedUserId = Number(selectElement.value);
+    alert(this.selectedUserId);
+  }
+
+  loadTimeSheet(eId: number): void {
+    if (eId) {
+      this.subscriptions.push(
+        this.UserService.getTimeSheetById(eId).subscribe(
+          (t: Time[]) => {
+             console.log('Timesheet data received:', t);
+            this.timeSheets.push(...t);
+            this.resultPage++;
+          },
+          (error) => {
+            console.error('Error fetching time sheets:', error);
+          }
+        )
+      );
+    } else {
+      console.error('No UserId selected');
+    }
+  }
+
+  navigateToTs(data: number): void {
+    this.router.navigate(['/timesheet', { eId: data }], {
+      relativeTo: this.route,
+      queryParams: { eId: data }, 
+    });
+  }
 }
+

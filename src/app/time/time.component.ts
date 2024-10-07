@@ -21,7 +21,6 @@ export class TimeComponent implements OnInit {
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
   timeSheets: Time[] = [];
-  //noResultMessage: string = '';
   eId: Number = 0;
   isLoading: boolean = false;
   searchTerm: string = '';
@@ -70,8 +69,7 @@ export class TimeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
-    this.eId = this.UserService.getAuthUserId();
-    console.log(this.eId);
+    this.eId = this.UserService.getAuthUserId();   
     this.loadTimeSheet(this.resultPage, this.resultSize, this.eId);
     this.isLoading = true;
     this.UserService.getUserById(this.UserService.getAuthUserId()).subscribe(
@@ -113,8 +111,6 @@ export class TimeComponent implements OnInit {
 
   setTime() {
     this.endTime = this.startTime;
-    console.log(this.startTime);
-    console.log(this.endTime);
   }
 
   onToggleSidebar(expanded: boolean) {
