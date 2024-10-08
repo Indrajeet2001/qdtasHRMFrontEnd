@@ -24,6 +24,8 @@ export class AddJobTitleComponent {
     this.isSidebarExpanded = expanded;
   }
 
+
+
   addJobTitle(jobData: any) {
     const token = localStorage.getItem('token');
     this.userService.addJobTitle(jobData).subscribe(
@@ -59,4 +61,7 @@ export class AddJobTitleComponent {
   goToJobTitle() {
     this.router.navigate(['/job-title']);
   }
+
+
+
 }

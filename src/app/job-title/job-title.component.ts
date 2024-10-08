@@ -31,6 +31,7 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
   role!: number;
   isLoading: boolean = false;
   displayedColumns: string[] = [];
+  count: number = 0;
   dataSource: MatTableDataSource<JobTitle>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -48,6 +49,7 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadJobs(this.resultPage);
     this.displayColumns();
+    this.jobCount();
   }
 
   ngAfterViewInit() {
@@ -160,5 +162,11 @@ export class JobTitleComponent implements OnInit, AfterViewInit {
     } else {
       this.displayedColumns = ['jobId', 'jobName', 'jobDescription', 'action'];
     }
+  }
+
+  jobCount() {
+    this.userService.jobCount().subscribe((data) => {
+      this.count = data;
+    });
   }
 }

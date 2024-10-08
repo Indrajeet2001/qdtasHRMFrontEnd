@@ -31,6 +31,7 @@ export class EmpStatusComponent {
   role!: number;
   isLoading: boolean = false;
   displayedColumns: string[] = [];
+  count:number = 0;
   dataSource: MatTableDataSource<EmpStatus>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -48,6 +49,7 @@ export class EmpStatusComponent {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadEmpStatus(this.resultPage);
         this.displayColumns();
+        this.Count();
 
   }
 
@@ -165,5 +167,11 @@ export class EmpStatusComponent {
         'action',
       ];
     }
+  }
+
+  Count () {
+    this.userService.empStatusCount().subscribe((data)=>{
+      this.count = data
+    })
   }
 }
