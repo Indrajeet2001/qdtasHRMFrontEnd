@@ -675,6 +675,12 @@ export class UserService {
       headers: this.getHeaders(),
     });
   }
+
+  timesheetCount(id: number) {
+    return this.http.get<any>(BASE_API_URL + `/ts/getTotalCount/`+ id , {
+      headers: this.getHeaders(),
+    });
+  }
 }
 
 
