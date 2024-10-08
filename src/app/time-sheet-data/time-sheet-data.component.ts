@@ -1,10 +1,10 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../service/userServices';
 import { Time } from '../model/time';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-time-sheet-data',
@@ -83,5 +83,3 @@ export class TimeSheetDataComponent {
     });
   }
 }
-
-
