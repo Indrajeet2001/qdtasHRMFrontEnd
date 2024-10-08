@@ -45,7 +45,7 @@ export class TimeSheetDataComponent {
     });
     this.Count(this.eId);
   }
-  loadTimeSheet(currentPage: Number, resultSize: Number, eId: Number) {
+  loadTimeSheet(currentPage: number, resultSize: number, eId: number) {
     this.isLoading = true;
     this.subscriptions.push(
       this.userService
