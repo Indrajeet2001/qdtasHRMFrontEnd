@@ -34,6 +34,7 @@ export class DepartmentComponent implements OnInit {
   isLoggedIn!: User;
   isLoading: boolean = false;
   displayedColumns: string[] = [];
+  count:number = 0;
   dataSource: MatTableDataSource<Department>;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
@@ -51,6 +52,7 @@ export class DepartmentComponent implements OnInit {
     this.displayColumnss();
     console.log(this.isLoggedIn);
     this.loadDepartments(this.resultPage);
+    this.Count();
   }
 
   isSidebarExpanded: boolean = true;
@@ -200,5 +202,11 @@ export class DepartmentComponent implements OnInit {
     } else {
       this.displayedColumns = ['deptId', 'deptName', 'actions'];
     }
+  }
+
+  Count () {
+    this.userService.deptCount().subscribe((data)=>{
+      this.count = data
+    })
   }
 }

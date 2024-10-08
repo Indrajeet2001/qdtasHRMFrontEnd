@@ -33,10 +33,10 @@ export class RecruitmentComponent {
   resultPage: number = 1;
   hasMoreResult: boolean = true;
   uName: any[] = [];
+  count:number = 0;
   dataSource: MatTableDataSource<Recruitment>;
 
   isSidebarExpanded: boolean = true;
-
   constructor(private userService: UserService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Recruitment>();
   }
@@ -48,6 +48,7 @@ export class RecruitmentComponent {
     const currentPage = 1;
     this.loadHiringManager(currentPage);
     this.loadRecruitment(this.resultPage);
+    this.Count();
   }
 
   onToggleSidebar(expanded: boolean) {
@@ -209,5 +210,11 @@ export class RecruitmentComponent {
         );
       }
     });
+  }
+
+  Count () {
+    this.userService.recrutimentCount().subscribe((data)=>{
+      this.count = data
+    })
   }
 }

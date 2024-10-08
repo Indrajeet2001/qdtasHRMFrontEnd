@@ -13,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { JobCategory } from '../model/jobCategory';
 import { DepartmentService } from '../service/departmentServices';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-add-user',
@@ -40,8 +41,9 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   isPasswordVisible = false;
   jobs: any;
   empStatus: any;
-  jobTitle:any;
+  jobTitle: any;
   departments: any;
+  count: number = 0;
 
   constructor(
     private userService: UserService,
@@ -62,6 +64,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.getEmpStatus();
     this.getJobTitle();
     this.getDepartments();
+    this.userCount();
   }
 
   ngAfterViewInit() {
@@ -91,11 +94,11 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     );
   }
 
-
-
   deleteUser(uId: number): void {
     this.openConfirmationDialog(uId);
   }
+
+ 
 
   loadUsers(currentPage: number): void {
     this.subscriptions.push(
@@ -239,30 +242,33 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   getAllJobCategories() {
     this.userService.getAllJobCat().subscribe((data) => {
       this.jobs = data;
-      
     });
   }
 
   getEmpStatus() {
-    this.userService.getAllEmpS().subscribe((data)=>{
-      this.empStatus= data;
-    })
+    this.userService.getAllEmpS().subscribe((data) => {
+      this.empStatus = data;
+    });
   }
 
   getJobTitle() {
-    this.userService.getAllJobTitle().subscribe((data)=>{
+    this.userService.getAllJobTitle().subscribe((data) => {
       this.jobTitle = data;
-            // console.table(this.jobTitle);
-
-    })
+      // console.table(this.jobTitle);
+    });
   }
 
   getDepartments() {
-    this.departmentService.getAllDDept().subscribe((data)=>{
+    this.departmentService.getAllDDept().subscribe((data) => {
       this.departments = data;
-    })
+    });
   }
 
+  userCount() {
+    this.userService.userCount().subscribe((data) => {
+      this.count = data;
+    });
+  }
 }
 
 

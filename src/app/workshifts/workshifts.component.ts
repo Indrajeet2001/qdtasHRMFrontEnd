@@ -29,6 +29,7 @@ export class WorkshiftsComponent {
   private subscriptions: Subscription[] = [];
   isSidebarExpanded: boolean = true;
   isLoading: boolean = false;
+  count: number = 0;
   displayedColumns: string[] = [
     'workShiftId',
     'workShiftName',
@@ -57,6 +58,7 @@ export class WorkshiftsComponent {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadShifts(this.resultPage);
     this.displayColumns();
+    this.Count();
   }
 
   ngAfterViewInit() {
@@ -175,5 +177,11 @@ export class WorkshiftsComponent {
         'action',
       ];
     }
+  }
+
+  Count () {
+    this.userService.workCount().subscribe((data)=>{
+      this.count = data;
+    })
   }
 }

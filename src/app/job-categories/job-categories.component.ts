@@ -31,6 +31,7 @@ export class JobCategoriesComponent {
   role!: number;
   isLoading: boolean = false;
   displayedColumns: string[] = [];
+  count:number=0;
   dataSource: MatTableDataSource<JobCategory>;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -48,6 +49,7 @@ export class JobCategoriesComponent {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.loadJobs(this.resultPage);
     this.displayColumns();
+    this.getCount();
   }
 
   ngAfterViewInit() {
@@ -162,5 +164,11 @@ export class JobCategoriesComponent {
     } else {
       this.displayedColumns = ['jobCategoryId', 'jobCategoryName', 'action'];
     }
+  }
+
+  getCount () {
+    this.userService.jobCategoryCount().subscribe((data)=>{
+      this.count =data
+    })
   }
 }

@@ -32,6 +32,7 @@ export class UserService {
     const token = localStorage.getItem('token');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
+
   getHeadersWithoutToken() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -527,6 +528,27 @@ export class UserService {
     );
   }
 
+  //users
+
+  getAllUsersList() {
+    return this.http.get<any[]>(BASE_API_URL + `/user/getAll?pgn=&sz=2000`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  //timesheet
+
+  getTimeSheetById(eId: Number) {
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this.http.get<any>(
+      BASE_API_URL + `/ts/getByEmpId/` + eId + `?pgn=&sz=2000`,
+      { headers: this.getHeaders() }
+    );
+  }
+
   //workshift
   // getAllWS(currentPage: number, resultSize: number) {
   //   return this.http.get<WorkShift[]>(
@@ -605,11 +627,62 @@ export class UserService {
   }
 
   deleteRecruitment(uId: number) {
-    return this.http.delete<any>(
-      BASE_API_URL + `/recruitment/delete/` + uId,
-      { headers: this.getHeaders() }
-    );
+    return this.http.delete<any>(BASE_API_URL + `/recruitment/delete/` + uId, {
+      headers: this.getHeaders(),
+    });
   }
+
+  //count functions
+
+  userCount() {
+    return this.http.get<any>(BASE_API_URL + `/user/totalUserCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  jobCount() {
+    return this.http.get<any>(BASE_API_URL + `/job/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  jobCategoryCount() {
+    return this.http.get<any>(BASE_API_URL + `/jobcategory/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  empStatusCount() {
+    return this.http.get<any>(BASE_API_URL + `/employment/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  workCount() {
+    return this.http.get<any>(BASE_API_URL + `/workshift/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  recrutimentCount() {
+    return this.http.get<any>(BASE_API_URL + `/recruitment/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  deptCount() {
+    return this.http.get<any>(BASE_API_URL + `/dept/getTotalCount`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  timesheetCount(id: number) {
+    return this.http.get<any>(BASE_API_URL + `/ts/getTotalCount/` + id, {
+      headers: this.getHeaders(),
+    });
+  }
+
+
 }
 
 

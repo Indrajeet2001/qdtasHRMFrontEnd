@@ -73,7 +73,6 @@
                                         <option selected disabled>---Select---</option>
                                         <option *ngFor="let item of fullName " [value]="item.userId">
                                             {{ item.fullName}}
-
                                         </option>
 
                                     </select>
@@ -124,6 +123,7 @@
                 <div class="card-container">
                     <div class="container p-2">
                         <form>
+                            <p>Total Recruitments: {{count}}</p>
                             <input type="text" class="input-box" id="myInput" placeholder="Search.."
                                 (keyup)="FilterChange($event)" />
 

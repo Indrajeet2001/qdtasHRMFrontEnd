@@ -9,19 +9,16 @@
 </div>
 
 
-
 <div class="adduser">
-
     <app-dropdown> </app-dropdown>
 
-
-    <div class="button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >
+    <div class="button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
         <button class="btn btn-add" (click)="showForm()">Add</button>
     </div>
 
 
 
-    <div class="card" [ngClass]="{'hidden': !isFormVisible}"  >
+    <div class="card" [ngClass]="{'hidden': !isFormVisible}">
         <div class="container p-2" *ngIf="isFormVisible">
             <form class="adduserform" #addUserData="ngForm" (submit)="saveUser(addUserData.value)">
                 <div class="inp-row">
@@ -121,10 +118,10 @@
                         </div>
                         <div class="inp">
                             <label class="form-label" for="confirm_password">Confirm Password</label>
-                            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" id="confirm_password"
-                                placeholder="Confirm Password" ngModel (mouseover)="showPassword()"
-                                (mouseleave)="hidePassword()" name="confirmPassword" required
-                                #confirmPassword="ngModel" autocomplete="current-password" [ngClass]="{'invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched), 'valid': confirmPassword.valid && (confirmPassword.dirty ||
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control"
+                                id="confirm_password" placeholder="Confirm Password" ngModel
+                                (mouseover)="showPassword()" (mouseleave)="hidePassword()" name="confirmPassword"
+                                required #confirmPassword="ngModel" autocomplete="current-password" [ngClass]="{'invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched), 'valid': confirmPassword.valid && (confirmPassword.dirty ||
                             confirmPassword.touched)}" [pattern]="addUserData.value.password">
                             <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
                                 class="error-message">
@@ -165,8 +162,8 @@
                             <select class="form-select" ngModel name="deptId" placeholder="Select Department" required
                                 #deptId="ngModel" [ngClass]="{'invalid': deptId.invalid && (deptId.dirty || deptId.touched), 'valid': deptId.valid && (deptId.dirty ||
                                 deptId.touched)}">
-                                <option selected [disabled]="true">Select Department</option>   
-                                
+                                <option selected [disabled]="true">Select Department</option>
+
                                 <option *ngFor="let item of departments" [value]="item.deptId">
                                     {{ item.deptName}}
                                 </option>
@@ -230,10 +227,10 @@
                                 [ngClass]="{'invalid': employmentStatusId.invalid && (employmentStatusId.dirty || employmentStatusId.touched), 'valid': employmentStatusId.valid && (employmentStatusId.dirty ||
                                                                                                                     employmentStatusId.touched)}">
                                 <option selected [disabled]="true">Select Employment status</option>
-                                
-                            <option *ngFor="let item of empStatus" [value]="item.employmentStatusId">
-                                {{ item.employmentStatusName}}
-                            </option>
+
+                                <option *ngFor="let item of empStatus" [value]="item.employmentStatusId">
+                                    {{ item.employmentStatusName}}
+                                </option>
 
 
                                 <!-- <option value=3>Full-time</option>
@@ -266,14 +263,6 @@
                                         {{ item.jobName}}
                                     </option>
 
-                                    <!-- <option value=20>Software engineer</option>
-                                    <option value=21>Software tester</option>
-                                    <option value=22>QA lead</option>
-                                    <option value=24>HR manager</option>
-                                    <option value=25>HR manager</option>
-                                    <option value=27>HR manager</option>
-                                    <option value=30>HR manager</option>
-                                    <option value=31>HR manager</option> -->
                                 </select>
                                 <div *ngIf="jobId.invalid && (jobId.dirty || jobId.touched)" class="error-message">
                                     <span *ngIf="jobId.errors?.['required']">Please select job title</span>
@@ -297,7 +286,6 @@
                         </div>
                     </div>
 
-
                     <div>
                         <div class="col text-end suv-btn">
                             <button class="btn btn-maroon" type="reset">Reset</button>
@@ -314,14 +302,34 @@
                 </div>
             </form>
         </div>
-    </div> 
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div class="cardd">
         <div class="card-container">
             <div class="container p-2">
                 <form>
-                    <input type="text" class="input-box" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
+                       
+                    <p>Total users: {{this.count}}</p>
+
+                    <input type="text" class="input-box" id="myInput" placeholder="Search.."
+                        (keyup)="FilterChange($event)" />
 
                     <div class="table-container">
                         <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -360,12 +368,12 @@
 
 
                             <ng-container matColumnDef="gender">
-                                <th mat-header-cell *matHeaderCellDef > Gender </th>
+                                <th mat-header-cell *matHeaderCellDef> Gender </th>
                                 <td mat-cell *matCellDef="let user" class="center"> {{user.gender}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="deptId">
-                                <th mat-header-cell *matHeaderCellDef > Department </th>
+                                <th mat-header-cell *matHeaderCellDef> Department </th>
                                 <td mat-cell *matCellDef="let user" class="center"> {{user.dept?.deptName}} </td>
                             </ng-container>
 

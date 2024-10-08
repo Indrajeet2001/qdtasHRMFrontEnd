@@ -37,7 +37,9 @@
                 </div>
 
 
+                
                 <div class="table-container">
+                  <p>Total jobs: {{this.count}}</p>
                   <input class="input-box" type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
                   <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -78,6 +80,8 @@
                         <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
                       </div>
                     </div>
+
+                
                     
                     <div class="load-button">
                       <button (click)="loadMoreJobs()" *ngIf="hasMoreResult" mat-raised-button color="primary"

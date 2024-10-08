@@ -66,6 +66,7 @@ import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -138,6 +139,7 @@ import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.co
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
