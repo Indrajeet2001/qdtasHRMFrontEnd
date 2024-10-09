@@ -1,0 +1,9 @@
+{
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "workbench.editor.enablePreview": true,
+    "markdown.math.enabled": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "markdown.preview.scrollPreviewWithEditor": false
+}

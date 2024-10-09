@@ -87,8 +87,6 @@ h2.title {
 }
 
 
-/*Button CSS */
-
 .button {
   margin: 10px 10px;
   margin-bottom: 0px;
@@ -150,19 +148,6 @@ table {
 }
 
 
-
-th,
-td {
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th.center,
-td.center {
-  text-align: left;
-  cursor: pointer;
-}
-
 .table-row:hover {
   background-color: rgb(255, 235, 235);
 }
@@ -170,8 +155,7 @@ td.center {
 
 .icon-container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 2px;
 }
 
 .icon-space {
@@ -209,10 +193,6 @@ td.center {
   box-shadow: var(--load-buttonbuttonfocusbox-shadow);
 }
 
-th.center {
-  text-align: center;
-
-}
 
 
 /* Responsive design */

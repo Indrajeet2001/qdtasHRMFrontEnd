@@ -179,13 +179,17 @@ export class UserService {
     });
   }
 
-  // getUserInfo(userId: number): Observable<User> {
-  //   return this.http.get<any>(BASE_API_URL+ `/user/getUserInfo/ ` + userId, { headers: this.getHeaders() });
-  // }
-
   deleteUser(userId: number) {
     return this.http.post<String>(
       BASE_API_URL + `/user/deleteUser?uId=` + userId,
+      userId,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  enableUser(userId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/user/enableUser/` + userId,
       userId,
       { headers: this.getHeaders() }
     );
@@ -681,8 +685,6 @@ export class UserService {
       headers: this.getHeaders(),
     });
   }
-
-
 }
 
 

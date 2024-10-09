@@ -52,6 +52,7 @@ export class LeaveComponent {
     this.loadLeaves(this.resultPage);
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
     this.displayColumns();
+    this.u;
   }
 
   isSidebarExpanded: boolean = true;
@@ -62,13 +63,10 @@ export class LeaveComponent {
   }
 
   applyLeave(userData: any) {
-    // Convert empId to string
     const empIdString = this.empId.toString();
 
-    // Convert startDate and endDate to "YYYY-MM-DD" format
     if (userData.startDate) {
       const startDate = new Date(userData.startDate);
-      // Extract only the date part, discarding the time part
       const startDateFormatted = new Date(
         Date.UTC(
           startDate.getFullYear(),
@@ -80,7 +78,6 @@ export class LeaveComponent {
     }
     if (userData.endDate) {
       const endDate = new Date(userData.endDate);
-      // Extract only the date part, discarding the time part
       const endDateFormatted = new Date(
         Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
       );
@@ -90,7 +87,6 @@ export class LeaveComponent {
     this.UserService.applyLeave(userData, empIdString).subscribe(
       (response: any) => {
         this.successMessage = 'Leave Applied Successfully';
-
         setTimeout(() => {
           this.successMessage = null;
           window.location.reload();
@@ -133,7 +129,6 @@ export class LeaveComponent {
     }, 1000);
   }
 
-  //Reject leave <----
   rejectLeave(id: number): void {
     this.openConfirmationDialog(id);
   }
@@ -168,11 +163,8 @@ export class LeaveComponent {
     });
   }
 
-  //------->
-
   leaveApprovalStatus: { [key: number]: boolean } = {};
 
-  //Approve Leave <-----------
   approveLeave(id: number): void {
     this.openConfirmDialog(id);
   }
@@ -207,8 +199,7 @@ export class LeaveComponent {
     });
   }
 
-  //-------
-  //delete leave
+  
 
   deleteLeave(id: number) {
     this.openConfirmDialogforDelete(id);
@@ -252,26 +243,9 @@ export class LeaveComponent {
     this.errorMessage = null;
   }
 
-  // preventManualInput(event: KeyboardEvent) {
-  //     event.preventDefault();
-  // }
-
   FilterChange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
-  }
-
-  getStatusColor(status: string): string {
-    switch (status) {
-      case 'REJECTED':
-        return '#EE4B2B';
-      case 'APPROVED':
-        return '#32CD32';
-      case 'PENDING':
-        return '#fffee0';
-      default:
-        return 'black'; // or any default color
-    }
   }
 
   openLeaveReports() {
@@ -300,6 +274,4 @@ export class LeaveComponent {
       ];
     }
   }
-
-
 }
