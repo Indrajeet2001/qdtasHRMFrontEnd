@@ -64,17 +64,14 @@ export class EmployeeDetailsComponent implements OnInit {
       this.userService.getUsersByUsername(username).subscribe(
         (users: User[]) => {
           if (users.length === 0) {
-            // No users found for the given username
             this.errorMessage = 'Employee name not valid';
           } else {
-            // Add the retrieved users to the existing users array
             this.users = this.users.concat(users);
             this.dataSource.data = this.users;
             this.isFormSubmitted = true;
           }
         },
         (error: any) => {
-          // Differentiate between various types of errors
           if (error.status === 404) {
             this.errorMessage = 'Employee name not found';
           } else if (error.status === 500) {

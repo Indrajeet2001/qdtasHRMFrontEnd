@@ -98,13 +98,15 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.openConfirmationDialog(uId);
   }
 
- 
+  enableUser(uId: number, event: any): void {
+    this.enableUserConfirmationBox(uId, event);
+  }
 
   loadUsers(currentPage: number): void {
     this.subscriptions.push(
       this.userService.getAllUsers(currentPage, this.resultSize).subscribe(
         (us: User[]) => {
-          this.users = [...us, ...this.users]; // Prepend new users
+          this.users = [...us, ...this.users]; 
           this.dataSource.data = this.users;
           if (us.length <= 0) this.hasMoreResult = false;
           this.fetchingResult = false;
@@ -152,6 +154,38 @@ export class AddUserComponent implements OnInit, AfterViewInit {
             }, 3000);
           }
         );
+      }
+    });
+  }
+
+  enableUserConfirmationBox(uId: number, event: any): void {
+    const dialogRef = this.dialog.open(DialogboxComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirmation',
+        message: 'Are you sure you want to enable this user?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.enableUser(uId).subscribe(
+          (response: any) => {
+            this.successMessage = 'User enabled Successfully';
+            setTimeout(() => {
+              this.successMessage = null;
+              window.location.reload(); 
+            }, 3000);
+          },
+          (error: any) => {
+            this.errorMessage = 'Could not enable user';
+            setTimeout(() => {
+              this.errorMessage = null;
+            }, 3000);
+          }
+        );
+      } else {
+        event.source.checked = !event.checked;
       }
     });
   }
@@ -206,8 +240,6 @@ export class AddUserComponent implements OnInit, AfterViewInit {
         'userId',
         'userName',
         'firstName',
-        'middleName',
-        'lastName',
         'gender',
         'deptId',
         'phoneNumber',
@@ -217,11 +249,10 @@ export class AddUserComponent implements OnInit, AfterViewInit {
         'userId',
         'userName',
         'firstName',
-        'middleName',
-        'lastName',
         'gender',
         'deptId',
         'phoneNumber',
+        'enable',
         'actions',
       ];
     }

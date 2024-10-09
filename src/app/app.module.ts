@@ -66,7 +66,7 @@ import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -139,7 +139,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatCardModule,
-    MatPaginatorModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
