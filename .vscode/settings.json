@@ -5,5 +5,7 @@
     "markdown.math.enabled": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "markdown.preview.scrollEditorWithPreview": false,
-    "markdown.preview.scrollPreviewWithEditor": false
+    "markdown.preview.scrollPreviewWithEditor": false,
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.bracketPairsHorizontal": "active"
 }
