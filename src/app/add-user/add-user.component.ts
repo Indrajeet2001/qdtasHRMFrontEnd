@@ -106,7 +106,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.subscriptions.push(
       this.userService.getAllUsers(currentPage, this.resultSize).subscribe(
         (us: User[]) => {
-          this.users = [...us, ...this.users]; 
+          this.users = [...us, ...this.users];
           this.dataSource.data = this.users;
           if (us.length <= 0) this.hasMoreResult = false;
           this.fetchingResult = false;
@@ -174,7 +174,7 @@ export class AddUserComponent implements OnInit, AfterViewInit {
             this.successMessage = 'User enabled Successfully';
             setTimeout(() => {
               this.successMessage = null;
-              window.location.reload(); 
+              window.location.reload();
             }, 3000);
           },
           (error: any) => {
@@ -299,6 +299,10 @@ export class AddUserComponent implements OnInit, AfterViewInit {
     this.userService.userCount().subscribe((data) => {
       this.count = data;
     });
+  }
+
+  onRowClick(userId: number) {
+    this.router.navigate(['/user-details', userId]);
   }
 }
 

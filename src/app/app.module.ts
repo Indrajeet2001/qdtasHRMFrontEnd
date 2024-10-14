@@ -43,9 +43,6 @@ import {MatSelectModule} from '@angular/material/select';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DepartmentComponent } from './department/department.component';
 import { EditDepartmentComponent } from './edit-department/edit-department.component';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
-import { PerformanceReportComponent } from './performance-report/performance-report.component';
 import {MatCardModule} from "@angular/material/card";
 import { GeneralInfoComponent } from './general-info/general-info.component';
 import { StructureComponent } from './structure/structure.component';
@@ -67,6 +64,8 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { TasksComponent } from './tasks/tasks.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 @NgModule({
@@ -89,9 +88,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ProjectsComponent,
     DepartmentComponent,
     EditDepartmentComponent,
-    EmployeeDetailsComponent,
-    ShowEmpDetailsComponent,
-    PerformanceReportComponent,
     GeneralInfoComponent,
     StructureComponent,
     JobTitleComponent,
@@ -111,6 +107,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     RecruitmentComponent,
     DashboardComponent,
     EditRecruitmentComponent,
+    TasksComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,

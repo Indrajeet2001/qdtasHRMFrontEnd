@@ -171,6 +171,14 @@ export class UserService {
       );
   }
 
+  getUsersById(userId: number) {
+    return this.http.get<any>(
+      BASE_API_URL + `/user/` + userId,
+
+      { headers: this.getHeaders() }
+    );
+  }
+
   getUsersByUsername(username: string): Observable<User[]> {
     console.log(BASE_API_URL + `/user/userInfo/` + username);
 
@@ -684,6 +692,22 @@ export class UserService {
     return this.http.get<any>(BASE_API_URL + `/ts/getTotalCount/` + id, {
       headers: this.getHeaders(),
     });
+  }
+
+  //Tasks Module API
+
+  addTasks(data: any) {
+    return this.http.post<any>(BASE_API_URL + `/task/assign`, data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  getTasksById(userId: number, pageNumber: number, pageSize: number) {
+    return this.http.get<any>(
+      BASE_API_URL +
+        `/task/getTaskByEmpId/${userId}?pgn=${pageNumber}&sz=${pageSize}`,
+      { headers: this.getHeaders() }
+    );
   }
 }
 

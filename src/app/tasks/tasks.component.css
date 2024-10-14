@@ -1,33 +1,28 @@
-.container-fluid {
+/* .container-fluid {
     overflow: hidden;
-}
+} */
 
 .app-header {
     z-index: -1;
 }
 
 .display-area {
-    /* border: 1px solid black; */
     overflow: hidden;
-    /* Prevent scrolling */
     transition: margin 0.3s ease;
-    /* Optional: Add transition for smooth animation */
 }
 
 .expanded {
     margin-left: 80px;
     margin-right: 20px;
-    /* Adjust based on your sidebar width */
 }
 
 .collapsed {
     margin-left: 270px;
     margin-right: 20px;
-    /* Adjust based on your collapsed sidebar width */
 }
 
 
-
+/*Form CSS */
 
 .card {
     border: 1px solid #ddd;
@@ -71,6 +66,9 @@ h2.title {
     flex-direction: column;
 }
 
+.inpBox {
+    width: 49% !important;
+}
 
 
 .inp input,
@@ -89,8 +87,8 @@ h2.title {
 }
 
 .inp .error-message {
-    color: var(--inperror-messagecolor);
-    font-size: var(--inperror-messagefont-size);
+    color: red;
+    font-size: 12px;
 }
 
 
@@ -125,6 +123,11 @@ h2.title {
     margin-bottom: 0px;
 }
 
+.enterId {
+    margin: 10px;
+    color: var(--titlecolor);
+}
+
 .btn-add {
     background-color: maroon;
     color: white;
@@ -134,10 +137,6 @@ h2.title {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
-
-
-
-/* table CSS */
 
 .cardd {
     border: 1px solid #ddd;
@@ -162,11 +161,11 @@ input[type="text"] {
 }
 
 .input-box {
-    width: 30% !important;
+    width: var(--inputboxwidth) !important;
 }
 
 input[type="text"]:focus {
-    border-color: black;
+    border-color: var(--inputtypetextfocusbordercolor);
 }
 
 .table-container {
@@ -179,20 +178,6 @@ table {
 }
 
 
-
-th,
-td {
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-
-
-th.center {
-    text-align: center;
-
-}
-
 .table-row:hover {
     background-color: rgb(255, 235, 235);
 }
@@ -200,8 +185,7 @@ th.center {
 
 .icon-container {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    gap: 2px;
 }
 
 .icon-space {
@@ -209,50 +193,44 @@ th.center {
 }
 
 .loading-bar {
-    margin: 20px 0;
-    text-align: center;
+    margin: var(--loadingbarmargin);
+    text-align: var(--loadingbartextalign);
 }
 
 .load-button {
-    text-align: center;
-    margin-top: 20px;
+    text-align: var(--loadbuttontextalign);
+    margin-top: var(--loadbuttonmargintop);
 }
 
 .load-button button {
-    background-color: maroon;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    background-color: var(--load-buttonbuttonbackground-color);
+    color: var(--load-buttonbuttoncolor);
+    border-radius: var(--load-buttonbuttonborder-radius);
+    border: var(--load-buttonbuttonborder);
+    padding: var(--load-buttonbuttonpadding);
+    font-size: var(--load-buttonbuttonfont-size);
+    cursor: var(--load-buttonbuttoncursor);
+    transition: var(--load-buttonbuttontransition);
 }
 
 .load-button button:hover {
-    background-color: darkred;
-    transform: scale(1.05);
+    background-color: var(--load-buttonbuttonhoverbackground-color);
+    transform: var(--load-buttonbuttonhovertransform);
 }
 
 .load-button button:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(128, 0, 0, 0.5);
+    outline: var(--load-buttonbuttonfocusoutline);
+    box-shadow: var(--load-buttonbuttonfocusbox-shadow);
 }
 
 
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .inp-field {
-        flex-direction: column;
+
+    .adduser {
+        overflow-x: auto;
+        padding: 20px;
     }
 
-    .inp {
-        width: 100%;
-    }
-
-    .btn-maroon {
-        width: 100%;
-        margin-top: 10px;
-    }
 }

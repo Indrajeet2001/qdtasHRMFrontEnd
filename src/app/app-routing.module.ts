@@ -13,9 +13,6 @@ import { TimeSheetDataComponent } from './time-sheet-data/time-sheet-data.compon
 import { AuthGuard } from './shared/auth.guard';
 import { ProjectsComponent } from './projects/projects.component';
 import { DepartmentComponent } from './department/department.component';
-import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { ShowEmpDetailsComponent } from './show-emp-details/show-emp-details.component';
-import {PerformanceReportComponent} from "./performance-report/performance-report.component";
 import { GeneralInfoComponent } from './general-info/general-info.component';
 import { StructureComponent } from './structure/structure.component';
 import { JobTitleComponent } from './job-title/job-title.component';
@@ -29,6 +26,8 @@ import { AddWorkshiftsComponent } from './add-workshifts/add-workshifts.componen
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 const routes: Routes = [
@@ -89,21 +88,6 @@ const routes: Routes = [
   {
     component: DepartmentComponent,
     path: 'department',
-    canActivate: [AuthGuard],
-  },
-  {
-    component: EmployeeDetailsComponent,
-    path: 'employee-details',
-    canActivate: [AuthGuard],
-  },
-  {
-    component: ShowEmpDetailsComponent,
-    path: 'show-emp-details',
-    canActivate: [AuthGuard],
-  },
-  {
-    component: PerformanceReportComponent,
-    path: 'performance-report',
     canActivate: [AuthGuard],
   },
   {
@@ -169,6 +153,16 @@ const routes: Routes = [
   {
     component: DashboardComponent,
     path: 'dashBoard',
+    canActivate: [AuthGuard],
+  },
+  {
+    component: TasksComponent,
+    path: 'tasks',
+    canActivate: [AuthGuard],
+  },
+  {
+    component: UserDetailsComponent,
+    path: 'user-details/:userId',
     canActivate: [AuthGuard],
   },
 ];
