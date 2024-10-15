@@ -167,13 +167,6 @@
                                 <option *ngFor="let item of departments" [value]="item.deptId">
                                     {{ item.deptName}}
                                 </option>
-
-                                <!-- <option value=1>Electronics</option>
-                                <option value=2>IT</option>
-                                <option value=3>Medical</option>
-                                <option value=4>Non-tech</option>
-                                <option value=11>QA</option>
-                                <option value=15>Tester</option> -->
                             </select>
                             <div *ngIf="deptId.invalid && (deptId.dirty || deptId.touched)" class="error-message">
                                 <span *ngIf="deptId.errors?.['required']">Please select department</span>
