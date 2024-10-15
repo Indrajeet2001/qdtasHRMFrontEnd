@@ -101,7 +101,7 @@ export class UserService {
   }
 
   profile() {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('authUser');
   }
 
   addUser(user: any) {
@@ -243,6 +243,11 @@ export class UserService {
     );
   }
 
+  getLeavesById(eId: Number) {
+    return this.http.get<any>(BASE_API_URL + `/leave/getAll/` + eId, {
+      headers: this.getHeaders(),
+    });
+  }
   // Leave Methods
 
   //TimeSheet
@@ -710,6 +715,3 @@ export class UserService {
     );
   }
 }
-
-
-

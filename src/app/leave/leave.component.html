@@ -27,7 +27,7 @@
                 <div>
                   <!-- Show Total Leaves if >= 0 -->
                   <h5 class="title mb-3">
-                    Total Leaves: {{ leaves.length > 0 ? leaves[0].employee.totalLeaves : u.totalLeaves }}
+                    Total Leaves: {{ leaves.length > 0 ? u.totalLeaves : '' }}
                   </h5>
 
                   <!-- Show error if Total Leaves < 0 -->
@@ -129,7 +129,7 @@
 
       <div class="cardd">
 
-        <div class="table-container">
+        <div class="table-container"  *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
           <input class="input-box" type="text" id="myInput" placeholder="Search..." (keyup)="FilterChange($event)" />
           <table mat-table [dataSource]="dataSource" class="mat-elevation">
             <!-- ID Column -->
@@ -193,17 +193,68 @@
           </table>
         </div>
         <div *ngIf="isLoading" class="loading-bar">
-          <div class="spinner-container">
+          <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
             <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
           </div>
         </div>
 
-        <div class="load-button">
+        <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
           <button (click)="loadMoreleaves()" *ngIf="hasMoreResult" mat-raised-button color="primary"
             style="background-color: maroon;" class="rounded-pill align-middle text-center">
             Load More
           </button>
         </div>
+
+
+            <!-- new table -->
+            
+            
+            <!-- Table for user time sheet data -->
+            <div class="table-container" [ngClass]="{'expanded': isSidebarExpanded}" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'">
+              <table mat-table [dataSource]="dataSourceForUser" class="mat-elevation-z8">
+                <ng-container matColumnDef="employee">
+                  <th mat-header-cell *matHeaderCellDef> Employee-ID </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.employee.userId}} </td>
+                </ng-container>
+                
+                <!-- Start Date Column -->
+                <ng-container matColumnDef="startDate">
+                  <th mat-header-cell *matHeaderCellDef> Start Date </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.startDate}} </td>
+                </ng-container>
+                
+                <!-- End Date Column -->
+                <ng-container matColumnDef="endDate">
+                  <th mat-header-cell *matHeaderCellDef> End Date </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.endDate}} </td>
+                </ng-container>
+                
+                <!-- Reason Column -->
+                <ng-container matColumnDef="reason">
+                  <th mat-header-cell *matHeaderCellDef> Reason </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.reason}} </td>
+                </ng-container>
+                
+                <!-- ID Column -->
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef> Type </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.type}} </td>
+                </ng-container>
+                
+                <!-- ID Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let leave"> {{leave.status}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsForUser"></tr>
+                <tr mat-row *matRowDef="let leave; columns: displayedColumnsForUser;"></tr>
+              </table>
+            </div>
+            
+            <!-- new table -->
+
+
       </div>
     </div>
   </main>

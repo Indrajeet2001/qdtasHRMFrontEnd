@@ -129,7 +129,7 @@
            
 
 
-            <div class="table-container"   *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
+            <div class="table-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
 
 
@@ -175,13 +175,13 @@
             </div>
 
 
-            <div *ngIf="isLoading" class="loading-bar" >
-              <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >
+            <div *ngIf="isLoading " class="loading-bar"  >
+              <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
                 <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
               </div>
             </div>
 
-            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
+            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >
               <button (click)="loadMoreUsers()" *ngIf="hasMoreResult" mat-raised-button color="primary"
                       style="background-color: maroon;" class="rounded-pill align-middle text-center">
                 Load More
@@ -192,38 +192,33 @@
             <!-- new table -->
 
 
-            <!-- Table for non-admin users -->
-            <div class="table-container" [ngClass]="{'expanded': isSidebarExpanded}" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'">
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Table for user time sheet data -->
+            <div class="table-container" [ngClass]="{'expanded': isSidebarExpanded}"  *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
+              <table mat-table [dataSource]="dataSourceForUser" class="mat-elevation-z8">
                 <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef class="center"> Date </th>
-                  <td mat-cell *matCellDef="let time" class="center">
-                    <div class="date-container">
-                      <button mat-icon-button (click)="goBack()" class="back-button">
-                        <mat-icon>arrow_back</mat-icon>
-                      </button>
-                      {{ time.date }}
-                    </div>
+                  <th mat-header-cell *matHeaderCellDef > Date </th>
+                  <td mat-cell *matCellDef="let time" >
+                      {{time.date}}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="startTime">
-                  <th mat-header-cell *matHeaderCellDef class="center"> Start Time </th>
-                  <td mat-cell *matCellDef="let t" class="center"> {{t.startTime}} </td>
+                  <th mat-header-cell *matHeaderCellDef > Start Time </th>
+                  <td mat-cell *matCellDef="let time" > {{time.startTime}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="endTime">
-                  <th mat-header-cell *matHeaderCellDef class="center"> End Time </th>
-                  <td mat-cell *matCellDef="let t" class="center"> {{t.endTime}} </td>
+                  <th mat-header-cell *matHeaderCellDef > End Time </th>
+                  <td mat-cell *matCellDef="let time" > {{time.endTime}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="note">
-                  <th mat-header-cell *matHeaderCellDef class="center"> Note </th>
-                  <td mat-cell *matCellDef="let t" class="center"> {{t.note}} </td>
+                  <th mat-header-cell *matHeaderCellDef > Note </th>
+                  <td mat-cell *matCellDef="let time" > {{time.note}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsForUser"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsForUser;"></tr>
+                <tr mat-row *matRowDef="let time; columns: displayedColumnsForUser;"></tr>
               </table>
             </div>
 
@@ -235,9 +230,8 @@
               </div>
             </div>
 
-
-            <div class="load-button"  *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
-              <button (click)="loadMoreTimeSheet()" *ngIf="hasMoreResult" mat-raised-button color="primary"
+            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
+              <button (click)="loadMoreloadtsById()" *ngIf="hasMoreResult" mat-raised-button color="primary"
                       style="background-color: maroon;" class="rounded-pill align-middle text-center">
                 Load More
               </button>

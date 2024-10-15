@@ -21,7 +21,7 @@ export class TimeComponent implements OnInit {
   fetchingResult: boolean = false;
   private subscriptions: Subscription[] = [];
   timeSheets: Time[] = [];
-  eId: Number = 0;
+  eId: number = 0;
   isLoading: boolean = false;
   searchTerm: string = '';
   sideNavStatus: boolean = false;
@@ -44,12 +44,14 @@ export class TimeComponent implements OnInit {
   isLoggedIn!: User;
   displayedColumnsForUser: string[] = ['date', 'startTime', 'endTime', 'note'];
   dataSourceForUser: MatTableDataSource<Time>;
-  @ViewChild('endDate') endDateInput: any; // This allows accessing the input element in the template
+  @ViewChild('endDate') endDateInput: any;
   endDate: string = '';
   startTime: string = '';
   endTime: string = '';
   private location: any;
   timeSheetData: any;
+  tsById: any;
+  noResultMessage: string = '';
 
   constructor(
     private UserService: UserService,
@@ -65,11 +67,12 @@ export class TimeComponent implements OnInit {
     this.maxDate = mDate;
     this.dataSource = new MatTableDataSource();
     this.dataSourceForUser = new MatTableDataSource();
+
   }
 
   ngOnInit() {
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
-    this.eId = this.UserService.getAuthUserId();   
+    this.eId = this.UserService.getAuthUserId();
     this.loadTimeSheet(this.resultPage, this.resultSize, this.eId);
     this.isLoading = true;
     this.UserService.getUserById(this.UserService.getAuthUserId()).subscribe(
@@ -81,7 +84,11 @@ export class TimeComponent implements OnInit {
     this.UserService.profile();
     this.loadUsers(this.resultPage);
     this.getProjects();
- 
+ this.route.paramMap.subscribe((params) => {
+   this.eId = parseInt(params.get('eId') as string);
+   console.log(this.eId);
+   this.loadtsById(this.resultPage, this.resultSize, this.eId);
+ });
   }
 
   updateTimeConstraints() {
@@ -262,17 +269,47 @@ export class TimeComponent implements OnInit {
   }
 
   navigateBack(time: Time) {
-    // Implement your navigation logic here, for example:
-    // Assuming you have a route set up for viewing details of a time entry
-    this.router.navigate(['/time']); // Replace '/time' with your actual route
-  };
-
-
-  getProjects () {
-    this.UserService.getProjects().subscribe((data)=>{
-        this.timeSheetData = data;
-        console.table(this.timeSheetData);
-    })
+    this.router.navigate(['/time']);
   }
 
+  getProjects() {
+    this.UserService.getProjects().subscribe((data) => {
+      this.timeSheetData = data;
+      console.table(this.timeSheetData);
+    });
+  }
+
+  loadtsById(currentPage: number, resultSize: number, eId: number) {
+    this.isLoading = true;
+    this.subscriptions.push(
+      this.UserService.getTimeSheetByEmpId(
+        currentPage,
+        resultSize,
+        eId
+      ).subscribe(
+        (ts: Time[]) => {
+          this.tsById.push(...ts);
+          this.dataSource.data = this.tsById;
+          this.isLoading = false;
+          if (this.timeSheets.length <= 0 && this.resultPage === 1) {
+            this.hasMoreResult = false;
+            this.noResultMessage = 'No result found.';
+          }
+          this.fetchingResult = false;
+          this.resultPage++;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+    );
+  }
+
+  loadMoreloadtsById(): void {
+    this.isLoading = true;
+    this.loadtsById(this.resultPage, this.resultSize, this.eId);
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  }
 }

@@ -7,7 +7,7 @@ import { User } from '../model/user';
 import { Leave } from '../model/leave';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-leave',
@@ -15,19 +15,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./leave.component.css'],
 })
 export class LeaveComponent {
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = [
+    'employee',
+    'startDate',
+    'endDate',
+    'type',
+    'reason',
+    'status',
+    'actions',
+  ];
+  displayedColumnsForUser: string[] = [
+    'employee',
+    'startDate',
+    'endDate',
+    'reason',
+    'type',
+    'status',
+  ];
+
   dataSource: MatTableDataSource<Leave>;
+  dataSourceForUser: MatTableDataSource<Leave>;
+  eId: number = 0;
+  leavesById: any;
 
   constructor(
     private UserService: UserService,
     private router: Router,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private route: ActivatedRoute
   ) {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 7);
     this.minDate = currentDate;
     this.dataSource = new MatTableDataSource<Leave>();
+    this.dataSourceForUser = new MatTableDataSource<Leave>();
   }
 
   minDate: Date;
@@ -45,15 +66,15 @@ export class LeaveComponent {
   isLoggedIn!: User;
   successMessage: string | null = null;
   errorMessage: string | null = null;
-  leave: any;
+  leavebyId: Leave[] = [];
   ngOnInit() {
-    this.UserService.profile();
     this.empId = this.UserService.getAuthUserId();
+    this.eId = this.UserService.getAuthUserId();
     this.loadLeaves(this.resultPage);
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
-    this.displayColumns();
-    this.u;
+    this.loadLeavesById(this.eId); 
   }
+
 
   isSidebarExpanded: boolean = true;
   isLoading: boolean = false;
@@ -199,8 +220,6 @@ export class LeaveComponent {
     });
   }
 
-  
-
   deleteLeave(id: number) {
     this.openConfirmDialogforDelete(id);
   }
@@ -252,26 +271,23 @@ export class LeaveComponent {
     this.router.navigate(['/reports']);
   }
 
-  displayColumns() {
-    if (this.isLoggedIn.role === 'ROLE_USER') {
-      this.displayedColumns = [
-        'employee',
-        'startDate',
-        'endDate',
-        'type',
-        'reason',
-        'status',
-      ];
-    } else {
-      this.displayedColumns = [
-        'employee',
-        'startDate',
-        'endDate',
-        'type',
-        'reason',
-        'status',
-        'actions',
-      ];
-    }
+  loadLeavesById(eId: number) {
+    this.subscriptions.push(
+      this.UserService.getLeavesById(eId).subscribe(
+        (l: Leave[]) => {
+          console.log('Fetched leaves:', l);
+          this.leavebyId = [...l, ...this.leavebyId];
+          this.dataSourceForUser.data = this.leavebyId;
+          if (this.leavebyId.length <= 0 && this.resultPage === 1) {
+            this.hasMoreResult = false;
+          }
+          this.fetchingResult = false;
+          this.resultPage++;
+        },
+        (error) => {
+          console.log(error.error.message);
+        }
+      )
+    );
   }
 }
