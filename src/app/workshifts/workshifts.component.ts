@@ -93,7 +93,6 @@ export class WorkshiftsComponent {
 
   deleteShifts(uId: number): void {
     this.openConfirmationDialog(uId);
-    console.log(uId);
   }
 
   openConfirmationDialog(wId: number): void {
@@ -133,8 +132,6 @@ export class WorkshiftsComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(workId);
-
       if (result === 'success') {
         this.successMessage = 'Workshift updated Successfully';
         setTimeout(() => {

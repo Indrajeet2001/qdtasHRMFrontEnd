@@ -54,6 +54,11 @@ export class UserService {
     return myObject;
   }
 
+  updateAuthUserInCache(updatedUser: User): void {
+    localStorage.setItem('authUser', JSON.stringify(updatedUser)); 
+    this.loginSubject.next(updatedUser);
+  }
+
   getAuthUserId(): number {
     return this.getAuthUserFromCache().userId;
   }

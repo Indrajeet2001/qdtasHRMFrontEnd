@@ -40,7 +40,6 @@ export class TimeSheetDataComponent {
     this.timeSheets.splice(0, this.timeSheets.length);
     this.route.paramMap.subscribe((params) => {
       this.eId = parseInt(params.get('eId') as string);
-      console.log(this.eId);
       this.loadTimeSheet(this.resultPage, this.resultSize, this.eId);
     });
     this.Count(this.eId);

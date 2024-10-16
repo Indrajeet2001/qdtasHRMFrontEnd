@@ -20,7 +20,6 @@ export class EditJobtitleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log(this.data);
     this.jobId = this.data.jobId;
     this.loadJobs(this.jobId);
     // alert(this.jobId);
@@ -29,8 +28,7 @@ export class EditJobtitleComponent implements OnInit {
   loadJobs(jobId: number) {
     this.userService.getJobById(jobId).subscribe(
       (res) => {
-        console.log(res); // Log the response to check structure
-        this.jobData = res; // Assign based on structure
+        this.jobData = res;
       },
       (error) => {
         console.error('Error fetching job data:', error);

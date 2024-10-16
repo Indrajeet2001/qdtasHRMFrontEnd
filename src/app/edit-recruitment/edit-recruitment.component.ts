@@ -77,7 +77,6 @@ export class EditRecruitmentComponent {
     this.userService.getRecruitmentById(Id).subscribe(
       (res) => {
         this.Data = res;
-        console.log('Fetched Data:', this.Data);
       },
       (error) => {
         console.error('Error fetching job data:', error);

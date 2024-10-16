@@ -11,8 +11,6 @@ export class TempPasswordComponent {
   constructor(private userService: UserService, private router: Router) { }
 
   changeTempPass(cp: any) {
-    console.log(cp);
-
     this.userService.changeTempPass(cp).subscribe(
       (response: any) => {
         alert(response.message);

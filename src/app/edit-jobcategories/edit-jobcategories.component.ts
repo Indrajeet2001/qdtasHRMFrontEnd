@@ -30,8 +30,7 @@ export class EditJobcategoriesComponent {
   loadJobs(jobId: number) {
     this.userService.getJobCategoryById(jobId).subscribe(
       (res) => {
-        console.log(res); // Log the response to check structure
-        this.jobData = res; // Assign based on structure
+        this.jobData = res; 
       },
       (error) => {
         console.error('Error fetching job data:', error);

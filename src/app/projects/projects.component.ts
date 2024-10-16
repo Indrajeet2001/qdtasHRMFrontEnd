@@ -58,7 +58,6 @@ constructor(private UserService:UserService,){
 
   this.isLoggedIn = this.UserService.getAuthUserFromCache();
   this.eId = this.UserService.getAuthUserId();
-  console.log(this.eId);
   this.loadProjects(this.resultPage, this.resultSize );
 
   this.UserService.profile();
@@ -126,7 +125,6 @@ addProjectData(projectData: any) {
       }, 3000);
 
         } else {
-          console.log('added');
           this.errorMessage = 'An error occurred while adding the project';
 	 setTimeout(() => {
         this.successMessage = null;

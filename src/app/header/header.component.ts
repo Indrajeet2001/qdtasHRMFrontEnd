@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogged = this.userService.getAuthUserFromCache();
-    console.table(this.isLogged);
   }
 
   @Output() sidebarCollapsed = new EventEmitter<boolean>();

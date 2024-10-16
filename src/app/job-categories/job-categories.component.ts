@@ -92,7 +92,6 @@ export class JobCategoriesComponent {
 
   deleteJobCategory(uId: number): void {
     this.openConfirmationDialog(uId);
-    console.log(uId);
   }
 
   openConfirmationDialog(uId: number): void {
@@ -132,7 +131,6 @@ export class JobCategoriesComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(jobId);
 
       if (result === 'success') {
         this.successMessage = 'User updated Successfully';

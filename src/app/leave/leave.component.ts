@@ -49,13 +49,18 @@ export class LeaveComponent {
     this.minDate = currentDate;
     this.dataSource = new MatTableDataSource<Leave>();
     this.dataSourceForUser = new MatTableDataSource<Leave>();
+     this.u = this.UserService.getAuthUserFromCache(); 
+     this.totalLeaves = this.u.totalLeaves;
+     
   }
 
   minDate: Date;
   startDate!: Date;
 
   sideNavStatus: boolean = false;
-  u: User = this.UserService.getAuthUserFromCache();
+  u: User; // Store user information
+  totalLeaves: any
+  // u: User = this.UserService.getAuthUserFromCache();
   empId: number = this.UserService.getAuthUserId();
   leaves: Leave[] = [];
   resultPage: number = 1;
@@ -72,9 +77,8 @@ export class LeaveComponent {
     this.eId = this.UserService.getAuthUserId();
     this.loadLeaves(this.resultPage);
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
-    this.loadLeavesById(this.eId); 
+    this.loadLeavesById(this.eId);
   }
-
 
   isSidebarExpanded: boolean = true;
   isLoading: boolean = false;
@@ -203,6 +207,20 @@ export class LeaveComponent {
       if (result) {
         this.UserService.changeLeaveStatusApprove(index).subscribe(
           (response: any) => {
+            const updatedUser = this.UserService.getAuthUserFromCache();
+            // Assuming response contains the leave data with startDate and endDate
+            const startDate = new Date(response.leaveData.startDate);
+            const endDate = new Date(response.leaveData.endDate);
+
+            // Calculate the number of days between startDate and endDate
+            const timeDifference = endDate.getTime() - startDate.getTime();
+            const daysDifference = timeDifference / (1000 * 3600 * 24) + 1; // Add 1 to include both start and end date
+
+            if (updatedUser?.totalLeaves !== undefined) {
+              // Subtract the daysDifference from the total leaves
+              updatedUser.totalLeaves -= daysDifference;
+              this.UserService.updateAuthUserInCache(updatedUser);
+            }
             this.successMessage = 'Leave Accepted';
             setTimeout(() => {
               this.successMessage = null;
@@ -275,7 +293,6 @@ export class LeaveComponent {
     this.subscriptions.push(
       this.UserService.getLeavesById(eId).subscribe(
         (l: Leave[]) => {
-          console.log('Fetched leaves:', l);
           this.leavebyId = [...l, ...this.leavebyId];
           this.dataSourceForUser.data = this.leavebyId;
           if (this.leavebyId.length <= 0 && this.resultPage === 1) {

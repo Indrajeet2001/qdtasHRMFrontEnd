@@ -91,7 +91,6 @@ export class EmpStatusComponent {
 
   deleteEmpStatus(uId: number): void {
     this.openConfirmationDialog(uId);
-    console.log(uId);
   }
 
   openConfirmationDialog(uId: number): void {
@@ -139,8 +138,6 @@ export class EmpStatusComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(jobId);
-
       if (result === 'success') {
         this.successMessage = 'User updated Successfully';
         setTimeout(() => {
