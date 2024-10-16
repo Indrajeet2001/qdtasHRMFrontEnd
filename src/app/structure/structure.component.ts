@@ -22,7 +22,6 @@ export class StructureComponent {
 
   getOrgStructure() {
     this.userService.getOrgainzationStructure().subscribe((res: any[]) => {
-      console.log(res);
       this.Structure = res;
 
       this.Structure.forEach((item) => {});

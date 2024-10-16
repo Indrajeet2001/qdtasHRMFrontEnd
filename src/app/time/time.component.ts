@@ -86,7 +86,6 @@ export class TimeComponent implements OnInit {
     this.getProjects();
  this.route.paramMap.subscribe((params) => {
    this.eId = parseInt(params.get('eId') as string);
-   console.log(this.eId);
    this.loadtsById(this.resultPage, this.resultSize, this.eId);
  });
   }
@@ -140,7 +139,7 @@ export class TimeComponent implements OnInit {
             this.successMessage = null;
           }, 3000);
         } else {
-          console.log('added');
+
           this.errorMessage = 'An error occurred while adding the user';
           setTimeout(() => {
             this.successMessage = null;
@@ -275,7 +274,6 @@ export class TimeComponent implements OnInit {
   getProjects() {
     this.UserService.getProjects().subscribe((data) => {
       this.timeSheetData = data;
-      console.table(this.timeSheetData);
     });
   }
 
@@ -299,7 +297,6 @@ export class TimeComponent implements OnInit {
           this.resultPage++;
         },
         (error) => {
-          console.log(error);
         }
       )
     );

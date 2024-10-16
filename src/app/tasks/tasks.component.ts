@@ -50,14 +50,11 @@ export class TasksComponent implements OnInit {
   getUsers(): void {
     this.UserService.getAllUsersList().subscribe(
       (data) => {
-        console.log('Fetched users data:', data);
         this.users = data;
         this.userIds = this.users.map((u) => u.userId);
 
         if (this.userIds.length > 0) {
           this.selectedUserId = this.userIds[0];
-          console.log('Selected User ID:', this.selectedUserId);
-
           this.loadTasks(this.selectedUserId, this.currentPage);
         }
       },
@@ -76,7 +73,6 @@ export class TasksComponent implements OnInit {
     const token = localStorage.getItem('token');
     this.UserService.addTasks(taskData).subscribe(
       (response: any) => {
-        console.log('added');
         this.successMessage = 'Task assigned successfully';
         setTimeout(() => {
           this.successMessage = null;

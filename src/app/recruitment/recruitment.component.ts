@@ -66,7 +66,6 @@ export class RecruitmentComponent {
   getJobs() {
     this.userService.getAllJobTitle().subscribe((data) => {
       this.jobTitle = data;
-      console.table(this.jobTitle);
     });
   }
 
@@ -165,8 +164,6 @@ export class RecruitmentComponent {
       data: { rId: rId },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(rId);
-
       if (result === 'success') {
         this.successMessage = 'Recruitment updated Successfully';
         setTimeout(() => {

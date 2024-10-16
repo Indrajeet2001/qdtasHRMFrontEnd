@@ -27,8 +27,7 @@ export class EditWorkshiftsComponent implements OnInit {
   loadShifts(workId: number) {
     this.userService.getWorkshiftById(workId).subscribe(
       (res) => {
-        console.log(res); // Log the response to check structure
-        this.shiftData = res; // Assign based on structure
+        this.shiftData = res; 
       },
       (error) => {
         console.error('Error fetching workshift data:', error);

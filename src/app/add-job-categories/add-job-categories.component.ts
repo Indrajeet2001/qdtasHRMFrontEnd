@@ -29,8 +29,6 @@ export class AddJobCategoriesComponent {
     const token = localStorage.getItem('token');
     this.userService.addJobCategory(jobCategory).subscribe(
       (response: any) => {
-        console.log('added');
-
         this.successMessage = 'Job Category added successfully';
         setTimeout(() => {
           this.successMessage = null;

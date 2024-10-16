@@ -106,7 +106,6 @@ export class DashboardComponent implements OnInit {
       this.subscriptions.push(
         this.UserService.getTimeSheetById(eId).subscribe(
           (t: Time[]) => {
-             console.log('Timesheet data received:', t);
             this.timeSheets.push(...t);
             this.resultPage++;
           },

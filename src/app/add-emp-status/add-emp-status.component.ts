@@ -29,7 +29,6 @@ export class AddEmpStatusComponent {
     const token = localStorage.getItem('token');
     this.userService.addEmpStatus(emp).subscribe(
       (response: any) => {
-        console.log('added');
         this.successMessage = 'Employment status added successfully';
         setTimeout(() => {
           this.successMessage = null;

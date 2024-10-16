@@ -11,7 +11,6 @@ export class ResetPasswordComponent {
 
   onSubmit(res: FormData) {
     const J = JSON.parse(JSON.stringify(res));
-    console.log(J.email);
     this.userService.resetPassword(J.email).subscribe(
       (data: any) => {
         alert(data.message);

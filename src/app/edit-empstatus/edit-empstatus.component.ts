@@ -20,17 +20,14 @@ export class EditEmpstatusComponent {
   ) {}
 
   ngOnInit() {
-    // console.log(this.data);
     this.jobId = this.data.jobId;
     this.loadEmpStatus(this.jobId);
-    // alert(this.jobId);
   }
 
   loadEmpStatus(jobId: number) {
     this.userService.getEmpStatusById(jobId).subscribe(
       (res) => {
-        console.log(res); // Log the response to check structure
-        this.jobData = res; // Assign based on structure
+        this.jobData = res; 
       },
       (error) => {
         console.error('Error fetching job data:', error);

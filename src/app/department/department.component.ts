@@ -50,7 +50,6 @@ export class DepartmentComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.userService.getAuthUserFromCache();
     this.displayColumnss();
-    console.log(this.isLoggedIn);
     this.loadDepartments(this.resultPage);
     this.Count();
   }

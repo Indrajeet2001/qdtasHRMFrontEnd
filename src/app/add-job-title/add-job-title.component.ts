@@ -30,8 +30,6 @@ export class AddJobTitleComponent {
     const token = localStorage.getItem('token');
     this.userService.addJobTitle(jobData).subscribe(
       (response: any) => {
-        console.log('added');
-
         this.successMessage = 'Job title added successfully';
         setTimeout(() => {
           this.successMessage = null;
