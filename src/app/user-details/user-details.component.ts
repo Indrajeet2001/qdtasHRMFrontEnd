@@ -85,7 +85,7 @@ export class UserDetailsComponent {
 
   getUserById(userId: number) {
     this.userService.getUsersById(userId).subscribe((data) => {
-      this.userDetails = data;
+      this.userDetails = data;      
     });
   }
 }
