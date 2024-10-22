@@ -49,9 +49,8 @@ export class LeaveComponent {
     this.minDate = currentDate;
     this.dataSource = new MatTableDataSource<Leave>();
     this.dataSourceForUser = new MatTableDataSource<Leave>();
-     this.u = this.UserService.getAuthUserFromCache(); 
-     this.totalLeaves = this.u.totalLeaves;
-     
+    this.u = this.UserService.getAuthUserFromCache();
+    this.totalLeaves = this.u.totalLeaves;
   }
 
   minDate: Date;
@@ -59,7 +58,8 @@ export class LeaveComponent {
 
   sideNavStatus: boolean = false;
   u: User; // Store user information
-  totalLeaves: any
+  totalLeaves: any;
+
   // u: User = this.UserService.getAuthUserFromCache();
   empId: number = this.UserService.getAuthUserId();
   leaves: Leave[] = [];
@@ -79,6 +79,8 @@ export class LeaveComponent {
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
     this.loadLeavesById(this.eId);
   }
+
+  
 
   isSidebarExpanded: boolean = true;
   isLoading: boolean = false;
@@ -205,35 +207,25 @@ export class LeaveComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.UserService.changeLeaveStatusApprove(index).subscribe(
-          (response: any) => {
-            const updatedUser = this.UserService.getAuthUserFromCache();
-            // Assuming response contains the leave data with startDate and endDate
-            const startDate = new Date(response.leaveData.startDate);
-            const endDate = new Date(response.leaveData.endDate);
-
-            // Calculate the number of days between startDate and endDate
-            const timeDifference = endDate.getTime() - startDate.getTime();
-            const daysDifference = timeDifference / (1000 * 3600 * 24) + 1; // Add 1 to include both start and end date
-
-            if (updatedUser?.totalLeaves !== undefined) {
-              // Subtract the daysDifference from the total leaves
-              updatedUser.totalLeaves -= daysDifference;
-              this.UserService.updateAuthUserInCache(updatedUser);
-            }
-            this.successMessage = 'Leave Accepted';
-            setTimeout(() => {
-              this.successMessage = null;
-              window.location.reload();
-            }, 3000);
-          },
-          (error: any) => {
-            this.errorMessage = 'Something went wrong';
-            setTimeout(() => {
-              this.errorMessage = null;
-            }, 3000);
-          }
-        );
+             this.UserService.changeLeaveStatusApprove(index).subscribe(
+               (response: any) => {
+                 const updatedUser = this.UserService.getAuthUserFromCache();
+                 if (response) {
+                   this.UserService.updateAuthUserInCache(updatedUser);
+                 }
+                 this.successMessage = 'Leave Accepted';
+                 setTimeout(() => {
+                   this.successMessage = null;
+                   window.location.reload();
+                 }, 3000);
+               },
+               (error: any) => {
+                 this.errorMessage = 'Something went wrong';
+                 setTimeout(() => {
+                   this.errorMessage = null;
+                 }, 3000);
+               }
+             );
       }
     });
   }
@@ -307,4 +299,5 @@ export class LeaveComponent {
       )
     );
   }
+
 }

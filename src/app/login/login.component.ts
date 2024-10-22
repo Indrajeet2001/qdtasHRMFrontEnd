@@ -20,7 +20,8 @@ export class LoginComponent {
   isLoading: boolean = false;
   showMessage: boolean = false;
   message: string = '';
-  isPasswordVisible= false;
+  isPasswordVisible = false;
+
 
   userLogin(data: any) {
     this.isLoading = true;
@@ -59,11 +60,7 @@ export class LoginComponent {
     });
   }
 
-  showPassword() {
-    this.isPasswordVisible = true;
-  }
-
-  hidePassword() {
-    this.isPasswordVisible = false;
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 }

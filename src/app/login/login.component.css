@@ -112,6 +112,19 @@ body {
     border-radius: 10px;
 }
 
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+  .password-container .toggle-icon {
+      position: absolute;
+      display: flex;
+      right: 10px;
+      top: 3rem;
+      font-size: 18px;
+  }
+
 .container-form a {
     color: maroon;
     display: block;
