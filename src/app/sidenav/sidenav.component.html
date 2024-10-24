@@ -1,4 +1,4 @@
-<div class="sidebar-container" [ngClass]="{ 'collapsed': isExpanded }">
+<div class="sidebar-container" [ngClass]="{ 'collapsed': isExpanded }" (click)="toggleSidebar()">
     
     <mat-nav-list class="sidebar">
         <div class="logo py-4" [style.padding-bottom.px]="isExpanded ? 25 : 10">
@@ -46,8 +46,5 @@
 
        
     </mat-nav-list>
-   
-        <button class="toggle-button" (click)="toggleSidebar()">
-            <mat-icon>{{ isExpanded ? 'arrow_forward' : 'arrow_back' }}</mat-icon>
-        </button>
+
 </div>

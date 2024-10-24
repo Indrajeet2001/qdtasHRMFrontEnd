@@ -3,6 +3,7 @@ import { UserService } from '../service/userServices';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tasks } from '../model/Tasks';
 import { Subscription } from 'rxjs';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-tasks',
@@ -11,7 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class TasksComponent implements OnInit {
   isSidebarExpanded: boolean = true;
-
+  isLoggedIn!: User;
+  u!: User;
   users: any[] = [];
   userIds: number[] = [];
   selectedUserId!: number;
