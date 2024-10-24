@@ -17,7 +17,6 @@
       </div>
 
       <div class="projects">
-
         <div class="card"  *ngIf="isLoggedIn?.role !=='ROLE_USER'">
           <div class="container p-2">
             <form class="projectfrom" #projectFrom="ngForm" (submit)="addProjectData(projectFrom.value)">
@@ -66,8 +65,7 @@
                       <span *ngIf="description.errors?.['required']">Description is required.</span>
                     </div>
                   </div>
-
-
+                  
                   <div class="inp">
 
                     <label class="form-label">Teams</label>

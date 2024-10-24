@@ -120,8 +120,9 @@ export class LeaveComponent {
         }, 3000);
       },
       (error: any) => {
-        console.error('Error occurred:', error);
-        this.errorMessage = 'Something went wrong';
+         if (error.status === 400) {
+           this.errorMessage = 'Insufficient leave balance to request leave';
+         }
         setTimeout(() => {
           this.errorMessage = null;
         }, 3000);
@@ -219,12 +220,15 @@ export class LeaveComponent {
                    window.location.reload();
                  }, 3000);
                },
-               (error: any) => {
-                 this.errorMessage = 'Something went wrong';
-                 setTimeout(() => {
-                   this.errorMessage = null;
-                 }, 3000);
-               }
+               (error) => 
+                 {
+                   if (error.status === 400) {
+                     this.errorMessage = "Insufficent Leave Balance"
+                   }
+                   setTimeout(() => {
+                     this.errorMessage = null;
+                   }, 3000);
+                 }
              );
       }
     });
