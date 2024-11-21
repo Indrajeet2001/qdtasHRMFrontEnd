@@ -90,21 +90,17 @@
 
 
                 <div class="inp-field">
-                  <div class="inp">
-                    <label class="form-label">Managers</label>
-                    <ng-multiselect-dropdown [(ngModel)]="selectedManagers"
-                                             [placeholder]="'Select Managers'"
-                                             [data]="fullName"
-                                             [settings]="dropdownSettingsForManagers"
-                                             name="managers"
-                                             required
-                                             #managers="ngModel"
-                                             (focusout)="onDropdownFocusout(managers)">
-                    </ng-multiselect-dropdown>
-                    <div *ngIf="managers.touched && managers.invalid && (managers.dirty || managers.touched)" class="error-message">
-                      <span *ngIf="managers.errors?.['required']">Select Managers</span>
-                    </div>
-                  </div>
+        <div class="inp">
+          <label class="form-label">Managers</label>
+          <ng-multiselect-dropdown [(ngModel)]="selectedManagers" [placeholder]="'Select Managers'" [data]="managersList"
+            [settings]="dropdownSettingsForManagers" name="managers" required #managers="ngModel"
+            (focusout)="onDropdownFocusout(managers)">
+          </ng-multiselect-dropdown>
+          <div *ngIf="managers.touched && managers.invalid && (managers.dirty || managers.touched)" class="error-message">
+            <span *ngIf="managers.errors?.['required']">Select Managers</span>
+          </div>
+                    
+        </div>
 
                   <div class="inp">
                     <label class="form-label">Status</label>

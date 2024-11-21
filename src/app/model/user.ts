@@ -12,6 +12,7 @@ export class User {
   gender: string | undefined;
   dept: Department | undefined;
   role: string | undefined;
+  subRole: string | undefined;
   phoneNumber: string | undefined;
   address: string | undefined;
   designation: string | undefined;
@@ -32,6 +33,7 @@ export class User {
     gender: string | undefined,
     dept: Department | undefined,
     role: string | undefined,
+    subRole: string | undefined,
     phoneNumber: string | undefined,
     address: string | undefined,
     designation: string | undefined,
@@ -51,6 +53,7 @@ export class User {
     this.gender = gender;
     this.dept = dept;
     this.role = role;
+    this.subRole = subRole;
     this.phoneNumber = phoneNumber;
     this.address = address;
     this.designation = designation;
