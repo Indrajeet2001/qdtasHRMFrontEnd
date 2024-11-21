@@ -35,6 +35,7 @@ export class EditUserComponent implements OnInit {
   newdeptId: string = '';
   newgender: string = '';
   newrole: string = '';
+  newsubRole: string = '';
   newdesignation: string = '';
   newpassword: string = '';
   newjobCategoryId: string = '';
@@ -57,10 +58,10 @@ export class EditUserComponent implements OnInit {
     this.userService.getUserById(this.uId).subscribe((user) => {
       this.u = user;
     });
-       this.getAllJobCategories();
-       this.getEmpStatus();
-       this.getJobTitle();
-       this.getDepartments();
+    this.getAllJobCategories();
+    this.getEmpStatus();
+    this.getJobTitle();
+    this.getDepartments();
   }
 
   onFieldSelect(event: any) {

@@ -32,6 +32,7 @@
                                 <option value="deptId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Department</option>
                                 <option value="gender" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Gender</option>
                                 <option value="role" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Role</option>
+                                <option value="subRole" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Sub Role</option>
                                 <option value="jobId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Job title
                                 </option>
                                 <option value="jobCategoryId" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">Job category
@@ -301,6 +302,30 @@
                                 previous role</span>
                         </div>
                     </div>
+                </div>
+
+                <div class="inp-row" *ngIf="selectedField === 'subRole'">
+                    <div class="inp-field">
+                        <div class="inp">
+                            <label class="form-label">New Sub Role</label>
+                            <select class="form-select" ngModel name="subRole" required #subRole="ngModel" [(ngModel)]="newsubRole"
+                                [ngClass]="{'invalid': subRole.invalid && (subRole.dirty || subRole.touched), 'valid': subRole.valid && (subRole.dirty ||
+                                                subRole.touched)}">
+                                <option selected [disabled]="true">Select Role</option>
+                                <option value="ROLE_MANAGER">Manager</option>
+                
+                            </select>
+                
+                            <div *ngIf="subRole.invalid && (subRole.dirty || subRole.touched)" class="error-message">
+                                <span *ngIf="subRole.errors?.['required']">Please select Subrole</span>
+                            </div>
+                            <!-- <span *ngIf="u.subRole?.toString() == this.newsubRole.toString()" class="error-message">Entered
+                                                role is same
+                                                as
+                                                previous role</span> -->
+                        </div>
+                    </div>
+                              
                 </div>
 
                 <div class="inp-row" *ngIf="selectedField === 'jobId'">

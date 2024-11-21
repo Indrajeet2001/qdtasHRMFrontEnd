@@ -160,6 +160,7 @@ export class UserService {
             res.gender,
             res.dept,
             res.role,
+            res.subRole,
             res.phoneNumber,
             res.address,
             res.designation,
