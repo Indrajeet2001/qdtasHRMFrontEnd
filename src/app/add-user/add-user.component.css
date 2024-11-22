@@ -147,6 +147,9 @@ table {
   border-collapse: collapse;
 }
 
+.inputBox {
+  width: 48.5% !important;
+}
 
 .table-row:hover {
   background-color: rgb(255, 235, 235);
