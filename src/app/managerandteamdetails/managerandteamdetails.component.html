@@ -1,0 +1,19 @@
+<div class="title ">
+    <h2 mat-dialog-title class="title mb-3">{{ data.type === 'team' ? 'Team Members' : ' Managers' }}</h2>
+
+</div>
+
+<div class="content">
+
+    <mat-dialog-content>
+        <ul>
+            <li *ngFor="let item of data.items">{{ item }}</li>
+        </ul>
+    </mat-dialog-content>
+
+</div>
+<div class="action">
+    <mat-dialog-actions align="end">
+        <button mat-button class="btn-maroon " (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

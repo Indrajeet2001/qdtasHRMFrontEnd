@@ -4,9 +4,9 @@ import { UserService } from '../service/userServices';
 import { Subscription } from 'rxjs';
 import { Project } from '../model/project';
 import { MatTableDataSource } from '@angular/material/table';
-import {NgModel} from "@angular/forms";
-
-
+import { NgModel } from '@angular/forms';
+import { ManagerandteamdetailsComponent } from '../managerandteamdetails/managerandteamdetails.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-projects',
@@ -38,13 +38,13 @@ export class ProjectsComponent implements OnInit {
   displayedColumns: string[] = [
     'projectName',
     'client',
-    'teams',
+    'team',
     'managers',
     'status',
   ];
   dataSource: MatTableDataSource<Project>;
 
-  constructor(private UserService: UserService) {
+  constructor(private UserService: UserService, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -98,9 +98,9 @@ export class ProjectsComponent implements OnInit {
           this.fullName = this.users
             .map((user) => user.firstName + ' ' + user.lastName)
             .filter((name) => !!name);
-            this.managersList = this.users
-              .filter((user) => user.subRole === 'ROLE_MANAGER') 
-              .map((manager) => manager.firstName + ' ' + manager.lastName);
+          this.managersList = this.users
+            .filter((user) => user.subRole === 'ROLE_MANAGER')
+            .map((manager) => manager.firstName + ' ' + manager.lastName);
         },
         (error) => {
           console.log(error.error.message);
@@ -142,23 +142,49 @@ export class ProjectsComponent implements OnInit {
     this.errorMessage = null;
   }
 
-  loadProjects(currentPage: Number, resultSize: Number) {
+  loadProjects(currentPage: number, resultSize: number) {
     this.isLoading = true;
+
     this.subscriptions.push(
       this.UserService.getAllProjects(currentPage, resultSize).subscribe(
-        (p: Project[]) => {
-          this.projects.push(...p);
+        (projects: any[]) => {
+          // Extract manager and team usernames
+          const updatedProjects = projects.map((project) => {
+            const managerUsername =
+              project.managers?.map((member: any) => member.userName) || [];
+            const teamUsernames =
+              project.team?.map((member: any) => member.userName) || [];
+
+            return {
+              projectId: project.projectId,
+              projectName: project.projectName,
+              description: project.description,
+              status: project.status,
+              type: project.type,
+              client: project.client,
+              managerUsername: managerUsername,
+              teamUsernames: teamUsernames,
+            };
+          });
+
+          console.log(updatedProjects);
+
+          // Update the data source
+          this.projects.push(...updatedProjects);
           this.dataSource.data = this.projects;
           this.isLoading = false;
+
           if (this.projects.length <= 0 && this.resultPage === 1) {
             this.hasMoreResult = false;
             this.noResultMessage = 'No result found.';
           }
+
           this.fetchingResult = false;
           this.resultPage++;
         },
         (error) => {
           console.log(error);
+          this.isLoading = false;
         }
       )
     );
@@ -182,8 +208,11 @@ export class ProjectsComponent implements OnInit {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
   }
+
+  viewDetails(type: 'team' | ' managers', data: any) {
+    this.dialog.open(ManagerandteamdetailsComponent, {
+      width: '400px',
+      data: { type, items: data },
+    });
+  }
 }
-
-
-
-

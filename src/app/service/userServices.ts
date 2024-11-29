@@ -55,7 +55,7 @@ export class UserService {
   }
 
   updateAuthUserInCache(updatedUser: User): void {
-    localStorage.setItem('authUser', JSON.stringify(updatedUser)); 
+    localStorage.setItem('authUser', JSON.stringify(updatedUser));
     this.loginSubject.next(updatedUser);
   }
 
@@ -719,5 +719,21 @@ export class UserService {
         `/task/getTaskByEmpId/${userId}?pgn=${pageNumber}&sz=${pageSize}`,
       { headers: this.getHeaders() }
     );
+  }
+
+  assignAllEmployee(projectId: number, empIds: number[]): Observable<any> {
+    const payload = { projectId, empIds };
+
+    return this.http.post(BASE_API_URL + `/project/assignAll`, payload, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    });
+  }
+
+  assignAllManagers(projectId: number, managerIds: number[]): Observable<any> {
+    const payload = { projectId, managerIds };
+
+    return this.http.post(BASE_API_URL + `/project/assignManagers`, payload, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }, 
+    });
   }
 }
