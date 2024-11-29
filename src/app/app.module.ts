@@ -66,6 +66,9 @@ import { EditRecruitmentComponent } from './edit-recruitment/edit-recruitment.co
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TasksComponent } from './tasks/tasks.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { ManagerandteamdetailsComponent } from './managerandteamdetails/managerandteamdetails.component';
+import { TeamsFormComponentComponent } from './teams-form-component/teams-form-component.component';
+import { ManagersFormComponentComponent } from './managers-form-component/managers-form-component.component';
 
 
 @NgModule({
@@ -109,6 +112,9 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     EditRecruitmentComponent,
     TasksComponent,
     UserDetailsComponent,
+    ManagerandteamdetailsComponent,
+    TeamsFormComponentComponent,
+    ManagersFormComponentComponent,
   ],
   imports: [
     BrowserModule,

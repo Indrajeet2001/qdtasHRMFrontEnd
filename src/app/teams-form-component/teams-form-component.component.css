@@ -1,0 +1,257 @@
+/* .container-fluid {
+    overflow: hidden;
+  } */
+
+.app-header {
+    z-index: -1;
+}
+
+.display-area {
+    /* border: 1px solid black; */
+    /* overflow: hidden; */
+    /* Prevent scrolling */
+    transition: margin 0.3s ease;
+    /* Optional: Add transition for smooth animation */
+}
+
+.expanded {
+    margin-left: 80px;
+    margin-right: 20px;
+    /* Adjust based on your sidebar width */
+}
+
+.collapsed {
+    margin-left: 270px;
+    margin-right: 20px;
+    /* Adjust based on your collapsed sidebar width */
+}
+
+
+
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    width: 100%;
+}
+
+h2.title {
+    margin-top: var(--titlemargin-top);
+    font-size: var(--titlefont-size);
+    text-align: var(--titletext-align);
+    color: var(--titlecolor);
+}
+
+.inp-row {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inp-field {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+
+.inp {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.inp input,
+.inp select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.inp input:focus,
+.inp select:focus {
+    border-color: #007bff;
+}
+
+.inp .error-message {
+    color: red;
+    font-size: 12px;
+}
+
+
+
+.suv-btn {
+    margin-top: 20px;
+}
+
+.btn-maroon {
+    background-color: var(--btnmaroonbackgroundcolor);
+    color: var(--btnmarooncolor);
+    border-radius: var(--btnmaroonborderradius);
+    border: var(--btnmaroonborder);
+    cursor: var(--btnmarooncursor);
+    /* margin: var(--btnmaroonmargin); */
+    margin: 10px;
+}
+
+.btn-maroon:hover {
+    background-color: var(--btnmaroonhoverbackgroundcolor);
+}
+
+
+.error-message.mandatory {
+    color: red;
+    text-align: left;
+}
+
+
+/*Button CSS */
+
+.button {
+    margin: 10px 10px;
+    margin-bottom: 0px;
+    padding: 5px;
+
+
+}
+
+.btn-add {
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    gap: 20px;
+}
+
+
+
+/* table CSS */
+
+.cardd {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    width: 100%;
+}
+
+
+/* Input field styling */
+input[type="text"] {
+    width: var(--inputtypetextwidth);
+    padding: var(--inputtypetextpadding);
+    font-size: var(--inputtypetextfont-size);
+    border: var(--inputtypetextborder);
+    border-radius: var(--inputtypetextborder-radius);
+    outline: var(--inputtypetextoutline);
+    box-sizing: var(--inputtypetextbox-sizing);
+    transition: var(--inputtypetexttransition);
+}
+
+.input-box {
+    width: 30% !important;
+}
+
+input[type="text"]:focus {
+    border-color: black;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th.center {
+    text-align: center;
+
+}
+
+
+
+.table-row:hover {
+    background-color: rgb(255, 235, 235);
+}
+
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icon-space {
+    width: 10px;
+}
+
+.loading-bar {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.load-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.load-button button {
+    background-color: var(--load-buttonbuttonbackground-color);
+    color: var(--load-buttonbuttoncolor);
+    border-radius: var(--load-buttonbuttonborder-radius);
+    border: var(--load-buttonbuttonborder);
+    padding: var(--load-buttonbuttonpadding);
+    font-size: var(--load-buttonbuttonfont-size);
+    cursor: var(--load-buttonbuttoncursor);
+    transition: var(--load-buttonbuttontransition);
+}
+
+.load-button button:hover {
+    background-color: var(--load-buttonbuttonhoverbackground-color);
+    transform: var(--load-buttonbuttonhovertransform);
+}
+
+.load-button button:focus {
+    outline: var(--load-buttonbuttonfocusoutline);
+    box-shadow: var(--load-buttonbuttonfocusbox-shadow);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .inp-field {
+        flex-direction: column;
+    }
+
+    .inp {
+        width: 100%;
+    }
+
+    .btn-maroon {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

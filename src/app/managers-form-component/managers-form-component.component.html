@@ -1,0 +1,49 @@
+<div class="container-fluid g-0">
+    <app-header> </app-header>
+    <main>
+        <app-sidenav (toggle)="onToggleSidebar($event)"></app-sidenav>
+        <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
+
+            <div *ngIf="successMessage" class="success-message">
+                {{ successMessage }}
+                <mat-icon class="close-icon" (click)="dismissSuccessMessage()">close</mat-icon>
+            </div>
+
+            <div *ngIf="errorMessage" class="error-message-notification">
+                {{ errorMessage }}
+                <mat-icon class="close-icon" (click)="dismissErrorMessage()">close</mat-icon>
+            </div>
+
+            <div class="card" *ngIf="isLoggedIn?.role !=='ROLE_USER'">
+                <div class="container p-2">
+                    <h2 class="title mb-3">Managers</h2>
+                    <form class="managerForm" #managerForm="ngForm">
+                        <div class="inp-row">
+                            <div *ngFor="let manager of managersList">
+                                <label>
+                                    <input type="checkbox" [value]="manager.userId"
+                                        [checked]="selectedManagerIds.includes(manager.userId)"
+                                        (change)="onManagerSelection($event, manager.userId)" />
+                                    {{ manager.name }}
+                                </label>
+                            </div>
+                            <label>
+                                <input type="checkbox" [checked]="areAllManagersSelected"
+                                    (change)="onSelectAllManagers($event)" />
+                                Select All
+                            </label>
+
+                            <div>
+                                <div class="col text-end suv-btn">
+                                    <button class="btn btn-maroon" type="reset">Reset</button>
+                                    <button class="btn btn-maroon" id="sub" type="submit"
+                                        [disabled]="!managerForm.valid" (click)="assignManagers()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

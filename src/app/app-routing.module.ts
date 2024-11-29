@@ -28,7 +28,8 @@ import { RecruitmentComponent } from './recruitment/recruitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-
+import { TeamsFormComponentComponent } from './teams-form-component/teams-form-component.component';
+import { ManagersFormComponentComponent } from './managers-form-component/managers-form-component.component';
 
 const routes: Routes = [
   {
@@ -165,10 +166,12 @@ const routes: Routes = [
     path: 'user-details/:userId',
     canActivate: [AuthGuard],
   },
+  { path: 'teams/:projectId', component: TeamsFormComponentComponent },
+  { path: 'managers/:projectId', component: ManagersFormComponentComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

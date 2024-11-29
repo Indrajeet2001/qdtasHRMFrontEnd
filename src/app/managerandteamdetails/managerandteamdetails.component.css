@@ -1,0 +1,21 @@
+.btn-maroon {
+    background-color: var(--btnmaroonbackgroundcolor);
+    color: var(--btnmarooncolor);
+    border-radius: var(--btnmaroonborderradius);
+    border: var(--btnmaroonborder);
+    cursor: var(--btnmarooncursor);
+    margin: var(--btnmaroonmargin);
+}
+
+
+
+
+
+
+
+.title {
+    margin-top: var(--titlemargin-top);
+    font-size: var(--titlefont-size);
+    text-align: var(--titletext-align);
+    color: var(--titlecolor);
+}
