@@ -15,6 +15,7 @@ export class TasksComponent implements OnInit {
   isLoggedIn!: User;
   u!: User;
   users: any[] = [];
+  managers: any[] = [];
   userIds: number[] = [];
   selectedUserId!: number;
   userIdInput!: number;
@@ -53,6 +54,7 @@ export class TasksComponent implements OnInit {
     this.UserService.getAllUsersList().subscribe(
       (data) => {
         this.users = data;
+        this.managers = this.users.filter((u) => u.subRole === 'ROLE_MANAGER');
         this.userIds = this.users.map((u) => u.userId);
 
         if (this.userIds.length > 0) {

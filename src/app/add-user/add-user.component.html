@@ -286,7 +286,7 @@
                                 <select class="form-select inputBox" ngModel name="subRole" required #subRole="ngModel" [ngClass]="{'invalid': subRole.invalid && (subRole.dirty || subRole.touched), 'valid': subRole.valid && (subRole.dirty ||
                                                             subRole.touched)}">
                                     <option selected [disabled]="true">Select subRole</option>
-                                    <option value="Emoloyee">Emoloyee</option>                                  
+                                    <option value="Emoloyee">Employee</option>                                  
                                 </select>
                                 <div *ngIf="subRole.invalid && (subRole.dirty || subRole.touched)" class="error-message">
                                     <span *ngIf="subRole.errors?.['required']">Please select Sub Role</span>
