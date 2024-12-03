@@ -103,7 +103,6 @@ export class ProjectsComponent implements OnInit {
             .map((manager) => manager.firstName + ' ' + manager.lastName);
         },
         (error) => {
-          console.log(error.error.message);
         }
       )
     );
@@ -167,7 +166,6 @@ export class ProjectsComponent implements OnInit {
             };
           });
 
-          console.log(updatedProjects);
 
           // Update the data source
           this.projects.push(...updatedProjects);
@@ -183,7 +181,6 @@ export class ProjectsComponent implements OnInit {
           this.resultPage++;
         },
         (error) => {
-          console.log(error);
           this.isLoading = false;
         }
       )
