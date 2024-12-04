@@ -733,7 +733,16 @@ export class UserService {
     const payload = { projectId, managerIds };
 
     return this.http.post(BASE_API_URL + `/project/assignManagers`, payload, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }, 
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
+  }
+
+  getAllProjectList() {
+    return this.http.get<any[]>(
+      BASE_API_URL + `/project/getAllProjects?pgn=&sz=1000`,
+      {
+        headers: this.getHeaders(),
+      }
+    );
   }
 }
