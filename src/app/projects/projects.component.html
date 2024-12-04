@@ -64,15 +64,19 @@
                   </div>
 
 
-                  <div class="inp">
-                    <label class="form-label">Status</label>
-                    <input type="text" class="form-control" id="status" placeholder="Status" ngModel name="status"
-                      required #status="ngModel" [ngClass]="{'invalid': status.invalid && (status.dirty || status.touched), 'valid': status.valid && (status.dirty ||
-                                                                                    status.touched)}">
-                    <div *ngIf="status.invalid && (status.dirty || status.touched)" class="error-message">
-                      <span *ngIf="status.errors?.['required']">Status is required.</span>
-                    </div>
+                <div class="inp">
+                  <label class="form-label">Status</label>
+                  <select class="form-select" ngModel id="status" name="status" required #status="ngModel" [ngClass]="{'invalid': status.invalid && (status.dirty || status.touched), 'valid': status.valid && (status.dirty ||
+                                        status.touched)}">
+                    <option selected [attr.disabled]="true">Select Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Upcoming">Upcoming</option>
+                  </select>
+                  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="error-message">
+                    <span *ngIf="status.errors?.['required']">Select Status</span>
                   </div>
+                </div>
 
 
 

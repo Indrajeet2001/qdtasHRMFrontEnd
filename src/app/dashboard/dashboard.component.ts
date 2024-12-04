@@ -33,10 +33,22 @@ export class DashboardComponent implements OnInit {
   users: any[] = [];
   selectedUserId: any | null = null;
   timeSheets: Time[] = [];
+  projects: any[] = [];
+  count: number = 0;
+  counts: number = 0;
+  managersCount: number = 0;
+  managersList: any[] = [];
+  fullName: any[] = [];
+  resultSizeForUser = 1000;
 
   ngOnInit() {
     this.loadLeaves(this.resultPage);
     this.getUsers();
+    this.getAllProject();
+    this.userCount();
+    this.deptCount();
+    const currentPage = 1;
+    this.loadUsernames(currentPage);
   }
 
   onToggleSidebar(expanded: boolean) {
@@ -122,8 +134,55 @@ export class DashboardComponent implements OnInit {
   navigateToTs(data: number): void {
     this.router.navigate(['/timesheet', { eId: data }], {
       relativeTo: this.route,
-      queryParams: { eId: data }, 
+      queryParams: { eId: data },
     });
+  }
+
+  getAllProject() {
+    this.UserService.getAllProjectList().subscribe((data) => {
+      this.projects = data;
+    });
+  }
+
+  userCount() {
+    this.UserService.userCount().subscribe((data) => {
+      this.count = data;
+    });
+  }
+
+  deptCount() {
+    this.UserService.deptCount().subscribe((data) => {
+      this.counts = data;
+    });
+  }
+
+  loadUsernames(selectedPage: number): void {
+    this.subscriptions.push(
+      this.UserService.getAllUsers(
+        selectedPage,
+        this.resultSizeForUser
+      ).subscribe(
+        (users: User[]) => {
+          this.users = users;
+          this.fullName = this.users
+            .map((user) => user.firstName + ' ' + user.lastName)
+            .filter((name) => !!name);
+          this.managersList = this.users
+            .filter((user) => user.subRole === 'ROLE_MANAGER')
+            .map((manager) => ({
+              name: manager.firstName + ' ' + manager.lastName,
+              userId: manager.userId,
+            }));
+
+          const managersCount = this.managersList.length;
+
+          this.managersCount = managersCount;
+        },
+        (error) => {
+          console.error('Error fetching users:', error);
+        }
+      )
+    );
   }
 }
 
