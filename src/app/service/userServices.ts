@@ -739,7 +739,7 @@ export class UserService {
 
   getAllProjectList() {
     return this.http.get<any[]>(
-      BASE_API_URL + `/project/getAllProjects?pgn=&sz=1000`,
+      BASE_API_URL + `/project/getAllProjects?pgn=&sz=2000`,
       {
         headers: this.getHeaders(),
       }
