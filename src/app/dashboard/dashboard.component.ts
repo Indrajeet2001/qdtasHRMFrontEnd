@@ -40,6 +40,10 @@ export class DashboardComponent implements OnInit {
   managersList: any[] = [];
   fullName: any[] = [];
   resultSizeForUser = 1000;
+  projectCount = 0;
+  upcomingProjects = 0;
+  ongoingProjects = 0;
+  completedProjects = 0;
 
   ngOnInit() {
     this.loadLeaves(this.resultPage);
@@ -141,6 +145,17 @@ export class DashboardComponent implements OnInit {
   getAllProject() {
     this.UserService.getAllProjectList().subscribe((data) => {
       this.projects = data;
+      this.projectCount = this.projects.length;
+      this.upcomingProjects = this.projects.filter(
+        (project) => project.status.toLowerCase() === 'upcoming'
+      ).length;
+      this.ongoingProjects = this.projects.filter(
+        (project) => project.status.toLowerCase() === 'ongoing'
+      ).length;
+      this.completedProjects = this.projects.filter(
+        (project) => project.status.toLowerCase() === 'completed'
+      ).length;
+   
     });
   }
 
@@ -185,4 +200,3 @@ export class DashboardComponent implements OnInit {
     );
   }
 }
-
