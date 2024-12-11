@@ -9,7 +9,7 @@ import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BASE_API_URL } from '../constansts';
-import { Observable, Subject, forkJoin, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, forkJoin, throwError } from 'rxjs';
 import { User } from '../model/user';
 import { Leave } from '../model/leave';
 import { map, catchError } from 'rxjs/operators';
@@ -41,11 +41,19 @@ export class UserService {
     return headers;
   }
 
+  // storeAuthUserInCache(authUser: User): void {
+  //   if (authUser != null) {
+  //     localStorage.setItem('authUser', JSON.stringify(authUser));
+  //   }
+  //   this.loginSubject.next(authUser);
+  // }
+
   storeAuthUserInCache(authUser: User): void {
     if (authUser != null) {
+      console.log('Storing authUser in cache:', authUser);
       localStorage.setItem('authUser', JSON.stringify(authUser));
+      this.loginSubject.next(authUser); // Emit updated user
     }
-    this.loginSubject.next(authUser);
   }
 
   getAuthUserFromCache(): User {
@@ -56,7 +64,6 @@ export class UserService {
 
   updateAuthUserInCache(updatedUser: User): void {
     localStorage.setItem('authUser', JSON.stringify(updatedUser));
-    this.loginSubject.next(updatedUser);
   }
 
   getAuthUserId(): number {
@@ -209,6 +216,14 @@ export class UserService {
     );
   }
 
+  disableUser(userId: number) {
+    return this.http.post<String>(
+      BASE_API_URL + `/user/disableUser/` + userId,
+      userId,
+      { headers: this.getHeaders() }
+    );
+  }
+
   // leave methods
 
   getAllLeaves(currentPage: number, resultSize: number) {
@@ -241,10 +256,18 @@ export class UserService {
     );
   }
 
-  changeLeaveStatusApprove(leaveId: number) {
-    return this.http.post<String>(
-      BASE_API_URL + `/leave/approve/` + leaveId,
-      leaveId,
+  // changeLeaveStatusApprove(leaveId: number) {
+  //   return this.http.post<String>(
+  //     BASE_API_URL + `/leave/approve/` + leaveId,
+  //     leaveId,
+  //     { headers: this.getHeaders() }
+  //   );
+  // }
+
+  changeLeaveStatusApprove(leaveId: number): Observable<User> {
+    return this.http.post<User>(
+      `${BASE_API_URL}/leave/approve/${leaveId}`,
+      {},
       { headers: this.getHeaders() }
     );
   }
