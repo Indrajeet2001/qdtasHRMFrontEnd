@@ -157,26 +157,33 @@ export class AddUserComponent implements OnInit, AfterViewInit {
   }
 
   enableUserConfirmationBox(uId: number, event: any): void {
+    const isEnableAction = event.checked;
+    const action = isEnableAction ? 'enable' : 'disable';
+
     const dialogRef = this.dialog.open(DialogboxComponent, {
       width: '300px',
       data: {
         title: 'Confirmation',
-        message: 'Are you sure you want to enable this user?',
+        message: `Are you sure you want to ${action} this user?`,
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.userService.enableUser(uId).subscribe(
+        const userAction$ = isEnableAction
+          ? this.userService.enableUser(uId)
+          : this.userService.disableUser(uId);
+
+        userAction$.subscribe(
           (response: any) => {
-            this.successMessage = 'User enabled Successfully';
+            this.successMessage = `User ${action}d successfully`;
             setTimeout(() => {
               this.successMessage = null;
               window.location.reload();
             }, 3000);
           },
           (error: any) => {
-            this.errorMessage = 'Could not enable user';
+            this.errorMessage = `Could not ${action} user`;
             setTimeout(() => {
               this.errorMessage = null;
             }, 3000);
