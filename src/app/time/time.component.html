@@ -36,9 +36,10 @@
               <div class="inp-field">
                 <div class="inp">
                   <label class="form-label">Start Time</label>
-                  <input type="time"  class="form-control" id="startTime" name="startTime" [(ngModel)]="startTime"
-                         #startTimeInput="ngModel"  required>
-                  <div *ngIf="startTimeInput.invalid && (startTimeInput.dirty || startTimeInput.touched)" class="error-message">
+                  <input type="time" class="form-control" id="startTime" name="startTime" [(ngModel)]="startTime"
+                    #startTimeInput="ngModel" required>
+                  <div *ngIf="startTimeInput.invalid && (startTimeInput.dirty || startTimeInput.touched)"
+                    class="error-message">
                     <span *ngIf="startTimeInput.errors?.['required']">Start Time is required</span>
                   </div>
                 </div>
@@ -46,8 +47,9 @@
                 <div class="inp">
                   <label class="form-label">End Time</label>
                   <input type="time" class="form-control" id="endTime" name="endTime" [(ngModel)]="endTime"
-                         #endTimeInput="ngModel" [min]="startTime" (change)="updateTimeConstraints()" required>
-                  <div *ngIf="endTimeInput.invalid && (endTimeInput.dirty || endTimeInput.touched)" class="error-message">
+                    #endTimeInput="ngModel" [min]="startTime" (change)="updateTimeConstraints()" required>
+                  <div *ngIf="endTimeInput.invalid && (endTimeInput.dirty || endTimeInput.touched)"
+                    class="error-message">
                     <span *ngIf="endTimeInput.errors?.['required']">End Time is required</span>
                   </div>
                 </div>
@@ -61,12 +63,10 @@
                   <label class="inp-date">Choose Date</label>
                   <mat-form-field class="inp-date">
                     <input matInput [matDatepicker]="startPicker" [max]="minDate" [min]="maxDate"
-                           [(ngModel)]="startDate" name="date" id="sDate"
-                           placeholder="Choose Date" #date="ngModel" required>
+                      [(ngModel)]="startDate" name="date" id="sDate" placeholder="Choose Date" #date="ngModel" required>
                     <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                     <mat-datepicker #startPicker></mat-datepicker>
-                    <mat-error class="error-message"
-                               *ngIf="date.invalid && (date.dirty || date.touched)">
+                    <mat-error class="error-message" *ngIf="date.invalid && (date.dirty || date.touched)">
                       <span *ngIf="date.errors?.['required']">Please select Date</span>
                     </mat-error>
                   </mat-form-field>
@@ -74,8 +74,8 @@
 
                 <div class="inp">
                   <label class="form-label">Project</label>
-                  <select class="form-select" id="project" name="projectId" ngModel required
-                          #projectId="ngModel" [ngClass]="{'invalid': projectId.invalid && (projectId.dirty || projectId.touched), 'valid': projectId.valid && (projectId.dirty ||
+                  <select class="form-select" id="project" name="projectId" ngModel required #projectId="ngModel"
+                    [ngClass]="{'invalid': projectId.invalid && (projectId.dirty || projectId.touched), 'valid': projectId.valid && (projectId.dirty ||
                                                             projectId.touched)}">
                     <option selected [disabled]="true">Select project</option>
                     <option *ngFor="let item of timeSheetData" [value]="item.projectId">
@@ -84,8 +84,7 @@
                     <!-- <option value=1>HRM</option>
                     <option value=2>HomeLyf </option> -->
                   </select>
-                  <div *ngIf="projectId.invalid && (projectId.dirty || projectId.touched)"
-                       class="error-message">
+                  <div *ngIf="projectId.invalid && (projectId.dirty || projectId.touched)" class="error-message">
                     <span *ngIf="projectId.errors?.['required']">Please select the project name</span>
                   </div>
                 </div>
@@ -94,10 +93,9 @@
 
               <div class="inp">
                 <label class="form-label">Note</label>
-                <textarea class="form-control inpBox" id="note" placeholder="Today's Task" ngModel
-                          name="note" required  #note="ngModel" [ngClass]="{'invalid': note.invalid && (note.dirty || note.touched),
-                                     'valid': note.valid && (note.dirty || note.touched)}"
-                          pattern="[^\s].*"> </textarea>
+                <textarea class="form-control inpBox" id="note" placeholder="Today's Task" ngModel name="note" required
+                  #note="ngModel" [ngClass]="{'invalid': note.invalid && (note.dirty || note.touched),
+                                     'valid': note.valid && (note.dirty || note.touched)}"> </textarea>
                 <div *ngIf="note.invalid && (note.dirty || note.touched)" class="error-message">
                   <span *ngIf="note.errors?.['required']">Note is required</span>
                   <span *ngIf="note.errors?.['pattern']">Note must not be blank</span>
@@ -108,7 +106,7 @@
               <div>
                 <div class="col text-end suv-btn">
                   <button class="btn btn-maroon" type="reset">Reset</button>
-                  <button class="btn btn-maroon" type="submit"   [disabled]="!timeSheetForm.valid">Submit</button>
+                  <button class="btn btn-maroon" type="submit" [disabled]="!timeSheetForm.valid">Submit</button>
                 </div>
 
                 <div class="error-message mandatory font-arial" *ngIf="isFormEmpty(timeSheetForm.value)">
@@ -125,11 +123,11 @@
       <div class="cardd">
         <div class="container p-2">
           <form>
-            <input class="input-box" type="text"   id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
-           
+            <input class="input-box" type="text" id="myInput" placeholder="Search.." (keyup)="FilterChange($event)" />
 
 
-            <div class="table-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
+
+            <div class="table-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
 
 
@@ -175,15 +173,15 @@
             </div>
 
 
-            <div *ngIf="isLoading " class="loading-bar"  >
-              <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'"  >
+            <div *ngIf="isLoading " class="loading-bar">
+              <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
                 <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
               </div>
             </div>
 
-            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'" >
+            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
               <button (click)="loadMoreUsers()" *ngIf="hasMoreResult" mat-raised-button color="primary"
-                      style="background-color: maroon;" class="rounded-pill align-middle text-center">
+                style="background-color: maroon;" class="rounded-pill align-middle text-center">
                 Load More
               </button>
             </div>
@@ -193,28 +191,29 @@
 
 
             <!-- Table for user time sheet data -->
-            <div class="table-container" [ngClass]="{'expanded': isSidebarExpanded}"  *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
+            <div class="table-container" [ngClass]="{'expanded': isSidebarExpanded}"
+              *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'">
               <table mat-table [dataSource]="dataSourceForUser" class="mat-elevation-z8">
                 <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef > Date </th>
-                  <td mat-cell *matCellDef="let time" >
-                      {{time.date}}
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let time">
+                    {{time.date}}
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="startTime">
-                  <th mat-header-cell *matHeaderCellDef > Start Time </th>
-                  <td mat-cell *matCellDef="let time" > {{time.startTime}} </td>
+                  <th mat-header-cell *matHeaderCellDef> Start Time </th>
+                  <td mat-cell *matCellDef="let time"> {{time.startTime}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="endTime">
-                  <th mat-header-cell *matHeaderCellDef > End Time </th>
-                  <td mat-cell *matCellDef="let time" > {{time.endTime}} </td>
+                  <th mat-header-cell *matHeaderCellDef> End Time </th>
+                  <td mat-cell *matCellDef="let time"> {{time.endTime}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="note">
-                  <th mat-header-cell *matHeaderCellDef > Note </th>
-                  <td mat-cell *matCellDef="let time" > {{time.note}} </td>
+                  <th mat-header-cell *matHeaderCellDef> Note </th>
+                  <td mat-cell *matCellDef="let time"> {{time.note}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsForUser"></tr>
@@ -225,14 +224,14 @@
 
 
             <div *ngIf="isLoading" class="loading-bar">
-              <div class="spinner-container"  *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
+              <div class="spinner-container" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'">
                 <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
               </div>
             </div>
 
-            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'" >
+            <div class="load-button" *ngIf="isLoggedIn?.role !== 'ROLE_ADMIN'">
               <button (click)="loadMoreloadtsById()" *ngIf="hasMoreResult" mat-raised-button color="primary"
-                      style="background-color: maroon;" class="rounded-pill align-middle text-center">
+                style="background-color: maroon;" class="rounded-pill align-middle text-center">
                 Load More
               </button>
             </div>

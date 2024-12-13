@@ -114,11 +114,20 @@
             </div>
 
 
-            <div class="mx-3">
+            <!-- <div class="mx-3">
                 <label for="userIdInput" class="enterId">Enter User ID:</label>
                 <input id="userIdInput" class="form-select inpBox" type="number" [(ngModel)]="userIdInput" placeholder="Enter User ID" />
                 <button class="btn btn-maroon" (click)="fetchTasksByInput()">Fetch Tasks</button>
-            </div>
+            </div> -->
+
+        <div class="mx-3">
+            <label for="userIdSelect" class="enterId">Select User:</label>
+            <select id="userIdSelect" class="form-select inpBox" [(ngModel)]="userIdInput">
+                <option *ngFor="let user of users" [value]="user.userId">{{ user.userName }}</option>
+            </select>
+            <button class="btn btn-maroon" (click)="fetchTasksByInput()">Fetch Tasks</button>
+        </div>
+
 
 
 <div class="cardd" *ngIf="tasks.length > 0"  >
