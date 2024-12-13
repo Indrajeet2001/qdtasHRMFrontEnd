@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../service/userServices';
 import { Subscription } from 'rxjs';
 import { User } from '../model/user';
@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditRecruitmentComponent } from '../edit-recruitment/edit-recruitment.component';
 import { DialogboxComponent } from '../dialogbox/dialogbox.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-recruitment',
@@ -33,12 +34,17 @@ export class RecruitmentComponent {
   resultPage: number = 1;
   hasMoreResult: boolean = true;
   uName: any[] = [];
-  count:number = 0;
+  count: number = 0;
   dataSource: MatTableDataSource<Recruitment>;
+  @ViewChild(MatSort) sort!: MatSort;
 
   isSidebarExpanded: boolean = true;
   constructor(private userService: UserService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Recruitment>();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
@@ -209,9 +215,9 @@ export class RecruitmentComponent {
     });
   }
 
-  Count () {
-    this.userService.recrutimentCount().subscribe((data)=>{
-      this.count = data
-    })
+  Count() {
+    this.userService.recrutimentCount().subscribe((data) => {
+      this.count = data;
+    });
   }
 }
