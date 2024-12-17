@@ -55,6 +55,7 @@ export class LeaveComponent {
 
   minDate: Date;
   startDate!: Date;
+  endDate!: Date;
 
   sideNavStatus: boolean = false;
   u: User; // Store user information
@@ -79,8 +80,6 @@ export class LeaveComponent {
     this.isLoggedIn = this.UserService.getAuthUserFromCache();
     this.loadLeavesById(this.eId);
   }
-
-  
 
   isSidebarExpanded: boolean = true;
   isLoading: boolean = false;
@@ -120,9 +119,9 @@ export class LeaveComponent {
         }, 3000);
       },
       (error: any) => {
-         if (error.status === 400) {
-           this.errorMessage = 'Insufficient leave balance to request leave';
-         }
+        if (error.status === 400) {
+          this.errorMessage = 'Insufficient leave balance to request leave';
+        }
         setTimeout(() => {
           this.errorMessage = null;
         }, 3000);
@@ -208,28 +207,27 @@ export class LeaveComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-             this.UserService.changeLeaveStatusApprove(index).subscribe(
-               (response: any) => {
-                 const updatedUser = this.UserService.getAuthUserFromCache();
-                 if (response) {
-                   this.UserService.updateAuthUserInCache(updatedUser);
-                 }
-                 this.successMessage = 'Leave Accepted';
-                 setTimeout(() => {
-                   this.successMessage = null;
-                   window.location.reload();
-                 }, 3000);
-               },
-               (error) => 
-                 {
-                   if (error.status === 400) {
-                     this.errorMessage = "Insufficent Leave Balance"
-                   }
-                   setTimeout(() => {
-                     this.errorMessage = null;
-                   }, 3000);
-                 }
-             );
+        this.UserService.changeLeaveStatusApprove(index).subscribe(
+          (response: any) => {
+            const updatedUser = this.UserService.getAuthUserFromCache();
+            if (response) {
+              this.UserService.updateAuthUserInCache(updatedUser);
+            }
+            this.successMessage = 'Leave Accepted';
+            setTimeout(() => {
+              this.successMessage = null;
+              window.location.reload();
+            }, 3000);
+          },
+          (error) => {
+            if (error.status === 400) {
+              this.errorMessage = 'Insufficent Leave Balance';
+            }
+            setTimeout(() => {
+              this.errorMessage = null;
+            }, 3000);
+          }
+        );
       }
     });
   }
@@ -303,5 +301,4 @@ export class LeaveComponent {
       )
     );
   }
-
 }
