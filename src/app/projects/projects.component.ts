@@ -102,8 +102,7 @@ export class ProjectsComponent implements OnInit {
             .filter((user) => user.subRole === 'ROLE_MANAGER')
             .map((manager) => manager.firstName + ' ' + manager.lastName);
         },
-        (error) => {
-        }
+        (error) => {}
       )
     );
   }
@@ -150,9 +149,11 @@ export class ProjectsComponent implements OnInit {
           // Extract manager and team usernames
           const updatedProjects = projects.map((project) => {
             const managerUsername =
-              project.managers?.map((member: any) => member.userName) || [];
+              project.managers?.map(
+                (member: any) => member.firstName + '  ' + member.lastName) || [];
             const teamUsernames =
-              project.team?.map((member: any) => member.userName) || [];
+              project.team?.map(
+                (member: any) => member.firstName + '  ' + member.lastName) || [];
 
             return {
               projectId: project.projectId,
@@ -165,7 +166,6 @@ export class ProjectsComponent implements OnInit {
               teamUsernames: teamUsernames,
             };
           });
-
 
           // Update the data source
           this.projects.push(...updatedProjects);

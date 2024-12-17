@@ -40,39 +40,36 @@
 
 
 
-              <div class="inp-field">
-
-                <div class="inp">
-                  <label class="form-label">Choose Start Date</label>
-                  <mat-form-field class="inp-date" appearance="fill">
-                    <input matInput [matDatepicker]="startPicker" [min]="minDate" [(ngModel)]="startDate"
-                      name="startDate" id="sDate" placeholder="Choose Start Date" #startDateInput="ngModel" required
-                      [disabled]="(leaves.length > 0 && leaves[0].employee.totalLeaves! < 0)">
-                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #startPicker></mat-datepicker>
-                    <mat-error class="error-message"
-                      *ngIf="startDateInput.invalid && (startDateInput.dirty || startDateInput.touched)">
-                      <span *ngIf="startDateInput.errors?.['required']">Start Date is required</span>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-
-                <div class="inp">
-                  <label class="form-label">Choose End Date</label>
-                  <mat-form-field class="inp-date">
-                    <input matInput [matDatepicker]="endPicker" [min]="startDate" ngModel name="endDate" id="eDate"
-                      placeholder="Choose End Date" #endDateInput="ngModel" required
-                      [disabled]=" (leaves.length > 0 && leaves[0].employee.totalLeaves! < 0)">
-                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #endPicker></mat-datepicker>
-                    <mat-error class="error-message"
-                      *ngIf="endDateInput.invalid && (endDateInput.dirty || endDateInput.touched)">
-                      <span *ngIf="endDateInput.errors?.['required']">End Date is required</span>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-
-              </div>
+                      <div class="inp-field">
+                      
+                        <div class="inp">
+                          <label class="form-label">Choose Start Date</label>
+                          <mat-form-field class="inp-date" appearance="fill">
+                            <input matInput [matDatepicker]="startPicker" [min]="minDate" [(ngModel)]="startDate" name="startDate" id="sDate"
+                              placeholder="Choose Start Date" #startDateInput="ngModel" required>
+                            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #startPicker></mat-datepicker>
+                            <mat-error class="error-message"
+                              *ngIf="startDateInput.invalid && (startDateInput.dirty || startDateInput.touched)">
+                              <span *ngIf="startDateInput.errors?.['required']">Start Date is required</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      
+                        <div class="inp">
+                          <label class="form-label">Choose End Date</label>
+                          <mat-form-field class="inp-date" appearance="fill">
+                            <input matInput [matDatepicker]="endPicker" [min]="startDate" [(ngModel)]="endDate" name="endDate" id="eDate"
+                              placeholder="Choose End Date" #endDateInput="ngModel" required [disabled]="!startDate">
+                            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endPicker></mat-datepicker>
+                            <mat-error class="error-message" *ngIf="endDateInput.invalid && (endDateInput.dirty || endDateInput.touched)">
+                              <span *ngIf="endDateInput.errors?.['required']">End Date is required</span>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      
+                      </div>
 
 
               <div class="inp-field">
