@@ -166,7 +166,7 @@
                                     </div>
 
                 
-                                <div>
+                                <div *ngIf="isLoggedIn?.role !== 'ROLE_USER'">
                                     <div class="col text-end suv-btn">
                                         <button class="btn btn-maroon" type="submit"
                                             (click)="openEidtUser(userDetails.userId)">Edit</button>

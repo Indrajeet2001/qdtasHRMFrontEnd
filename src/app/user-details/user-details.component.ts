@@ -17,7 +17,7 @@ export class UserDetailsComponent {
   sideNavStatus: boolean = true;
   successMessage: string | null = null;
   errorMessage: string | null = null;
-
+  isLoggedIn!: User;
   u!: User;
   uId: any;
   isFormSubmitted: boolean = false;
@@ -85,7 +85,7 @@ export class UserDetailsComponent {
 
   getUserById(userId: number) {
     this.userService.getUsersById(userId).subscribe((data) => {
-      this.userDetails = data;      
+      this.userDetails = data;
     });
   }
 }
