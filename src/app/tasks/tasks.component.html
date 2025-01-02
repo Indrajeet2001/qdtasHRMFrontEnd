@@ -19,7 +19,7 @@
         <div class="display-area" [ngClass]="{'expanded': isSidebarExpanded, 'collapsed': !isSidebarExpanded}">
 
 
-            <div class="card" *ngIf="isLoggedIn?.role !=='ROLE_USER'"  >
+            <div class="card"  >
                 <div class="container p-2" >
                     <form class="tasksForm" #tasksForm="ngForm" (submit)="assignTask(tasksForm.value)"  >
                         <div class="inp-row">
